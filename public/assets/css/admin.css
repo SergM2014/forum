@@ -1,0 +1,289 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+html, body {
+  height: 100%; }
+
+/*stick the footer in the very bottom*/
+.container {
+  position: relative;
+  min-height: 100%; }
+
+.content {
+  padding-bottom: 100px; }
+
+.site-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border: 1px solid black;
+  height: 100px; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto; }
+
+.main-header__title--h1 {
+  text-align: center;
+  margin: 20px; }
+
+.main-header__menu-item {
+  display: inline-block;
+  list-style-type: none;
+  margin-right: 5px; }
+
+.main-header__admin {
+  float: right;
+  display: inline-block;
+  list-style-type: none; }
+
+.main-header__menu {
+  width: 100%;
+  margin-bottom: 20px; }
+
+.admin-zone--greeting {
+  text-align: center;
+  color: red; }
+
+.main-header__language-select {
+  float: right;
+  display: inline-block;
+  list-style-type: none;
+  margin-right: 10px; }
+
+.pagination__container{
+  margin:15px 0;
+  display:flex;
+}
+.pagination{
+  display:inline-block;
+  margin:auto;
+}
+.pagination__current-item-link{
+  text-decoration: none;
+  color:red;
+}
+.table-container {
+  display:flex;
+  justify-content: center;
+}
+.table{
+  border:1px solid black;
+  border-collapse: collapse;
+  text-align:center;
+  margin:20px 0;
+}
+th, td {
+  border:1px solid black;
+  padding:2px;
+}
+th{
+  color:red;
+}
+.table-image{
+  max-height:100px;
+  max-width:100px;
+}
+.table__row:hover{
+  cursor:pointer;
+  background-color: #ff7e88;
+
+}
+
+.popup-menu{
+  position:absolute;
+  background: #ffdb7f;
+  z-index:500;
+  padding:2px;
+  border:1px solid black;
+  border-radius:3px;
+  min-width:100px;
+}
+.popUp-menu__delete-item{
+  border:none;
+  cursor:pointer;
+  background: #ffdb7f;
+  color:blue;
+  text-decoration:underline;
+  font-size:14px;
+}
+.centered{
+  width:360px;
+  margin:0 auto;
+}
+
+.header-h2{
+  text-align:center;
+  color: #ff6975;
+  margin:10px 0;
+}
+.form-field{
+  margin:10px 0;
+}
+
+.form-field__label{
+  color:red;
+}
+.form-field__error{
+  color:red;
+  border-bottom:1px dotted red;
+  display:block;
+}
+.form-field__error:empty {
+  display:none;
+}
+.lesson-form{
+  padding:20px 0;
+}
+
+
+
+.hidden{
+  display:none!important;
+}
+.green {
+  color: #11ff30;
+}
+.red{
+  color: #aa1111;
+}
+
+
+.image-download__preview {
+  max-width:150px;
+  max-height:150px;
+  border-radius:5px;
+}
+
+
+.image-download__blockk{
+  margin-bottom:10px;
+  position:relative;
+}
+
+.image-download__btn{
+  padding:2px;
+  cursor:pointer;
+}
+.image-download__output{
+  display: inline-block;
+  width: 50%;
+  position: absolute;
+  top:25px;
+  text-align: center;
+  padding-left: 5px;
+}
+.image-upload--succeded, .image-delete--succeded{
+  color: #56ff76;
+  text-align:center;
+}
+.image-upload--failed{
+  color:red;
+  text-align:center;
+}
+
+
+.modal-background{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background-color: #5a5b65;
+  z-index:999;
+  opacity: 0.9;
+  display:flex;
+}
+.modal-window{
+  z-index: 1000;
+  background-color: #6bff4f;
+  width: 360px;
+  height: 360px;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid red;
+  border-radius: 10px;
+  position:relative;
+  display:flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.modal-window__close-sign{
+  position:absolute;
+  right:10px;
+  top:10px;
+  cursor:pointer;
+}
+.modal-window__text{
+    width:100%;
+    text-align:center;
+}
+.modal-window__footer{
+    width:100%;
+    display:flex;
+    justify-content: space-around;
+}
+.modal-window__btn{
+    width:120px;
+    cursor:pointer;
+}
+.alert-zone{
+  background-color: rgba(255, 55, 56, 0.99);
+  width: 100%;
+  min-height: 150px;
+  position: fixed;
+  text-align: center;
+  color: #0d1821;
+  z-index: 1100;
+  top: 150px;
+  border-radius: 10px;
+  display:flex;
+  font-size: 25px;
+}
+.close-alert-sign{
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #2aa4a5;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.alert-zone__text{
+  margin:auto;
+}
+
+
+.red-text{
+  color:red;
+}
+.
+.image-download__delete-sign{
+  position:absolute;
+  top:0;
+  right:0;
+  cursor:pointer;
+}
+.profile-block{
+  width: 360px;
+  margin: 30px auto;
+}
+
+
+@media screen and (max-width: 750px) {
+
+  .table-container{
+    display:block;
+    overflow:scroll;
+  }
+  .table{
+    min-width:800px;
+  }
+  .main-header__right-side{
+    margin-bottom:30px;
+     }
+
+}
