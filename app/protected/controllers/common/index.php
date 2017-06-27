@@ -24,7 +24,8 @@ class Index  extends BaseController
        */
     public function index()
 	{
-      return ['view'=>'views/common/index.php'];
+	    $result = (new Model())->getCategoryTableTree();
+        return ['view'=>'views/common/index.php', 'result' => $result ];
     }
 
     public function edit($errors = null )

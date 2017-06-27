@@ -11,6 +11,12 @@ $youAreInAdminL = "Ви в адмін зоні";
 $usersL = "користувачі";
 $exitL = "Вихід";
 $adminGreetingsL = "поздоровляю Ви адміністратор";
+$titleL = "Назва";
+$topicAmountL = "Кількість Тем";
+$responseAmountL = "Кількість відгуків";
+$latestResponseL = "Останній Відгук";
+$addedL = "Додано";
+$nameL = "Ім'я";
 
 
 

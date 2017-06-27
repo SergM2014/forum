@@ -26,6 +26,7 @@ class DataBase {
             self::$connection->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
 
             self::$connection ->exec("SET time_zone = 'Europe/Kiev'");
+            self::$connection ->exec("SET sql_mode = ''");
 
             if(DEBUG_MODE){
                 //на время разработки

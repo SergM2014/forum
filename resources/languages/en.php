@@ -11,6 +11,12 @@ $youAreInAdminL = "You are in admin Zone";
 $usersL= 'Users';
 $exitL = "Exit";
 $adminGreetingsL = "Greetings, You are admin!";
+$titleL = "Title";
+$topicAmountL = "Topics amount";
+$responseAmountL = "Responses Amount";
+$latestResponseL = "Latest Response";
+$addedL = "Added";
+$nameL= "Name";
 
 
 //these functionare for translation in controllers and models

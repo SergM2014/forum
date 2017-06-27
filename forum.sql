@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 19 2017 г., 09:19
+-- Время создания: Июн 27 2017 г., 10:40
 -- Версия сервера: 5.7.18-0ubuntu0.16.04.1
--- Версия PHP: 7.0.20-2~ubuntu16.04.1+deb.sury.org+1
+-- Версия PHP: 7.0.18-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -34,6 +34,18 @@ CREATE TABLE `categories` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `categories`
+--
+
+INSERT INTO `categories` (`id`, `parent_id`, `title`, `created_at`, `updated_at`) VALUES
+(1, 0, 'category1', '2017-06-26 09:18:14', '2017-06-26 09:18:14'),
+(2, 0, 'category2', '2017-06-26 09:18:14', '2017-06-26 09:18:14'),
+(3, 0, 'Category3', '2017-06-26 09:18:45', '2017-06-26 09:18:45'),
+(4, 0, 'category4', '2017-06-26 09:18:45', '2017-06-26 09:18:45'),
+(5, 2, 'category21', '2017-06-26 09:19:12', '2017-06-26 09:19:12'),
+(6, 2, 'category22', '2017-06-26 09:19:12', '2017-06-26 09:19:12');
+
 -- --------------------------------------------------------
 
 --
@@ -43,7 +55,7 @@ CREATE TABLE `categories` (
 CREATE TABLE `members` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `avatar` varchar(255) NOT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -51,6 +63,13 @@ CREATE TABLE `members` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `members`
+--
+
+INSERT INTO `members` (`id`, `user_id`, `avatar`, `name`, `password`, `email`, `token`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, 'user', 'user', 'weisse@ukr.net', 'user', '2017-06-27 06:57:05', '2017-06-27 06:57:05');
 
 -- --------------------------------------------------------
 
@@ -67,6 +86,14 @@ CREATE TABLE `responses` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `responses`
+--
+
+INSERT INTO `responses` (`id`, `topic_id`, `member_id`, `response`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'first response', '2017-06-01 09:25:24', '2017-06-27 06:39:41'),
+(2, 1, 1, 'last response', '2017-06-26 09:25:24', '2017-06-26 09:25:24');
+
 -- --------------------------------------------------------
 
 --
@@ -82,6 +109,14 @@ CREATE TABLE `topics` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `topics`
+--
+
+INSERT INTO `topics` (`id`, `category_id`, `member_id`, `title`, `views`, `created_at`, `updated_at`) VALUES
+(1, 5, 1, 'topic1', 1, '2017-06-26 09:23:00', '2017-06-26 09:23:00'),
+(2, 5, 1, 'topic2', 1, '2017-06-26 09:23:00', '2017-06-26 09:23:00');
 
 -- --------------------------------------------------------
 
@@ -112,6 +147,19 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `members`
+--
+ALTER TABLE `members`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `responses`
+--
+ALTER TABLE `responses`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `member_id` (`member_id`);
+
+--
 -- Индексы таблицы `topics`
 --
 ALTER TABLE `topics`
@@ -125,12 +173,32 @@ ALTER TABLE `topics`
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT для таблицы `members`
+--
+ALTER TABLE `members`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT для таблицы `responses`
+--
+ALTER TABLE `responses`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT для таблицы `topics`
 --
 ALTER TABLE `topics`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- Ограничения внешнего ключа сохраненных таблиц
+--
+
+--
+-- Ограничения внешнего ключа таблицы `responses`
+--
+ALTER TABLE `responses`
+  ADD CONSTRAINT `responses_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `members` (`id`);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
