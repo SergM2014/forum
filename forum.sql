@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 27 2017 г., 10:40
+-- Время создания: Июл 02 2017 г., 09:51
 -- Версия сервера: 5.7.18-0ubuntu0.16.04.1
 -- Версия PHP: 7.0.18-0ubuntu0.16.04.1
 
@@ -60,7 +60,7 @@ CREATE TABLE `members` (
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `token` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `added_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -68,8 +68,28 @@ CREATE TABLE `members` (
 -- Дамп данных таблицы `members`
 --
 
-INSERT INTO `members` (`id`, `user_id`, `avatar`, `name`, `password`, `email`, `token`, `created_at`, `updated_at`) VALUES
+INSERT INTO `members` (`id`, `user_id`, `avatar`, `name`, `password`, `email`, `token`, `added_at`, `updated_at`) VALUES
 (1, NULL, NULL, 'user', 'user', 'weisse@ukr.net', 'user', '2017-06-27 06:57:05', '2017-06-27 06:57:05');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `online`
+--
+
+CREATE TABLE `online` (
+  `id` int(11) NOT NULL,
+  `ip` varchar(255) NOT NULL,
+  `added_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `online`
+--
+
+INSERT INTO `online` (`id`, `ip`, `added_at`, `status`) VALUES
+(16, '127.0.0.1', '2017-07-02 06:50:59', '');
 
 -- --------------------------------------------------------
 
@@ -136,6 +156,28 @@ CREATE TABLE `users` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `visitors`
+--
+
+CREATE TABLE `visitors` (
+  `id` int(11) NOT NULL,
+  `userhash` varchar(255) NOT NULL,
+  `visits_number` int(11) NOT NULL,
+  `added_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `visitors`
+--
+
+INSERT INTO `visitors` (`id`, `userhash`, `visits_number`, `added_at`, `updated_at`) VALUES
+(1, '5955ee3c52cbe', 1, '2017-06-30 06:22:52', '2017-06-30 09:22:52'),
+(2, '5955ee944e854', 7, '2017-06-30 06:24:20', '2017-07-02 09:23:12');
+
 --
 -- Индексы сохранённых таблиц
 --
@@ -153,6 +195,12 @@ ALTER TABLE `members`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `online`
+--
+ALTER TABLE `online`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `responses`
 --
 ALTER TABLE `responses`
@@ -163,6 +211,12 @@ ALTER TABLE `responses`
 -- Индексы таблицы `topics`
 --
 ALTER TABLE `topics`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `visitors`
+--
+ALTER TABLE `visitors`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -180,6 +234,11 @@ ALTER TABLE `categories`
 ALTER TABLE `members`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT для таблицы `online`
+--
+ALTER TABLE `online`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+--
 -- AUTO_INCREMENT для таблицы `responses`
 --
 ALTER TABLE `responses`
@@ -188,6 +247,11 @@ ALTER TABLE `responses`
 -- AUTO_INCREMENT для таблицы `topics`
 --
 ALTER TABLE `topics`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT для таблицы `visitors`
+--
+ALTER TABLE `visitors`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Ограничения внешнего ключа сохраненных таблиц

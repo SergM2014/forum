@@ -3,11 +3,10 @@
 namespace  App\Core;
 
 use App\Core\HihgLevelDependacy\MainDispatcher;
-
+use Lib\Visitors;
 
 class Application extends MainDispatcher {
 
-  
 
     /**
      *
@@ -16,6 +15,8 @@ class Application extends MainDispatcher {
      * @return mixed
      */
     public function runController($controller){
+
+
 
         $class = '\App\Controllers\\';
 
@@ -28,6 +29,8 @@ class Application extends MainDispatcher {
         $arguments = $controller['arguments']?? [];
 
         $data = call_user_func_array(array($contr, $action),  $arguments);
+
+        Visitors::setOne();
 
         return $data;
 

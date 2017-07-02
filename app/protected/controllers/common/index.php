@@ -6,10 +6,12 @@ namespace App\Controllers;
 
 use App\Core\BaseController;
 
+use App\Models\Background;
 use Lib\HelperService;
 use Lib\CheckFieldsService;
 use App\Models\Index as Model;
 use App\Models\CheckForm;
+use Lib\Visitors;
 
 
 
@@ -25,7 +27,14 @@ class Index  extends BaseController
     public function index()
 	{
 	    $result = (new Model())->getCategoryTableTree();
-        return ['view'=>'views/common/index.php', 'result' => $result ];
+	    $visitorsOnline = Background::visitorsOnline();
+	    $membersOnline = Background::membersOnline();
+	    $responsesAmount = Background::responsesAmount();
+	    $lastMemberName = Background::lastRegisteredMember();
+	    $membersAmount = Background::membersAmount();
+        return ['view'=>'views/common/index.php', 'result' => $result, 'visitorsOnline' => $visitorsOnline,
+            'responsesAmount'=> $responsesAmount, 'membersOnline'=> $membersOnline, 'lastMemberName'=> $lastMemberName,
+            'membersAmount'=> $membersAmount];
     }
 
     public function edit($errors = null )

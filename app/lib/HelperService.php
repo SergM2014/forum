@@ -14,6 +14,8 @@ use function \succededRegistrationMail;
 class HelperService {
 
 
+
+
     /**
      * send email
      *

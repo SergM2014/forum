@@ -90,6 +90,7 @@ class ComposerStaticInit14fc953014b49481d3c9d0477a55e3f8
         'App\\Core\\HihgLevelDependacy\\MainDispatcher' => __DIR__ . '/../..' . '/app/core/highLevelDependancy/maindispatcher.php',
         'App\\Core\\HihgLevelDependacy\\Prozess_Image' => __DIR__ . '/../..' . '/app/core/highLevelDependancy/prozess_image.php',
         'App\\Models\\AdminModel' => __DIR__ . '/../..' . '/app/protected/models/admin.php',
+        'App\\Models\\Background' => __DIR__ . '/../..' . '/app/protected/models/background.php',
         'App\\Models\\CheckForm' => __DIR__ . '/../..' . '/app/protected/models/checkForm.php',
         'App\\Models\\Images' => __DIR__ . '/../..' . '/app/protected/models/images.php',
         'App\\Models\\Index' => __DIR__ . '/../..' . '/app/protected/models/index.php',

@@ -16,6 +16,28 @@
 </table>
 
 
+<p>
+    Visitors OnLine: <?= $visitorsOnline ?>
+</p>
+
+<p>
+    Members OnLine: <?= $membersOnline ?>
+</p>
+
+<p>
+    Responses Amount: <?= $responsesAmount ?>
+</p>
+
+<p>
+    Last member Name: <?= $lastMemberName ?>
+</p>
+
+<p>
+    MembersAmount: <?= $membersAmount ?>
+</p>
+
+
+
 
 
 

@@ -20,6 +20,7 @@ return array(
     'App\\Core\\HihgLevelDependacy\\MainDispatcher' => $baseDir . '/app/core/highLevelDependancy/maindispatcher.php',
     'App\\Core\\HihgLevelDependacy\\Prozess_Image' => $baseDir . '/app/core/highLevelDependancy/prozess_image.php',
     'App\\Models\\AdminModel' => $baseDir . '/app/protected/models/admin.php',
+    'App\\Models\\Background' => $baseDir . '/app/protected/models/background.php',
     'App\\Models\\CheckForm' => $baseDir . '/app/protected/models/checkForm.php',
     'App\\Models\\Images' => $baseDir . '/app/protected/models/images.php',
     'App\\Models\\Index' => $baseDir . '/app/protected/models/index.php',

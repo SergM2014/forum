@@ -39,13 +39,12 @@ abstract class MainDispatcher
             $route = '~^'.$route.'$~';
 
             $pattern = preg_replace('/\{\w+\}/', '\w+', $route);
-//var_dump($givenUrl);
-//var_dump($pattern);
+
 //if route coinceides with given Url
             if(preg_match($pattern, $givenUrl)){
 
                 $controller->controller = strtolower($value);
-//var_dump($controller->controller);
+
 //if arguments are present in the route
                 if( preg_match('~\{\w+\}~', $route)){
 
