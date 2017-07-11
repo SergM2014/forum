@@ -174,14 +174,38 @@ document.body.addEventListener('click', function(e){
         }
     }
 
-});//ends of events hanged on the body
+    // if(document.getElementById('mainHeaderMenu').style.left === 0){
+    //     document.getElementById('mainHeaderMenu').classList.remove('show-menu')
+    // }
+
+
+});//ends of events that are hanged on the body
 
 
 
 document.getElementById('mainHeaderTouchBtn').addEventListener('click', function(){
 
     document.getElementById('mainHeaderMenu').classList.add('show-menu');
+    setTimeout(function() {  document.getElementById('mainHeaderMenu').classList.add('menu_is_shown') }, 2000)
+
+
+
 });
+
+
+if(document.documentElement.clientWidth < 751){
+    document.addEventListener('click', function(e){
+        if ( !e.target.closest('#mainHeaderTouchBtn') && !e.target.closest('#mainHeaderMenu')){
+
+            document.getElementById('mainHeaderMenu').className = "main-header__menu"
+           // alert(1111)
+        }
+    })
+}
+
+
+
+
 
 if(document.getElementById('manyImagesContainer')){
     var el = document.getElementById('manyImagesContainer');
