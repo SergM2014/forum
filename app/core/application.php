@@ -16,8 +16,6 @@ class Application extends MainDispatcher {
      */
     public function runController($controller){
 
-
-
         $class = '\App\Controllers\\';
 
         $nameContr = $class.ucfirst($controller[0]);

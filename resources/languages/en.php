@@ -17,6 +17,13 @@ $responseAmountL = "Responses Amount";
 $latestResponseL = "Latest Response";
 $addedL = "Added";
 $nameL= "Name";
+$mainPageL = "Main";
+$ourBrandL = "Our Brand";
+$searchL = "Search";
+$visitorsOnlineL = "Visitors on line";
+$membersOnlineL = "Members on line";
+$lastRegisteredMemberNameL = "Last registered Member Name";
+$membersAmountL = "Members amount";
 
 
 //these functionare for translation in controllers and models

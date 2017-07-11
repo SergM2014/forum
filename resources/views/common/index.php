@@ -1,13 +1,13 @@
 <section class="breadcrumbs">
 
-    <span class="breadcrumb__item--current">Main Page</span>
+    <span class="breadcrumb__item--current"><?= $mainPageL ?></span>
 
 </section>
 
 
 
 
-<h1 class="main-header__h1">main</h1>
+<h1 class="main-header__h1"><?= $mainPageL ?></h1>
 
 <div class="table-container">
 
@@ -22,23 +22,23 @@
 
 
 <p>
-    Visitors OnLine: <?= $visitorsOnline ?>
+    <?= $visitorsOnlineL ?>: <?= $visitorsOnline ?>
 </p>
 
 <p>
-    Members OnLine: <?= $membersOnline ?>
+    <?= $membersOnlineL ?>: <?= $membersOnline ?>
 </p>
 
 <p>
-    Responses Amount: <?= $responsesAmount ?>
+    <?= $responseAmountL ?>: <?= $responsesAmount ?>
 </p>
 
 <p>
-    Last member Name: <?= $lastMemberName ?>
+    <?= $lastRegisteredMemberNameL ?>: <?= $lastMemberName ?>
 </p>
 
 <p>
-    MembersAmount: <?= $membersAmount ?>
+    <?= $membersAmountL ?> : <?= $membersAmount ?>
 </p>
 
 

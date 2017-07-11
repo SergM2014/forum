@@ -116,7 +116,6 @@ abstract class MainDispatcher
 
     protected function getLanguageComponent()
     {
-//var_dump($this->url);
         $url = $this->url;
         //if string to explode then explode into array
         if(strripos($url, '/')!== false ) {
@@ -142,8 +141,9 @@ abstract class MainDispatcher
         }
 
         if(is_array($url)){
+
             $this->url = implode('/',$url);
-        }
+        } else { $this->url = $url;}
 
 
         return $currentLang;

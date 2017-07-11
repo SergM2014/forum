@@ -29,8 +29,8 @@
                     </div>
 
                      <ul id="mainHeaderMenu" class="main-header__menu" >
-                         <li class="main-header__menu-item"><a href="/#">Our brand</a></li>
-                         <li class="main-header__menu-item"><a href="/">Main</a></li>
+                         <li class="main-header__menu-item"><a href="/#"><?= $ourBrandL ?></a></li>
+                         <li class="main-header__menu-item"><a href="/"><?= $mainPageL ?></a></li>
 
                     </ul>
 
@@ -50,7 +50,7 @@
                     </ul>
 
                     <div id="mainHeaderSearchContainer" class="main-header__search-container" >
-                        <span class="main-header__search-field-label"> search</span>
+                        <span class="main-header__search-field-label"><?= $searchL ?></span>
                         <input type="text" name="search" id="search" class="main-header__search-field"  maxlength="20"  >
 
                     </div>

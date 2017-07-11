@@ -17,6 +17,13 @@ $responseAmountL = "Кількість відгуків";
 $latestResponseL = "Останній Відгук";
 $addedL = "Додано";
 $nameL = "Ім'я";
+$mainPageL = "Головна";
+$ourBrandL = "Наш Бренд";
+$searchL = "Пошук";
+$visitorsOnlineL = "Відвідувачів на сайті";
+$membersOnlineL = "Користувачів на сайті";
+$lastRegisteredMemberNameL = "Імя останього зареестрованого користувача";
+$membersAmountL = "Кількість користувачів";
 
 
 

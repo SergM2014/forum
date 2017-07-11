@@ -2,7 +2,7 @@
 
 $routes = [
     /*
-     * 'route where {dum1} are arguments for controller => 'controller itself@his action'
+     * 'route where {dum1} are arguments for controller => 'controller itself@this action'
      *
      * '/article/{dum1}/update/{dum2}' => 'Controller2@update',
      *
