@@ -5,6 +5,9 @@ namespace App\Models;
 use App\Core\DataBase;
 use Gregwar\Captcha\CaptchaBuilder;
 
+use function added;
+use function author;
+
 
 
 
@@ -19,12 +22,14 @@ use Gregwar\Captcha\CaptchaBuilder;
 
      private function getGeneralInfo()
      {
-         $sql = "CREATE TEMPORARY TABLE `r2` SELECT `id`, `topic_id`, `member_id`, `response`,`created_at`, `updated_at` FROM `responses`  ORDER BY `created_at` DESC ";
+         $sql = "CREATE TEMPORARY TABLE `r2` SELECT `id`, `topic_id`, `member_id`, `response`,`created_at`, `updated_at`
+                  FROM `responses`  ORDER BY `created_at` DESC ";
          self::conn()->query($sql);
 
          $sql= "SELECT `c`.`id`, `c`.`parent_id`, `c`.`title`, COUNT(`t`.`id`) AS `topic_amount`, COUNT(`r2`.`id`)
-         AS `response_amount`, `r2`.`response`, `r2`.`created_at` AS `added`, `m`.`name` FROM `categories` `c` LEFT JOIN `topics` `t` ON `c`.`id`= `t`.`category_id` LEFT JOIN
-          `r2` ON `t`.`id`= `r2`.`topic_id` LEFT JOIN `members` `m` ON `r2`.`member_id`=`m`.`id` GROUP BY `c`.`id`";
+                 AS `response_amount`, `r2`.`id` AS `response_id`, `r2`.`response`, `r2`.`created_at` AS `added`, `m`.`name` FROM `categories` `c`
+                  LEFT JOIN `topics` `t` ON `c`.`id`= `t`.`category_id` LEFT JOIN `r2` ON `t`.`id`= `r2`.`topic_id`
+                  LEFT JOIN `members` `m` ON `r2`.`member_id`=`m`.`id` GROUP BY `c`.`id`";
 
 
          $stmt = self::conn()->query($sql);
@@ -39,7 +44,21 @@ use Gregwar\Captcha\CaptchaBuilder;
          $print = "";
          foreach ($this->categories as $category){
              if($category->parent_id == $parent){
-                 $print.= "<tr><td>{$category->title}</td> <td>{$category->topic_amount}</td> <td>{$category->response_amount}</td> <td>{$category->response}</td> <td>{$category->added}</td> <td>{$category->name}</td></tr>";
+                 $print.= "<tr>
+                                <td><a href='/category/{$category->title}'>{$category->title}</a></td>
+                                 <td>{$category->topic_amount}</td> 
+                                 <td>{$category->response_amount}</td> 
+                                 <td>";
+                 if(@$category->response_id){
+                     $print.= "
+                                <a href='/response/{$category->response_id}'>{$category->response}</a>
+                                      <p>".added().": {$category->added}</p> 
+                                      <p>".author().": {$category->name}</p>
+                     ";
+                 }
+
+                 $print.= "                 </td>
+                                  </tr>";
 
                  foreach($this->categories as $subCategory){
                      if($subCategory->parent_id == $category->id){

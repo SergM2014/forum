@@ -2,7 +2,7 @@
 
 $attrLang = "en";
 
-$dragToMoveAndClickToDel = "Drag to the position of the image or clicl todelete";
+$dragToMoveAndClickToDel = "Drag to the position of the image or click to delete";
 $backToSiteL = "Back to site";
 $adminEntryTitleL = "Enter Admin Zone";
 $loginTitleL = "Login";
@@ -39,4 +39,19 @@ function emptyField()
 function wrongEmail()
 {
     return "Wrong Email format!";
+}
+
+function added()
+{
+    return "added";
+}
+
+function name()
+{
+    return "name";
+}
+
+function author()
+{
+    return "author";
 }

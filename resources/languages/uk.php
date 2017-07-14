@@ -42,3 +42,18 @@ function wrongEmail()
     return "Невірний формат Email!";
 }
 
+function added()
+{
+    return "додано";
+}
+
+function name()
+{
+    return "імя";
+}
+
+function author()
+{
+    return "автор";
+}
+

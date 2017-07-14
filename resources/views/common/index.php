@@ -12,34 +12,39 @@
 <div class="table-container">
 
     <table class="table">
-        <tr><th><?= $titleL ?></th><th><?= $topicAmountL ?></th><th><?= $responseAmountL ?></th><th><?= $latestResponseL ?></th>
-            <th><?= $addedL ?></th><th><?= $nameL ?></th></tr>
+        <tr>
+            <th><?= $titleL ?></th><th><?= $topicAmountL ?></th><th><?= $responseAmountL ?></th><th><?= $latestResponseL ?></th>
+        </tr>
         <?= $result ?>
     </table>
 
 </div>
 
 
+<div class="general-info">
 
-<p>
+    <span>
     <?= $visitorsOnlineL ?>: <?= $visitorsOnline ?>
-</p>
+</span>
 
-<p>
+    <span>
     <?= $membersOnlineL ?>: <?= $membersOnline ?>
-</p>
+</span>
 
-<p>
+    <span>
     <?= $responseAmountL ?>: <?= $responsesAmount ?>
-</p>
+</span>
 
-<p>
+    <span>
     <?= $lastRegisteredMemberNameL ?>: <?= $lastMemberName ?>
-</p>
+</span>
 
-<p>
+    <span>
     <?= $membersAmountL ?> : <?= $membersAmount ?>
-</p>
+</span>
+
+</div>
+
 
 
 
