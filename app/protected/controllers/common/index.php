@@ -37,24 +37,23 @@ class Index  extends BaseController
             'membersAmount'=> $membersAmount];
     }
 
-    public function edit($errors = null )
-    {
-        $user = Model::getUser();
-        $this->setReferrer('edit');
 
-        return ['view'=>'views/common/edit.php', 'user'=>$user, 'errors'=> $errors];
-    }
 
-    public function update()
-    {
-        $this->checkReferrer('edit');
 
-        $cleanedUpInputs = self::escapeInputs('login', 'email');
-        $errors = CheckForm::checkForm($cleanedUpInputs);
-        if(!empty($errors)) return $this->edit($errors);
-        Model::updateUser($cleanedUpInputs);
-        exit('this is update controller having work further');
-    }
+   public function category($title)
+   {
+       $categoryTopics = (new Model())->getOneCategoryGeneralInfo($title);
+
+       $visitorsOnline = Background::visitorsOnline();
+       $membersOnline = Background::membersOnline();
+       $responsesAmount = Background::responsesAmount();
+       $lastMemberName = Background::lastRegisteredMember();
+       $membersAmount = Background::membersAmount();
+       return ['view'=>'views/common/category.php', 'categoryTopics' => $categoryTopics, 'visitorsOnline' => $visitorsOnline,
+           'responsesAmount'=> $responsesAmount, 'membersOnline'=> $membersOnline, 'lastMemberName'=> $lastMemberName,
+           'membersAmount'=> $membersAmount];
+//      dd($categoryTopics);
+   }
 
 
 

@@ -8,13 +8,16 @@ $routes = [
      *
      * routes in this file is to write without languages components
      */
-    '/'=>'Index@index',
-    '/index/edit/'=> 'Index@edit',
+
+   /* '/index/edit/'=> 'Index@edit',
     '/index/update' => 'Index@update',
     '/article/{dum1}/show/{dum2}' => 'index@showArgs',
     '/many/edit' => 'many@edit',
     '/images/uploadManyItems' => 'images@uploadManyItems',
-    '/many/update' => 'many@update',
+    '/many/update' => 'many@update',*/
+
+    '/'=>'Index@index',
+    '/category/{title}' => 'index@category',
 
     '/admin' => 'admin@index',
     '/admin/login' =>'admin@login',
@@ -24,4 +27,6 @@ $routes = [
     '/index/getLanguageComponents' => 'index@getLanguageComponents',
     '/images/uploadAvatar' =>'images@uploadAvatar',
     '/images/deleteAvatar' =>'images@deleteAvatar'
+
+
 ];

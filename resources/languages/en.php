@@ -24,6 +24,11 @@ $visitorsOnlineL = "Visitors on line";
 $membersOnlineL = "Members on line";
 $lastRegisteredMemberNameL = "Last registered Member Name";
 $membersAmountL = "Members amount";
+$authorL = "Author";
+$topicTitleL = "Topic title";
+$noThemaL = "No thema";
+$categoryL = "Category";
+
 
 
 //these functionare for translation in controllers and models

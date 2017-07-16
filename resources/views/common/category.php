@@ -1,0 +1,67 @@
+<section class="breadcrumbs">
+
+    <a href="/" class="breadcrumb__item"><?= $mainPageL ?></a> =>
+    <span class="breadcrumb__item--current"><?= $categoryL ?></span>
+
+</section>
+
+
+
+
+<h1 class="main-header__h1"><?= $mainPageL ?></h1>
+
+<div class="table-container">
+
+    <table class="table">
+        <tr>
+            <th><?= $topicTitleL ?></th><th><?= $responseAmountL ?></th><th><?= $latestResponseL ?></th>
+        </tr>
+       <?php foreach ($categoryTopics as $topic): ?>
+
+           <tr>
+               <td><?php if($topic->title): ?>
+                   <a href="/topic/<?= $topic->eng_title ?>"><?= $topic->title ?></a> <?php else: ?>
+                    <?= $noThemaL ?>
+                   <?php endif; ?>
+               </td>
+               <td><?= $topic->response_amount ?></td>
+               <td><?php  if($topic->response_id): ?>
+
+                   <a href=/response/<?= $topic->response_id ?>'><?= $topic->response ?></a>
+                   <p><?= $addedL ?>:  <?= $topic->added ?></p>
+                   <p><?= $authorL ?>: <?= $topic->name ?></p>
+
+                   <?php endif; ?>
+
+               </td>
+           </tr>
+
+        <?php endforeach; ?>
+    </table>
+
+</div>
+
+
+<div class="general-info">
+
+    <span>
+    <?= $visitorsOnlineL ?>: <?= $visitorsOnline ?>
+</span>
+
+    <span>
+    <?= $membersOnlineL ?>: <?= $membersOnline ?>
+</span>
+
+    <span>
+    <?= $responseAmountL ?>: <?= $responsesAmount ?>
+</span>
+
+    <span>
+    <?= $lastRegisteredMemberNameL ?>: <?= $lastMemberName ?>
+</span>
+
+    <span>
+    <?= $membersAmountL ?> : <?= $membersAmount ?>
+</span>
+
+</div>

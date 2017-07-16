@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Core\DataBase;
 use Gregwar\Captcha\CaptchaBuilder;
+use Lib\HelperService;
 
 use function added;
 use function author;
@@ -13,12 +14,18 @@ use function author;
 
  class Index extends DataBase
  {
+     private $categories;
+
+     private $currentLang;
+
      public function __construct()
      {
          $this->categories = $this->getGeneralInfo();
+         $this->currentLang = HelperService::currentLang();
+
      }
 
-     private $categories;
+
 
      private function getGeneralInfo()
      {
@@ -26,7 +33,7 @@ use function author;
                   FROM `responses`  ORDER BY `created_at` DESC ";
          self::conn()->query($sql);
 
-         $sql= "SELECT `c`.`id`, `c`.`parent_id`, `c`.`title`, COUNT(`t`.`id`) AS `topic_amount`, COUNT(`r2`.`id`)
+         $sql= "SELECT `c`.`id`, `c`.`parent_id`, `c`.`title`, `c`.`eng_title`, COUNT(DISTINCT`t`.`id`) AS `topic_amount`, COUNT(`r2`.`id`)
                  AS `response_amount`, `r2`.`id` AS `response_id`, `r2`.`response`, `r2`.`created_at` AS `added`, `m`.`name` FROM `categories` `c`
                   LEFT JOIN `topics` `t` ON `c`.`id`= `t`.`category_id` LEFT JOIN `r2` ON `t`.`id`= `r2`.`topic_id`
                   LEFT JOIN `members` `m` ON `r2`.`member_id`=`m`.`id` GROUP BY `c`.`id`";
@@ -45,13 +52,13 @@ use function author;
          foreach ($this->categories as $category){
              if($category->parent_id == $parent){
                  $print.= "<tr>
-                                <td><a href='/category/{$category->title}'>{$category->title}</a></td>
+                                <td><a href='{$this->currentLang}/category/{$category->eng_title}'>{$category->title}</a></td>
                                  <td>{$category->topic_amount}</td> 
                                  <td>{$category->response_amount}</td> 
                                  <td>";
                  if(@$category->response_id){
                      $print.= "
-                                <a href='/response/{$category->response_id}'>{$category->response}</a>
+                                <a href='{$this->currentLang}/response/{$category->response_id}'>{$category->response}</a>
                                       <p>".added().": {$category->added}</p> 
                                       <p>".author().": {$category->name}</p>
                      ";
@@ -78,6 +85,34 @@ use function author;
 
          return $print;
      }
+
+
+     public function getOneCategoryGeneralInfo($title)
+     {
+         $sql = "CREATE TEMPORARY TABLE IF NOT EXISTS `r2`  SELECT `id`, `topic_id`, `member_id`, `response`,`created_at`, `updated_at`
+                  FROM `responses`  ORDER BY `created_at` DESC ";
+         self::conn()->query($sql);
+
+         $sql= "SELECT `c`.`id` AS `category_id`,`t`.`id`,  `t`.`title`, `t`.`eng_title`, COUNT(DISTINCT `r2`.`id`)
+                 AS `response_amount`, `r2`.`id` AS `response_id`, `r2`.`response`, `r2`.`created_at` AS `added`, `m`.`name` FROM `categories` `c`
+                  LEFT JOIN `topics` `t` ON `c`.`id`= `t`.`category_id` LEFT JOIN `r2` ON `t`.`id`= `r2`.`topic_id`
+                  LEFT JOIN `members` `m` ON `r2`.`member_id`=`m`.`id` WHERE `c`.`title` = ?  GROUP BY `t`.`id` ORDER BY `r2`.`created_at` DESC";
+
+
+         $stmt = self::conn()->prepare($sql);
+         $stmt->bindValue(1, $title, \PDO::PARAM_STR);
+         $stmt->execute();
+
+         $result = $stmt->fetchAll();
+
+         return $result;
+     }
+
+
+
+
+
+
 
      public static function printCaptcha()
      {

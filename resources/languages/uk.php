@@ -24,6 +24,11 @@ $visitorsOnlineL = "Відвідувачів на сайті";
 $membersOnlineL = "Користувачів на сайті";
 $lastRegisteredMemberNameL = "Імя останього зареестрованого користувача";
 $membersAmountL = "Кількість користувачів";
+$authorL = "Автор";
+$topicTitleL = "Назва теми";
+$noThemaL = "Теми відсутні";
+$categoryL = "Категорія";
+
 
 
 
