@@ -27,11 +27,9 @@ class Index  extends BaseController
     public function index()
 	{
 	    $result = (new Model())->getCategoryTableTree();
-	    $visitorsOnline = Background::visitorsOnline();
-	    $membersOnline = Background::membersOnline();
-	    $responsesAmount = Background::responsesAmount();
-	    $lastMemberName = Background::lastRegisteredMember();
-	    $membersAmount = Background::membersAmount();
+
+        extract($this->siteStatistic());
+
         return ['view'=>'views/common/index.php', 'result' => $result, 'visitorsOnline' => $visitorsOnline,
             'responsesAmount'=> $responsesAmount, 'membersOnline'=> $membersOnline, 'lastMemberName'=> $lastMemberName,
             'membersAmount'=> $membersAmount];
@@ -44,18 +42,26 @@ class Index  extends BaseController
    {
        $categoryTopics = (new Model())->getOneCategoryGeneralInfo($title);
 
-       $visitorsOnline = Background::visitorsOnline();
-       $membersOnline = Background::membersOnline();
-       $responsesAmount = Background::responsesAmount();
-       $lastMemberName = Background::lastRegisteredMember();
-       $membersAmount = Background::membersAmount();
+      extract($this->siteStatistic());
+
        return ['view'=>'views/common/category.php', 'categoryTopics' => $categoryTopics, 'visitorsOnline' => $visitorsOnline,
            'responsesAmount'=> $responsesAmount, 'membersOnline'=> $membersOnline, 'lastMemberName'=> $lastMemberName,
            'membersAmount'=> $membersAmount];
-//      dd($categoryTopics);
+
+
+
    }
 
+    private function siteStatistic()
+    {
+        $visitorsOnline = Background::visitorsOnline();
+        $membersOnline = Background::membersOnline();
+        $responsesAmount = Background::responsesAmount();
+        $lastMemberName = Background::lastRegisteredMember();
+        $membersAmount = Background::membersAmount();
 
+        return compact('visitorsOnline', 'membersOnline', 'responsesAmount', 'lastMemberName', 'membersAmount');
+    }
 
 
 
@@ -71,11 +77,7 @@ class Index  extends BaseController
       }
 
 
-      public function showArgs($arg1, $arg2)
-      {
-        var_dump($arg1);
-        dd($arg2);
-      }
+
 
 
 

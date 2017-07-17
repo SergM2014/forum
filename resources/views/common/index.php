@@ -21,30 +21,7 @@
 </div>
 
 
-<div class="general-info">
-
-    <span>
-    <?= $visitorsOnlineL ?>: <?= $visitorsOnline ?>
-</span>
-
-    <span>
-    <?= $membersOnlineL ?>: <?= $membersOnline ?>
-</span>
-
-    <span>
-    <?= $responseAmountL ?>: <?= $responsesAmount ?>
-</span>
-
-    <span>
-    <?= $lastRegisteredMemberNameL ?>: <?= $lastMemberName ?>
-</span>
-
-    <span>
-    <?= $membersAmountL ?> : <?= $membersAmount ?>
-</span>
-
-</div>
-
+<?php  include_once PATH_SITE.'/resources/views/common/partials/siteStatistic.php' ?>
 
 
 

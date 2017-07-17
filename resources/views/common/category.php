@@ -20,14 +20,14 @@
 
            <tr>
                <td><?php if($topic->title): ?>
-                   <a href="/topic/<?= $topic->eng_title ?>"><?= $topic->title ?></a> <?php else: ?>
+                   <a href="<?= \Lib\HelperService::currentLang() ?>/topic/<?= $topic->eng_title ?>"><?= $topic->title ?></a> <?php else: ?>
                     <?= $noThemaL ?>
                    <?php endif; ?>
                </td>
                <td><?= $topic->response_amount ?></td>
                <td><?php  if($topic->response_id): ?>
 
-                   <a href=/response/<?= $topic->response_id ?>'><?= $topic->response ?></a>
+                   <a href="<?= \Lib\HelperService::currentLang() ?>/response/<?= $topic->response_id ?>"><?= $topic->response ?></a>
                    <p><?= $addedL ?>:  <?= $topic->added ?></p>
                    <p><?= $authorL ?>: <?= $topic->name ?></p>
 
@@ -42,26 +42,5 @@
 </div>
 
 
-<div class="general-info">
+<?php  include_once PATH_SITE.'/resources/views/common/partials/siteStatistic.php' ?>
 
-    <span>
-    <?= $visitorsOnlineL ?>: <?= $visitorsOnline ?>
-</span>
-
-    <span>
-    <?= $membersOnlineL ?>: <?= $membersOnline ?>
-</span>
-
-    <span>
-    <?= $responseAmountL ?>: <?= $responsesAmount ?>
-</span>
-
-    <span>
-    <?= $lastRegisteredMemberNameL ?>: <?= $lastMemberName ?>
-</span>
-
-    <span>
-    <?= $membersAmountL ?> : <?= $membersAmount ?>
-</span>
-
-</div>
