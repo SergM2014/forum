@@ -52,7 +52,8 @@ class CheckForm extends DataBase
 
     protected static function checkCaptcha($inputs, $errors)
     {
-        if($_SESSION['phrase']!= $inputs['captcha']) { $errors->captcha = $errors->captcha ?? wrongCaptcha(); }
+
+        if(@$_SESSION['phrase']!= $inputs['captcha']) { $errors->captcha = $errors->captcha ?? wrongCaptcha(); }
     }
 
     protected static function ifUniqueLogin(array $income, $errors)
@@ -83,34 +84,19 @@ class CheckForm extends DataBase
     }
 
 
-    public static function checkUpdateFormUser($inputs)
-    {
-        $errors =  new \stdClass();
 
-        self::checkIfNotEmpty($inputs, $errors);
-        self::checkIfEmail($errors);
-
-        return (array)$errors;
-    }
 
     public static function checkForm($inputs)
     {
         $errors =  new \stdClass();
 
         self::checkIfNotEmpty($inputs, $errors);
-        self::checkIfEmail($errors);
 
         return (array)$errors;
     }
 
 
-    public static function checkManyItemsForm($inputs)
-    {
-        $errors =  new \stdClass();
 
-        self::checkIfNotEmpty($inputs, $errors);
-        return (array)$errors;
-    }
 
 
 

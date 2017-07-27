@@ -18,6 +18,10 @@ $routes = [
 
     '/'=>'Index@index',
     '/category/{title}' => 'index@category',
+    '/topic/{topic}' => 'topic@showResponses',
+    '/addResponse' => 'topic@addResponse',
+    '/getCaptcha' => 'index@getCaptchaOutput',
+    '/showParentComment' => 'topic@showParentComment',
 
     '/admin' => 'admin@index',
     '/admin/login' =>'admin@login',

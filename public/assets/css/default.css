@@ -403,6 +403,68 @@ html, body {
     margin:50px 0;
 }
 
+.responses_list{
+    background: #d1f5f0;
+    margin: 30px 0;
+    padding: 10px;
+}
+.responses_list ul{
+    list-style-type: none;
+}
+.response_user_info{
+    width: 200px;
+    background-color: #ffb2c0;
+    display: inline-block;
+    padding: 2px;
+    border-radius: 5px;
+}
+.response_item{
+    margin-bottom: 10px;
+    border-bottom:1px solid black;
+}
+.response_user_text{
+    display:inline-block;
+    padding:2px;
+    vertical-align: top;
+}
+.left2{
+    margin-left:15px;
+}
+.left3{
+    margin-left:30px;
+}
+.left4{
+    margin-left:45px;
+}
+.left{
+    margin-left:60px;
+}
+.response_answer-btn{
+    float:right;
+    cursor:pointer;
+}
+.response_answer-container{
+    height:20px;
+}
+.captcha_img-container{
+    cursor:pointer;
+}
+.parent-comment__close-sign{
+    float:right;
+    cursor:pointer;
+}
+.parent-comment__output{
+   display:inline-block;
+    margin:auto;
+    border:1px solid black;
+    border-radius:7px;
+}
+.parent-comment{
+    display:flex;
+}
+.parent-comment__output-padding{
+    margin:5px;
+}
 
 
 

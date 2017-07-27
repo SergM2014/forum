@@ -28,6 +28,13 @@ $authorL = "Author";
 $topicTitleL = "Topic title";
 $noThemaL = "No thema";
 $categoryL = "Category";
+$addCommentL = "Add Coomment";
+$emailL= "Email";
+$commentL = "Comment";
+$captchaL = "Captcha";
+$clickToRefreshCaptchaL = "Click image to refresh captcha";
+$CommentToRespondeTitleL = "Coment to responde";
+
 
 
 
@@ -48,15 +55,25 @@ function wrongEmail()
 
 function added()
 {
-    return "added";
+    return "Фdded";
 }
 
 function name()
 {
-    return "name";
+    return "Тame";
 }
 
 function author()
 {
-    return "author";
+    return "Author";
+}
+
+function answer()
+{
+    return "Аnswer";
+}
+
+function wrongCaptcha()
+{
+    return "wrong captcha";
 }

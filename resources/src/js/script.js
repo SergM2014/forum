@@ -101,10 +101,92 @@ document.body.addEventListener('click', function(e){
         }
     }
 
+    if(e.target.closest('#captchaImgContainer')){
+
+        let form = new FormData();
+        form.append('ajax', true);
+        fetch('/getCaptcha',{
+            method:'POST',
+            body:form,
+            credentials:'same-origin'
+        })
+            .then(response => response.text())
+            .then(html => document.getElementById('captchaImgContainer').innerHTML = html )
+            .catch(error => console.log(error))
+    }
+
+    if(e.target.id === "addCommentSubmitBtn"){
+        let form = new FormData(document.getElementById('addCommentForm'));
+
+        fetch('/addResponse', {
+            body:form,
+            method:'POST',
+            credentials:'same-origin'
+        })
+            .then(response => response.json())
+            .then(json => {
+                if(json.error) throw json;
+//here are the action related to success
+                document.getElementById('addResponseBlock').innerHTML ='Greetings!!! Your comment will be published imidiatly';
+            })
+            .catch(error =>{
+//populate errors fields
+//clearfy all error inputs
+                let errorInputs = document.getElementById('addCommentForm').querySelectorAll('.error');
+                for(let i=0; i< errorInputs.length; i++){
+                    errorInputs[i].innerText = '';
+                }
+//populate error field with errors
+                for (let key in error) {
+                    if(key === "error") continue;
+                    document.getElementById(key+'Error').innerText = error[key];
+                }
+            });
+    }
+
+//click response btn of selected comment and showing it for comment
+    if(e.target.className === 'response_answer-btn'){
+
+        let id = e.target.dataset.responseId;
+
+        let form = new FormData;
+        form.append('id', id);
+        fetch('/showParentComment', {
+            body:form,
+            method:'POST',
+            credentials:'same-origin'
+        })
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('parentComment').innerHTML = html;
+                document.getElementById('parentId').value = id;
+            } )
+            .catch(error =>console.log(error))
+
+    }
+//close parent comment that should be responded
+    if(e.target.id === 'parentCommentCloseSign'){
+        document.getElementById('parentComment').innerHTML = '';
+        document.getElementById('parentId').value = 0;
+    }
 
 
 
 });//ends of events that are hanged on the body
+
+
+
+
+
+//remove errors from input fields making keydown on them
+if(document.getElementById('addCommentForm')){
+    document.getElementById('addCommentForm').addEventListener('keydown', function(e){
+        e.target.closest('div').querySelector('.error').innerText ='';
+    });
+}
+
+
+
 
 
 
@@ -129,18 +211,6 @@ if(document.documentElement.clientWidth < 751){
 }
 
 
-
-
-
-if(document.getElementById('manyImagesContainer')){
-    var el = document.getElementById('manyImagesContainer');
-    var sortable = Sortable.create(el, {
-        onEnd: function () {
-
-           refreshImageDataField();
-        },
-    });
-}
 
 
 

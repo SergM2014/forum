@@ -67,7 +67,7 @@ abstract class MainDispatcher
                 
             }
         }
-
+//principaly here is logic of view in route should be injected
         $controller->controller = $controller->controller ?? '404@index';
 
         $givenController = explode('@', $controller->controller );

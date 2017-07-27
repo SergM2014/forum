@@ -76,6 +76,11 @@ class Index  extends BaseController
           exit();
       }
 
+      public function getCaptchaOutput()
+      {
+          return ['view'=>'views/common/partials/captcha.php', 'ajax'=>true];
+      }
+
 
 
 

@@ -28,7 +28,12 @@ $authorL = "Автор";
 $topicTitleL = "Назва теми";
 $noThemaL = "Теми відсутні";
 $categoryL = "Категорія";
-
+$addCommentL = "Додати коментарій";
+$emailL = "Пошта";
+$commentL = "Комментар";
+$captchaL = "Капча";
+$clickToRefreshCaptchaL = "Клікніть по капчі щоб оновити її";
+$CommentToRespondeTitleL = "Коментар на який потрібно відповісти";
 
 
 
@@ -49,16 +54,25 @@ function wrongEmail()
 
 function added()
 {
-    return "додано";
+    return "Додано";
 }
 
 function name()
 {
-    return "імя";
+    return "Імя";
 }
 
 function author()
 {
-    return "автор";
+    return "Автор";
 }
 
+function answer()
+{
+    return "Відповісти";
+}
+
+function wrongCaptcha()
+{
+    return "неправильна капча";
+}
