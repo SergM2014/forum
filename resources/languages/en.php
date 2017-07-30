@@ -34,6 +34,13 @@ $commentL = "Comment";
 $captchaL = "Captcha";
 $clickToRefreshCaptchaL = "Click image to refresh captcha";
 $CommentToRespondeTitleL = "Coment to responde";
+$signUpL = "SignUp";
+$repeatPasswordL = "Repeat password";
+$signOutL = "Exit";
+$signInL = "Login";
+$logInL = "Login";
+$loginErrorL = "The credentials is wrong";
+$loginSuccededMessageL = "Greetings! Login as a member succeded!";
 
 
 
@@ -75,5 +82,30 @@ function answer()
 
 function wrongCaptcha()
 {
-    return "wrong captcha";
+    return "Wrong captcha!";
+}
+
+function notApropriateLength()
+{
+    return "Not appropriate length!";
+}
+
+function notEqualRepeatedPassword()
+{
+    return "Not equal repeated password!";
+}
+
+function repeatedLogin()
+{
+    return "Login is buzy!";
+}
+
+function smthWentWrong()
+{
+    return "Something went wrong!";
+}
+
+function repeatedEmail()
+{
+    return "Email is already used!";
 }

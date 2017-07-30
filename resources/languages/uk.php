@@ -34,6 +34,14 @@ $commentL = "Комментар";
 $captchaL = "Капча";
 $clickToRefreshCaptchaL = "Клікніть по капчі щоб оновити її";
 $CommentToRespondeTitleL = "Коментар на який потрібно відповісти";
+$signUpL = "Зарееструватися";
+$repeatPasswordL = "Повторити пароль";
+$signOutL = "Вийти";
+$signInL = "Ввійти";
+$logInL = "Ввійти";
+$loginErrorL = "Неправильно введені данні";
+$loginSuccededMessageL = "Поздоровляю! Ваш членський вхід зробленно успішно!";
+
 
 
 
@@ -74,5 +82,30 @@ function answer()
 
 function wrongCaptcha()
 {
-    return "неправильна капча";
+    return "Неправильна капча!";
+}
+
+function notApropriateLength()
+{
+    return "Не достатня довжина!";
+}
+
+function notEqualRepeatedPassword()
+{
+    return "Повторений пароль не співпадає!";
+}
+
+function repeatedLogin()
+{
+    return "Логін зайнято!";
+}
+
+function smthWentWrong()
+{
+    return "Щось пішло не так!";
+}
+
+function repeatedEmail()
+{
+    return "Email зайнято!";
 }

@@ -95,6 +95,10 @@ html, body {
     text-transform: capitalize;
 }
 
+.main-header__search-field{
+    width:80px;
+}
+
 .main-header__search-container {
   font-size: 15px;
   color: red;
@@ -464,6 +468,22 @@ html, body {
 }
 .parent-comment__output-padding{
     margin:5px;
+}
+.main-header__member-enter{
+    display:inline-block;
+    float:right;
+}
+
+.register-form{
+    margin-top: 50px;
+}
+
+.form-field__label{
+    color:red;
+}
+
+.form{
+    margin-top:30px;
 }
 
 

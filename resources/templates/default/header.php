@@ -31,7 +31,6 @@
                      <ul id="mainHeaderMenu" class="main-header__menu" >
                          <li class="main-header__menu-item"><a href="/#"><?= $ourBrandL ?></a></li>
                          <li class="main-header__menu-item"><a href="/"><?= $mainPageL ?></a></li>
-
                     </ul>
 
 
@@ -53,6 +52,15 @@
                         <span class="main-header__search-field-label"><?= $searchL ?></span>
                         <input type="text" name="search" id="search" class="main-header__search-field"  maxlength="20"  >
 
+                    </div>
+
+                    <div class="main-header__member-enter">
+                        <?php if (@$_SESSION['member']): ?>
+                            <a href="<?= \Lib\HelperService::currentLang() ?>/signOut"><?= $signOutL ?></a>
+                        <?php else: ?>
+                        <a href="<?= \Lib\HelperService::currentLang() ?>/signUp"><?= $signUpL ?></a>
+                            <a href="<?= \Lib\HelperService::currentLang() ?>/signIn"><?= $signInL ?></a>
+                        <?php endif; ?>
                     </div>
 
                  </nav>

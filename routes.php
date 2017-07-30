@@ -23,6 +23,13 @@ $routes = [
     '/getCaptcha' => 'index@getCaptchaOutput',
     '/showParentComment' => 'topic@showParentComment',
 
+
+    '/signUp' => 'member@register',
+    '/saveMember' => 'member@save',
+    '/signIn' => 'member@signin',
+    '/getMember' =>'member@getMember',
+    '/signOut' => 'member@signOut',
+
     '/admin' => 'admin@index',
     '/admin/login' =>'admin@login',
     '/admin/exit' =>'admin@logout',
