@@ -41,6 +41,11 @@ $signInL = "Login";
 $logInL = "Login";
 $loginErrorL = "The credentials is wrong";
 $loginSuccededMessageL = "Greetings! Login as a member succeded!";
+$updateMemberL = "Update member";
+$newMemberSavedL = "New Member Saved!!!";
+$updateMemberL = "Update Member";
+$updateL = "Update";
+$memberUpdatedSuccessfullyL = "Member is updated!";
 
 
 
@@ -62,7 +67,7 @@ function wrongEmail()
 
 function added()
 {
-    return "Фdded";
+    return "Added";
 }
 
 function name()

@@ -51,11 +51,11 @@
                     <div id="mainHeaderSearchContainer" class="main-header__search-container" >
                         <span class="main-header__search-field-label"><?= $searchL ?></span>
                         <input type="text" name="search" id="search" class="main-header__search-field"  maxlength="20"  >
-
                     </div>
 
                     <div class="main-header__member-enter">
                         <?php if (@$_SESSION['member']): ?>
+                            <a href="<?= \Lib\HelperService::currentLang() ?>/member/<?= $_SESSION['member'] ?>/edit"><?= $updateMemberL ?></a>
                             <a href="<?= \Lib\HelperService::currentLang() ?>/signOut"><?= $signOutL ?></a>
                         <?php else: ?>
                         <a href="<?= \Lib\HelperService::currentLang() ?>/signUp"><?= $signUpL ?></a>

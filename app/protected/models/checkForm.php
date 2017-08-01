@@ -22,21 +22,25 @@ class CheckForm extends DataBase
     use CheckFieldsService;
 
 
-    protected static function checkIfNotEmpty(array $fields, $errors)
+    protected static function checkIfNotEmpty(array $fields, $errors, $passwordException = [] )
     {
+
         foreach ($fields as $key => $field ){
-           if(empty($field)){
+            if(in_array($key, $passwordException))  continue;
+            if(empty($field)){
+
                $errors->$key = emptyField();
            }
         }
     }
 
 
-    protected static function checkFieldsLength(array $fields, $length, $errors, $exception = 'imageData')
+    protected static function checkFieldsLength(array $fields, $length, $errors, $exception = ['imageData'])
     {
 
         foreach ($fields as $key => $field){
-            if($key == 'email' OR $key == $exception) continue;
+            if($key == 'email') continue;
+            if(in_array($key, $exception))  continue;
             if(strlen($field) < $length ) $errors->$key = $errors->$key ?? notApropriateLength();
         }
     }
@@ -129,6 +133,29 @@ class CheckForm extends DataBase
            self::ifUniqueMemberName($inputs, $errors);
            self::ifUniqueMemberEmail($inputs, $errors);
        }
+
+        return (array)$errors;
+    }
+
+
+    public static function checkUpdateMemberForm($inputs, $passwordException = ['password', 'password2'])
+    {
+        $errors =  new \stdClass();
+
+        self::checkIfNotEmpty($inputs, $errors, $passwordException);
+        self::checkIfEmail($errors);
+
+        if(!empty($_POST['password'])){
+            self::checkFieldsLength($_POST, 6, $errors);
+            self::comparePasswordFields($_POST['password'], $_POST['password2'], $errors);
+        } else {
+            self::checkFieldsLength($_POST, 6, $errors, $exception = ['imageData', 'password', 'password2']);
+        }
+
+        if(!DEBUG_MODE){
+            self::ifUniqueMemberName($inputs, $errors);
+            self::ifUniqueMemberEmail($inputs, $errors);
+        }
 
         return (array)$errors;
     }

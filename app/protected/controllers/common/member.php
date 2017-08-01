@@ -29,7 +29,7 @@ class Member  extends BaseController
     }
 
 //save new created member
-    public function save()
+    public function store()
     {
         if(@!$_SESSION['createMember']) return $this->register();
         TokenService::check('user');
@@ -52,7 +52,7 @@ class Member  extends BaseController
     public function memberCreated()
     {
 
-       return ['view'=>'views/common/member/saveNewMember.php'];
+       return ['view'=>'views/common/member/savedNewMember.php'];
     }
 
     public function signIn($loginError = null)
@@ -79,8 +79,34 @@ class Member  extends BaseController
         return (new Index())->index();
     }
 
+    public function edit($memberName, $errors = null )
+    {
+        if(@!$memberName){
+            exit('no member name!!!');
+        }
+       $member = MemberModel::getMember($memberName);
+
+       $_SESSION['updateMember'] = true;
+
+       return ['view'=> 'views/common/member/edit.php', 'member'=> $member, 'errors' => $errors, 'memberName'=>$memberName ];
+    }
 
 
+    public function update()
+    {
+        if(@!$_SESSION['updateMember']) return $this->edit($_POST['memberName']);
+        TokenService::check('user');
+        $cleanedUpInputs = self::escapeInputs('name', 'email', 'password', 'password2');
+        $errors = CheckForm::checkUpdateMemberForm($cleanedUpInputs);
+
+//if errors
+        if(!empty($errors)) { return $this->edit($_POST['memberName'],$errors); };
+
+        unset($_SESSION['updateMember']);
+        MemberModel::update($cleanedUpInputs);
+
+        return ['view'=> 'views/common/member/updateSucceeded.php'];
+    }
 
 
 

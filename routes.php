@@ -25,10 +25,12 @@ $routes = [
 
 
     '/signUp' => 'member@register',
-    '/saveMember' => 'member@save',
+    '/saveMember' => 'member@store',
     '/signIn' => 'member@signin',
     '/getMember' =>'member@getMember',
     '/signOut' => 'member@signOut',
+    '/member/{member}/edit' => 'member@edit',
+    '/updateMember' => 'member@update',
 
     '/admin' => 'admin@index',
     '/admin/login' =>'admin@login',

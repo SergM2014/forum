@@ -50,6 +50,46 @@ class Member extends DataBase
     }
 
 
+    public static function getMember($name)
+    {
+        $sql = "SELECT `id`, `avatar`, `name`, `password`, `email` FROM `members` WHERE `name`=?";
+        $stmt = self::conn()->prepare($sql);
+        $stmt->bindValue(1, $name, \PDO::PARAM_STR);
+        $stmt->execute();
+        $member = $stmt->fetch();
+
+        return $member;
+    }
+
+    public static function update($inputs)
+    {
+
+        if($inputs['password']!=''){
+
+            $password = password_hash($inputs['password'], PASSWORD_DEFAULT );
+
+            $sql = "UPDATE `members` SET  `password` = ? WHERE `name`= ?";
+            $stmt = self::conn()->prepare($sql);
+            $stmt->bindValue(1, $password, \PDO::PARAM_STR);
+            $stmt->bindValue(2, $_POST['memberName'], \PDO::PARAM_STR);
+            $stmt->execute();
+        }
+
+        $avatar = $_POST['imageData'] !=''? $_POST['imageData']: null;
+        $sql = "UPDATE `members` SET `avatar` = ?,  `name` = ?,  `email` = ? WHERE `name`= ?";
+        $stmt = self::conn()->prepare($sql);
+        $stmt->bindValue(1, $avatar, \PDO::PARAM_STR);
+        $stmt->bindValue(2, $inputs['name'], \PDO::PARAM_STR);
+        $stmt->bindValue(3, $inputs['email'], \PDO::PARAM_STR);
+        $stmt->bindValue(4, $_POST['memberName'], \PDO::PARAM_STR);
+        $stmt->execute();
+
+
+
+
+    }
+
+
 
 
 

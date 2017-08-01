@@ -41,6 +41,11 @@ $signInL = "Ввійти";
 $logInL = "Ввійти";
 $loginErrorL = "Неправильно введені данні";
 $loginSuccededMessageL = "Поздоровляю! Ваш членський вхід зробленно успішно!";
+$updateMemberL = "Оновити користувача";
+$newMemberSavedL = "Нового користувача збережено!!!";
+$updateMemberL = "Оновити користувача";
+$updateL = "Оновити";
+$memberUpdatedSuccessfullyL = "Користувача оновленно!";
 
 
 
