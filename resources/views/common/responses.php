@@ -12,12 +12,13 @@
 <section class="add_response centered" id="addResponseBlock">
 
 
+    <?php if(isset($_SESSION['member'])) : ?>
 
-    <h1 class="main-header__h1">Add Response</h1>
+    <h1 class="main-header__h1"><?= $addResponseL ?><h1>
 
 
     <form action="<?= \Lib\HelperService::currentLang() ?>/" id="addCommentForm" method="post" >
-        <input type="hidden" name="_token" value="<?= \Lib\TokenService::printTocken('admin') ?>">
+        <input type="hidden" name="_token" value="<?= \Lib\TokenService::printTocken('user') ?>">
         <input type="hidden" name="topicId" id="topicId" value="<?= $id ?>">
         <input type="hidden" name="parentId" id="parentId" value="0">
 
@@ -34,6 +35,11 @@
         </p>
     </form>
 
+    <?php else : ?>
+
+            <h2><?= $membersOnlyL ?></h2>
+
+    <?php endif; ?>
 
 
 </section>

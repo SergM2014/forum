@@ -46,6 +46,8 @@ $newMemberSavedL = "New Member Saved!!!";
 $updateMemberL = "Update Member";
 $updateL = "Update";
 $memberUpdatedSuccessfullyL = "Member is updated!";
+$membersOnlyL = "Only members can make responses!";
+$addResponseL = "Add response";
 
 
 

@@ -244,6 +244,10 @@ document.body.addEventListener('click', function(e){
     }
 
 
+    // if(e.target.id === "addCommentSubmitBtn"){
+    //     alert (1111)
+    // }
+
 
 });//ends of events that are hanged on the body
 

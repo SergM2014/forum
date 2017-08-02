@@ -5,14 +5,10 @@ namespace App\Controllers;
 
 
 use App\Core\BaseController;
-
-
-
-
 use App\Models\Response;
 use Lib\CheckFieldsService;
 use App\Models\CheckForm;
-
+use App\Models\Member;
 
 
 
@@ -42,7 +38,8 @@ class Topic  extends BaseController
         };
 //if success save in db
 // $_POST should contains all datas from the form
-       // Response::persistResponse($cleanedUpInputs);
+        Response::persistResponse($cleanedUpInputs['comment']);
+//dd($_POST);
 
         echo json_encode(['success'=>true]); exit();
     }

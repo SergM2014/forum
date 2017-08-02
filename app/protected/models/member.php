@@ -12,7 +12,7 @@ class Member extends DataBase
 
     public static function persistMember($inputs)
     {
-        $avatar = ($_POST['imageData']!='')? $_POST['imageData']: null;
+        $avatar = !empty($_POST['imageData'])? $_POST['imageData']: null;
 
         $password = password_hash( $inputs['password'], PASSWORD_DEFAULT );
         $token = md5(uniqid(rand(), true));
@@ -75,7 +75,7 @@ class Member extends DataBase
             $stmt->execute();
         }
 
-        $avatar = $_POST['imageData'] !=''? $_POST['imageData']: null;
+        $avatar = !empty($_POST['imageData']) ? $_POST['imageData']: null;
         $sql = "UPDATE `members` SET `avatar` = ?,  `name` = ?,  `email` = ? WHERE `name`= ?";
         $stmt = self::conn()->prepare($sql);
         $stmt->bindValue(1, $avatar, \PDO::PARAM_STR);
@@ -83,10 +83,17 @@ class Member extends DataBase
         $stmt->bindValue(3, $inputs['email'], \PDO::PARAM_STR);
         $stmt->bindValue(4, $_POST['memberName'], \PDO::PARAM_STR);
         $stmt->execute();
+    }
 
-
-
-
+    public static function getMemberId()
+    {
+        $sql = "SELECT `id` FROM `members` WHERE `name` = ?";
+        $stmt = self::conn()->prepare($sql);
+        $stmt->bindValue(1, $_SESSION['member'], \PDO::PARAM_STR);
+        $stmt->execute();
+        $stmt->bindColumn(1, $id);
+        $stmt->fetch();
+        return $id;
     }
 
 

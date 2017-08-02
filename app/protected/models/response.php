@@ -5,6 +5,7 @@ namespace App\Models;
 
 
 use App\Core\DataBase;
+use App\Models\Member;
 
 use function added;
 use function name;
@@ -109,10 +110,18 @@ use function answer;
     }
 
 
-//    public static function persistResponse($fields)
-//    {
-//        $sql = "INSERT INTO `responses` "
-//    }
+    public static function persistResponse($response)
+    {
+        $memberId = Member::getMemberId();
+
+        $sql = "INSERT INTO `responses` (`topic_id`, `parent_id`, `member_id`, `response`) VALUES( ?, ?, ?, ?) ";
+        $stmt = self::conn()->prepare($sql);
+        $stmt->bindValue(1, $_POST['topicId'], \PDO::PARAM_INT);
+        $stmt->bindValue(2, $_POST['parentId'], \PDO::PARAM_INT);
+        $stmt->bindValue(3, $memberId, \PDO::PARAM_STR);
+        $stmt->bindValue(4, $response, \PDO::PARAM_STR);
+        $stmt->execute();
+    }
 
 
  }
