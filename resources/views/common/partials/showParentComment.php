@@ -11,7 +11,7 @@
         <div class='response_user_info'><?= $addedL ?>: <?= $comment->member_added_at ?>;
 
             <?php  if($comment->avatar): ?>
-                <img src= '{$comment->avatar}' alt=''>
+                <img src= '/uploads/avatars/<?= $comment->avatar ?>' alt='' class="response-item__avatar">
             <?php endif; ?>
 
             <br><?= $nameL ?>: <?= $comment->member_name ?></div>

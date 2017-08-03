@@ -62,13 +62,19 @@ use function answer;
 
                     $print.= "<br>".name().":  {$response->member_name}</div><div class='response_user_text'>{$response->response}
                         
-                    </div>
-                        <div class='response_answer-container'> 
-                        <a href='#parentComment'>
-                            <button type='button'class='response_answer-btn' data-response-id='{$response->id}'>".answer()."</button>
-                        </a>
-                        </div>
                     </div>";
+
+                    if(isset($_SESSION['member'])) {
+
+                        $print.= "<div class='response_answer-container' > 
+                            <a href = '#parentComment' >
+                                <button type = 'button'class='response_answer-btn' data-response-id = '{$response->id}'
+                                 > ".answer()."</button >
+                            </a >
+                        </div >";
+                      }
+
+                    $print.= "</div>";
 
                     foreach($this->responses as $subresponse){
                         if($subresponse->parent_id == $response->id){ $flag = true;}
