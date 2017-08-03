@@ -29,7 +29,8 @@ use function answer;
         {
             $sql = "SELECT `m`.`id` AS `member_id`, `m`.`avatar`, `m`.`name` AS `member_name`, `m`.`added_at` AS `member_added_at`,
             `r`.`id`, `r`.`parent_id`, `r`.`response`, `r`.`created_at`, `t`.`title` FROM `responses` `r` JOIN
-                    `topics` `t` ON `t`.`id`= `r`.`topic_id` JOIN `members` `m` ON `m`.`id`= `r`.`member_id` WHERE `t`.`title`=?";
+                    `topics` `t` ON `t`.`id`= `r`.`topic_id` JOIN `members` `m` ON `m`.`id`= `r`.`member_id` WHERE `t`.`title`=? 
+                    AND `r`.`published`='1'";
 
             $stmt = self::conn()->prepare($sql);
             $stmt->bindValue(1, $topic, \PDO::PARAM_STR);
@@ -50,7 +51,7 @@ use function answer;
                 <div class='response_user_info'>".added().": {$response->member_added_at}";
 
                     if($response->avatar) {
-                        $print.= "<img src= '{$response->avatar}' alt=''>";
+                        $print.= "<img src= '/uploads/avatars/{$response->avatar}' alt='' class='response-item__avatar'>";
                     }
 
                     $print.= "<br>".name().":  {$response->member_name}</div><div class='response_user_text'>{$response->response}
@@ -100,7 +101,7 @@ use function answer;
 
     public static function ConvertTittleToId($title)
     {
-        $sql ="SELECT `id` FROM `topics` WHERE `title`=?";
+        $sql = "SELECT `id` FROM `topics` WHERE `title`=?";
         $stmt = self::conn()->prepare($sql);
         $stmt->bindValue(1, $title, \PDO::PARAM_STR);
         $stmt->execute();
@@ -114,7 +115,7 @@ use function answer;
     {
         $memberId = Member::getMemberId();
 
-        $sql = "INSERT INTO `responses` (`topic_id`, `parent_id`, `member_id`, `response`) VALUES( ?, ?, ?, ?) ";
+        $sql = "INSERT INTO `responses` (`topic_id`, `parent_id`, `member_id`, `response`, `published`) VALUES( ?, ?, ?, ?, '1') ";
         $stmt = self::conn()->prepare($sql);
         $stmt->bindValue(1, $_POST['topicId'], \PDO::PARAM_INT);
         $stmt->bindValue(2, $_POST['parentId'], \PDO::PARAM_INT);

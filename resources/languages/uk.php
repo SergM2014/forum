@@ -48,6 +48,7 @@ $updateL = "Оновити";
 $memberUpdatedSuccessfullyL = "Користувача оновленно!";
 $membersOnlyL = "Лише зареестровані користувачі можуть додавати коментарі";
 $addResponseL = "Додати коментар";
+$responsesL = "Відгуки";
 
 
 

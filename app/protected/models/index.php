@@ -33,10 +33,11 @@ use function author;
                   FROM `responses`  ORDER BY `created_at` DESC ";
          self::conn()->query($sql);
 
-         $sql= "SELECT `c`.`id`, `c`.`parent_id`, `c`.`title`, `c`.`eng_title`, COUNT(DISTINCT`t`.`id`) AS `topic_amount`, COUNT(`r2`.`id`)
-                 AS `response_amount`, `r2`.`id` AS `response_id`, `r2`.`response`, `r2`.`created_at` AS `added`, `m`.`name` FROM `categories` `c`
-                  LEFT JOIN `topics` `t` ON `c`.`id`= `t`.`category_id` LEFT JOIN `r2` ON `t`.`id`= `r2`.`topic_id`
-                  LEFT JOIN `members` `m` ON `r2`.`member_id`=`m`.`id` GROUP BY `c`.`id`";
+         $sql= "SELECT `c`.`id`, `c`.`parent_id`, `c`.`title`, `c`.`eng_title`, COUNT(DISTINCT`t`.`id`) AS
+                `topic_amount`, COUNT(`r2`.`id`) AS `response_amount`, `r2`.`id` AS `response_id`, `r2`.`response`,
+                 `r2`.`created_at` AS `added`, `m`.`name` FROM `categories` `c` LEFT JOIN `topics` `t` 
+                 ON `c`.`id`= `t`.`category_id` LEFT JOIN `r2` ON `t`.`id`= `r2`.`topic_id`
+                  LEFT JOIN `members` `m` ON `r2`.`member_id`=`m`.`id` GROUP BY `c`.`id` ";
 
 
          $stmt = self::conn()->query($sql);

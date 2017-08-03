@@ -1,3 +1,9 @@
+<section class="breadcrumbs">
+
+    <a href="/" class="breadcrumb__item"><?= $mainPageL ?></a> =>
+    <span class="breadcrumb__item--current"><?= $responsesL ?></span>
+
+</section>
 <section class="responses_list">
 
     <ul>

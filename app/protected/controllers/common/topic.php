@@ -24,7 +24,6 @@ class Topic  extends BaseController
 
 
        return ['view'=>'views/common/responses.php', 'topicResponses' => $topicResponses, 'id'=>$id];
-
     }
 
     public function addResponse()
@@ -37,17 +36,13 @@ class Topic  extends BaseController
             $errors['error'] = true; echo json_encode($errors); exit();
         };
 //if success save in db
-// $_POST should contains all datas from the form
         Response::persistResponse($cleanedUpInputs['comment']);
-//dd($_POST);
-
         echo json_encode(['success'=>true]); exit();
     }
 
     public function showParentComment()
     {
         $comment = Response::getOneComment();
-
         return ['view'=>'views/common/partials/showParentComment.php', 'comment'=>$comment, 'ajax'=>true];
     }
 

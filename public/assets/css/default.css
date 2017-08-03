@@ -485,7 +485,11 @@ html, body {
 .form{
     margin-top:30px;
 }
-
+.response-item__avatar{
+    max-width:120px;
+    max-height:120px;
+    margin:5px;
+}
 
 
 

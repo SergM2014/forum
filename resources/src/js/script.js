@@ -1,3 +1,5 @@
+require('./components/search');
+
 //return intersection of two files
 Array.prototype.intersect = function(a){
     return this.filter(function(i){ return a.indexOf(i) > -1;});
