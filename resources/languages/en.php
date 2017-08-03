@@ -49,6 +49,7 @@ $memberUpdatedSuccessfullyL = "Member is updated!";
 $membersOnlyL = "Only members can make responses!";
 $addResponseL = "Add response";
 $responsesL = "Responses";
+$commentL = "Comment";
 
 
 

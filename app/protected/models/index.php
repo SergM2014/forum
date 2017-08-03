@@ -59,7 +59,7 @@ use function author;
                                  <td>";
                  if(@$category->response_id){
                      $print.= "
-                                <a href='{$this->currentLang}/response/{$category->response_id}'>{$category->response}</a>
+                                <a href='{$this->currentLang}/response/{$category->response_id}#show'>{$category->response}</a>
                                       <p>".added().": {$category->added}</p> 
                                       <p>".author().": {$category->name}</p>
                      ";

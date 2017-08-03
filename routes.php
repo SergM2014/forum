@@ -22,6 +22,7 @@ $routes = [
     '/addResponse' => 'topic@addResponse',
     '/getCaptcha' => 'index@getCaptchaOutput',
     '/showParentComment' => 'topic@showParentComment',
+    '/response/{response}' => 'topic@showOneResponse',
 
 
     '/signUp' => 'member@register',

@@ -16,19 +16,20 @@ class Topic  extends BaseController
   {
     use CheckFieldsService;
 
-    public function showResponses($topic)
+    public function showResponses($topic, $responseId = false)
 	{
-       $topicResponses = (new Response($topic))->getResponsesTreeStructure();
+       $topicResponses = (new Response($topic))->getResponsesTreeStructure($parent = 0, $responseId);
 //topic should be converted to id
         $id = Response::ConvertTittleToId($topic);
 
 
-       return ['view'=>'views/common/responses.php', 'topicResponses' => $topicResponses, 'id'=>$id];
+       return ['view'=>'views/common/topic/index.php', 'topicResponses' => $topicResponses, 'id'=>$id];
     }
+
 
     public function addResponse()
     {
-        $cleanedUpInputs = self::escapeInputs(/*'name', 'email',*/ 'comment'/*, 'captcha'*/);
+        $cleanedUpInputs = self::escapeInputs('comment');
         $errors = CheckForm::checkForm($cleanedUpInputs);
 
 //if errors
@@ -40,10 +41,23 @@ class Topic  extends BaseController
         echo json_encode(['success'=>true]); exit();
     }
 
+
     public function showParentComment()
     {
         $comment = Response::getOneComment();
         return ['view'=>'views/common/partials/showParentComment.php', 'comment'=>$comment, 'ajax'=>true];
+    }
+
+
+    public function showOneResponse($responseId)
+    {
+        $topic = Response::getTopicNameFromResponse($responseId);
+
+        $topicResponses = (new Response($topic))->getResponsesTreeStructure($parent = 0, $responseId);
+//topic should be converted to id
+        $id = Response::ConvertTittleToId($topic);
+
+        return ['view'=>'views/common/topic/response.php', 'topicResponses' => $topicResponses, 'id'=>$id, 'topic'=>$topic ];
     }
 
 

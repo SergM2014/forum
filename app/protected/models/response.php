@@ -40,14 +40,20 @@ use function answer;
         }
 
 
-    public function getResponsesTreeStructure($parent = 0)
+    public function getResponsesTreeStructure($parent = 0, $responseId)
     {
         $print = "";
         static $leftAttr= 1;
 
         foreach($this->responses as $response){
             if($response->parent_id == $parent){
-                $print.= "<li><div class='response_item left{$leftAttr}'>
+
+                $choosenRespose= (@$responseId == $response->id)? 'choosenResponse': '';
+                $ancor = (@$responseId == $response->id) ? "<a name='show'></a>": '';
+
+
+
+                $print.= "<li>$ancor<div id='responseId_$response->id' class='response_item left{$leftAttr} $choosenRespose'>
                 <div class='response_user_info'>".added().": {$response->member_added_at}";
 
                     if($response->avatar) {
@@ -71,7 +77,7 @@ use function answer;
                     if(isset($flag)){
                         $print.= "<ul>";
                         $leftAttr++;
-                        $print.= $this->getResponsesTreeStructure($response->id);
+                        $print.= $this->getResponsesTreeStructure($response->id, @$responseId);
                         $print.= "</ul>";
                         $leftAttr--;
                         $print.= "</li>";
@@ -124,5 +130,14 @@ use function answer;
         $stmt->execute();
     }
 
+
+    public static function getTopicNameFromResponse($responseId)
+    {
+        $sql = "SELECT `t`.`eng_title` FROM `topics` `t` JOIN `responses` `r` ON `t`.`id`= `r`.`topic_id`";
+        $stmt = self::conn()->query($sql);
+        $stmt->bindColumn(1, $title);
+        $stmt->fetch();
+        return $title;
+    }
 
  }
