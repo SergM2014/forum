@@ -50,6 +50,7 @@ $membersOnlyL = "Only members can make responses!";
 $addResponseL = "Add response";
 $responsesL = "Responses";
 $commentL = "Comment";
+$nothingIsFound = "Nothing is found! Try another query";
 
 
 

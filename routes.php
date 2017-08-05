@@ -24,6 +24,8 @@ $routes = [
     '/showParentComment' => 'topic@showParentComment',
     '/response/{response}' => 'topic@showOneResponse',
 
+    '/searchResults' =>'search@find',
+
 
     '/signUp' => 'member@register',
     '/saveMember' => 'member@store',

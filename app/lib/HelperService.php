@@ -194,6 +194,19 @@ class HelperService {
     }
 
 
+    public static function reduceString($string, $length = 45)
+    {
+        $string = strip_tags($string);
+
+        $string = mb_strimwidth($string, 0, $length);
+        $string = rtrim($string, "!,.-");
+
+
+        $string.="… ";
+
+        return $string;
+
+    }
 
 
 }

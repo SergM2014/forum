@@ -50,7 +50,7 @@
 
                     <div id="mainHeaderSearchContainer" class="main-header__search-container" >
                         <span class="main-header__search-field-label"><?= $searchL ?></span>
-                        <input type="text" name="search" id="search" class="main-header__search-field"  maxlength="20"  >
+                        <input type="text" name="search" id="mainHeaderSearchField" class="main-header__search-field" value=""  maxlength="20"  >
                     </div>
 
                     <div class="main-header__member-enter">
