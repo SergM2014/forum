@@ -76,11 +76,10 @@ class ComposerStaticInit14fc953014b49481d3c9d0477a55e3f8
     );
 
     public static $classMap = array (
-        'App\\Controllers\\Admin' => __DIR__ . '/../..' . '/app/protected/controllers/admin/index.php',
+        'App\\Controllers\\Admin' => __DIR__ . '/../..' . '/app/protected/controllers/admin/admin.php',
         'App\\Controllers\\Error_404' => __DIR__ . '/../..' . '/app/protected/controllers/common/404.php',
         'App\\Controllers\\Images' => __DIR__ . '/../..' . '/app/protected/controllers/common/images.php',
         'App\\Controllers\\Index' => __DIR__ . '/../..' . '/app/protected/controllers/common/index.php',
-        'App\\Controllers\\Many' => __DIR__ . '/../..' . '/app/protected/controllers/common/many.php',
         'App\\Controllers\\Member' => __DIR__ . '/../..' . '/app/protected/controllers/common/member.php',
         'App\\Controllers\\PopUp' => __DIR__ . '/../..' . '/app/protected/controllers/admin/popUp.php',
         'App\\Controllers\\Search' => __DIR__ . '/../..' . '/app/protected/controllers/common/search.php',
