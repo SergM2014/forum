@@ -25,6 +25,8 @@ $routes = [
     '/response/{response}' => 'topic@showOneResponse',
 
     '/searchResults' =>'search@find',
+    '/category/create/new' => 'topic@createCategory',
+    '/category/store' => 'topic@storeCategory',
 
 
     '/signUp' => 'member@register',

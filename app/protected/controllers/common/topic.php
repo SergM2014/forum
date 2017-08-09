@@ -9,7 +9,7 @@ use App\Models\Response;
 use Lib\CheckFieldsService;
 use App\Models\CheckForm;
 use App\Models\Member;
-
+use Lib\TokenService;
 
 
 class Topic  extends BaseController
@@ -58,6 +58,55 @@ class Topic  extends BaseController
         $id = Response::ConvertTittleToId($topic);
 
         return ['view'=>'views/common/topic/response.php', 'topicResponses' => $topicResponses, 'id'=>$id, 'topic'=>$topic ];
+    }
+
+    private function checkIfMember()
+    {
+        if(!isset($_SESSION['member'])){
+            if (isset($_POST['ajax'])){
+                echo json_encode(["message" => "you do not have permission to fire off the controller"]); exit();
+            }
+            header('Location: /signIn');
+        }
+    }
+
+
+
+
+    public function createCategory($errors = null)
+    {
+
+        $this->checkIfMember();
+//get all existing Categories
+        $categories = (new Member)->getCategoryDropDownTree();
+
+        $_SESSION['createCategory'] = true;
+
+        return ['view'=>'views/common/topic/createCategory.php', 'errors' => $errors, 'categories' => $categories ];
+    }
+
+
+    public function storeCategory()
+    {
+        $this->checkIfMember();
+        TokenService::check('member');
+
+        if(@!$_SESSION['createCategory']) return $this->createCategory();
+
+        $cleanedUpInputs = self::escapeInputs('title');
+        $errors = CheckForm::checkCreateCategoryForm($cleanedUpInputs);
+
+//if errors
+        if(!empty($errors)) {
+            return $this->createCategory($errors);
+        };
+
+        Member::saveCategory($cleanedUpInputs);
+
+        unset($_SESSION['createCategory']);
+
+        return ['view'=>'views/common/topic/storedCategory.php' ];
+
     }
 
 

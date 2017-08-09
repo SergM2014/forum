@@ -51,9 +51,13 @@ $addResponseL = "Додати коментар";
 $responsesL = "Відгуки";
 $commentL = "Комментар";
 $nothingIsFound = "Жодного результату не знайдено! Спробуйте інший запит!";
-
-
-
+$addTopicL = "Створити тему";
+$saveTopicL = "Зберегти нову тему";
+$topicCreatedL = "Нову тему створенно!";
+$createCategoryL = "Створити категорію";
+$addCategoryL = "Додати категорію";
+$categoryCreatedL = "Нову категорію створенно!";
+$designateParentL = "Назначити батьківською";
 
 //these functionare for translation in controllers and models
 function variableInController(){
@@ -118,4 +122,9 @@ function smthWentWrong()
 function repeatedEmail()
 {
     return "Email зайнято!";
+}
+
+function repeatedTitle()
+{
+    return "Назву зайнято!";
 }

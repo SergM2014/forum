@@ -13,6 +13,7 @@ use function \wrongEmail;
 use function \repeatedLogin;
 use function \wrongCaptcha;
 use function \repeatedEmail;
+use function \repeatedTitle;
 
 use function \noFile;
 
@@ -156,6 +157,26 @@ class CheckForm extends DataBase
             self::ifUniqueMemberName($inputs, $errors);
             self::ifUniqueMemberEmail($inputs, $errors);
         }
+
+        return (array)$errors;
+    }
+
+    protected static function ifUniqueCategoryTitle(array $income, $errors)
+    {
+        $sql = "SELECT `title` FROM `categories` WHERE `title`=?";
+        $stmt = self::conn()->prepare($sql);
+        $stmt->bindValue(1, $income['title']);
+        $stmt->execute();
+        $title = $stmt->fetchColumn();
+        if($title)  $errors->title = $errors->title ?? repeatedTitle();
+    }
+
+    public static function checkCreateCategoryForm($inputs)
+    {
+        $errors =  new \stdClass();
+
+        self::checkIfNotEmpty($inputs, $errors);
+        self::ifUniqueCategoryTitle($inputs, $errors);
 
         return (array)$errors;
     }

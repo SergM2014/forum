@@ -497,6 +497,17 @@ html, body {
     background-color: rgba(225, 78, 82, 0.91);
 }
 
+.create-topic__btn{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 2px;
+    text-decoration: none;
+    margin:auto;
+}
+.create-topic__btn-container{
+    display:flex;
+    margin-bottom:30px;
+}
 
 
 

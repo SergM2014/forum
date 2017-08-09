@@ -20,6 +20,13 @@
 
 </div>
 
+<?php if(isset($_SESSION['member'])): ?>
+
+    <div class="clearfix create-topic__btn-container">
+        <a href="/category/create/new" class="create-topic__btn"> <?= $addCategoryL ?></a>
+    </div>
+
+<?php endif; ?>
 
 <?php  include_once PATH_SITE.'/resources/views/common/partials/siteStatistic.php' ?>
 

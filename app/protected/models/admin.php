@@ -28,12 +28,7 @@ class AdminModel extends DataBase
     }
 
 
-    public static function getTableCounter()
-    {
-        $p = $_GET['p']?? 1;
-        $start = ($p-1)*AMOUNTONPAGEADMIN+1;
-        return $start;
-    }
+
 
 
 

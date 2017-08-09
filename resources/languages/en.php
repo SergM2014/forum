@@ -51,6 +51,13 @@ $addResponseL = "Add response";
 $responsesL = "Responses";
 $commentL = "Comment";
 $nothingIsFound = "Nothing is found! Try another query";
+$addTopicL = "Add Topic";
+$saveTopicL = "Save topic";
+$topicCreatedL = "Topic is created succesfully";
+$createCategoryL = "Create Category";
+$addCategoryL = "Add Category";
+$categoryCreatedL = "New Category added!";
+$designateParentL = "Designate as parent";
 
 
 
@@ -118,4 +125,9 @@ function smthWentWrong()
 function repeatedEmail()
 {
     return "Email is already used!";
+}
+
+function repeatedTitle()
+{
+    return "Title ias already used!";
 }

@@ -5,10 +5,21 @@ namespace App\Models;
 
 
 use App\Core\DataBase;
-
+use Lib\HelperService;
+use Lib\LangService;
 
 class Member extends DataBase
 {
+
+    private $categories;
+    private $currentLang;
+
+    public function __construct()
+    {
+        $this->categories = $this->getAllCategories();
+        $this->currentLang = HelperService::currentLang();
+
+    }
 
     public static function persistMember($inputs)
     {
@@ -96,6 +107,65 @@ class Member extends DataBase
         return $id;
     }
 
+    public function getAllCategories()
+    {
+        $sql = "SELECT `id`, `parent_id`, `title`, `eng_title` FROM `categories`";
+        $stmt = self::conn()->query($sql);
+        $categories = $stmt->fetchAll();
+
+        return $categories;
+    }
+
+
+    public function getCategoryDropDownTree($parent = 0, $prefix = '')
+    {
+
+
+        $print = "";
+        foreach ($this->categories as $category){
+            if($category->parent_id == $parent){
+                $print.= "<option value='{$category->id}'>
+                                {$prefix}{$category->title}
+                          </option>";
+
+                foreach($this->categories as $subCategory){
+                    if($subCategory->parent_id == $category->id){
+                        $flag = true;
+                    }
+                }
+
+                if(isset($flag)){
+                    $prefix.='-';
+                    $print.= $this->getCategoryDropDownTree($category->id, $prefix);
+
+                    $flag = null; $prefix = substr($prefix,0,-1);
+                }
+            }
+        }
+
+        return $print;
+    }
+
+
+
+    public static function saveCategory($inputs)
+    {
+
+
+//        $memberId = static::getMemberId();
+//
+        $engTitle = LangService::translite_in_Latin($inputs['title']);
+
+        $sql = "INSERT INTO `categories` (`parent_id`, `title`, `eng_title`) VALUES (?, ?, ?) ";
+        $stmt = self::conn()->prepare($sql);
+        $stmt -> bindValue(1, $_POST['parentId'], \PDO::PARAM_INT);
+        $stmt -> bindValue(2, $inputs['title'], \PDO::PARAM_STR);
+        $stmt -> bindValue(3, $engTitle, \PDO::PARAM_STR);
+        $stmt -> execute();
+
+
+        return true;
+    }
 
 
 
