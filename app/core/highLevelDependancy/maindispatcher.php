@@ -64,7 +64,7 @@ abstract class MainDispatcher
 
                     $controller->arguments = $arguments;
                 }
-                
+            break;
             }
         }
 //principaly here is logic of view in route should be injected

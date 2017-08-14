@@ -18,6 +18,7 @@ $routes = [
 
     '/'=>'Index@index',
     '/category/{title}' => 'index@category',
+    '/topic/store' => 'topic@store',
     '/topic/{topic}' => 'topic@showResponses',
     '/addResponse' => 'topic@addResponse',
     '/getCaptcha' => 'index@getCaptchaOutput',
@@ -27,6 +28,7 @@ $routes = [
     '/searchResults' =>'search@find',
     '/category/create/new' => 'topic@createCategory',
     '/category/store' => 'topic@storeCategory',
+    '/category/{id}/create/topic' => 'topic@create',
 
 
     '/signUp' => 'member@register',

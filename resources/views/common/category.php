@@ -8,7 +8,7 @@
 
 
 
-<h1 class="main-header__h1"><?= $mainPageL ?></h1>
+<h1 class="main-header__h1"><?= $categoryL ?></h1>
 
 <div class="table-container">
 
@@ -41,6 +41,14 @@
 
 </div>
 
+
+<?php if(isset($_SESSION['member'])): ?>
+
+    <div class="clearfix create-category__btn-container">
+        <a href="/category/<?= $categoryId ?>/create/topic" class="create-category__btn"> <?= $addTopicL ?></a>
+    </div>
+
+<?php endif; ?>
 
 <?php  include_once PATH_SITE.'/resources/views/common/partials/siteStatistic.php' ?>
 

@@ -150,10 +150,6 @@ class Member extends DataBase
 
     public static function saveCategory($inputs)
     {
-
-
-//        $memberId = static::getMemberId();
-//
         $engTitle = LangService::translite_in_Latin($inputs['title']);
 
         $sql = "INSERT INTO `categories` (`parent_id`, `title`, `eng_title`) VALUES (?, ?, ?) ";
@@ -163,6 +159,23 @@ class Member extends DataBase
         $stmt -> bindValue(3, $engTitle, \PDO::PARAM_STR);
         $stmt -> execute();
 
+        return true;
+    }
+
+
+    public static function saveTopic($inputs)
+    {
+
+        $memberId = self::getMemberId();
+        $engTitle = LangService::translite_in_Latin($inputs['title']);
+
+        $sql = "INSERT INTO `topics` (`category_id`, `member_id`, `title`, `eng_title`) VALUES (?, ?, ?, ?) ";
+        $stmt = self::conn()->prepare($sql);
+        $stmt -> bindValue(1, $_POST['categoryId'], \PDO::PARAM_INT);
+        $stmt -> bindValue(2, $memberId, \PDO::PARAM_INT);
+        $stmt -> bindValue(3, $inputs['title'], \PDO::PARAM_STR);
+        $stmt -> bindValue(4, $engTitle, \PDO::PARAM_STR);
+        $stmt -> execute();
 
         return true;
     }

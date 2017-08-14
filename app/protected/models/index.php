@@ -133,6 +133,20 @@ use function author;
          return $user;
      }
 
+
+     public static function getCategoryIdFromTitle($title)
+     {
+         $sql = "SELECT `id` FROM `categories` WHERE `title`=?";
+         $stmt = self::conn()->prepare($sql);
+         $stmt -> bindValue(1, $title, \PDO::PARAM_STR);
+         $stmt -> execute();
+         $stmt -> bindColumn(1, $id);
+         $stmt ->fetch();
+
+         return $id;
+     }
+
+
      public static function updateUser($inputs)
      {
          var_dump($inputs);

@@ -110,6 +110,38 @@ class Topic  extends BaseController
     }
 
 
+    public function create($id, $errors = null )
+    {
+        $this->checkIfMember();
+
+        $_SESSION['createTopic'] = true;
+
+        return ['view'=>'views/common/topic/create.php', 'errors' => $errors, 'id'=>$id ];
+    }
+
+    public function store()
+    {
+        $this->checkIfMember();
+        TokenService::check('member');
+
+        if(@!$_SESSION['createTopic']) return $this->create($_POST['id']);
+
+        $cleanedUpInputs = self::escapeInputs('title');
+        $errors = CheckForm::checkCreateTopicForm($cleanedUpInputs);
+
+//if errors
+        if(!empty($errors)) {
+            return $this->create($_POST['id'], $errors);
+        };
+
+        Member::saveTopic($cleanedUpInputs);
+
+        unset($_SESSION['createTopic']);
+
+        return ['view'=>'views/common/topic/stored.php' ];
+    }
+
+
 
 
 

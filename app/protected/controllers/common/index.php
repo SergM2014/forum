@@ -41,12 +41,13 @@ class Index  extends BaseController
    public function category($title)
    {
        $categoryTopics = (new Model())->getOneCategoryGeneralInfo($title);
+        $categoryId = Model::getCategoryIdFromTitle($title);
 
       extract($this->siteStatistic());
 
        return ['view'=>'views/common/category.php', 'categoryTopics' => $categoryTopics, 'visitorsOnline' => $visitorsOnline,
            'responsesAmount'=> $responsesAmount, 'membersOnline'=> $membersOnline, 'lastMemberName'=> $lastMemberName,
-           'membersAmount'=> $membersAmount];
+           'membersAmount'=> $membersAmount, 'categoryId' => $categoryId ];
 
 
 

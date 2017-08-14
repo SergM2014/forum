@@ -182,6 +182,28 @@ class CheckForm extends DataBase
     }
 
 
+    protected static function ifUniqueTopicTitle(array $income, $errors)
+    {
+        $sql = "SELECT `title` FROM `topics` WHERE `title`=?";
+        $stmt = self::conn()->prepare($sql);
+        $stmt->bindValue(1, $income['title']);
+        $stmt->execute();
+        $title = $stmt->fetchColumn();
+        if($title)  $errors->title = $errors->title ?? repeatedTitle();
+    }
+
+
+    public static function checkCreateTopicForm($inputs)
+    {
+        $errors =  new \stdClass();
+
+        self::checkIfNotEmpty($inputs, $errors);
+        self::ifUniqueTopicTitle($inputs, $errors);
+
+        return (array)$errors;
+    }
+
+
 
 
 
