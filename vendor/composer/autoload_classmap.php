@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Controllers\\Admin' => $baseDir . '/app/protected/controllers/admin/admin.php',
+    'App\\Controllers\\Admincategories' => $baseDir . '/app/protected/controllers/admin/categories.php',
     'App\\Controllers\\Error_404' => $baseDir . '/app/protected/controllers/common/404.php',
     'App\\Controllers\\Images' => $baseDir . '/app/protected/controllers/common/images.php',
     'App\\Controllers\\Index' => $baseDir . '/app/protected/controllers/common/index.php',
@@ -26,7 +27,6 @@ return array(
     'App\\Models\\CheckForm' => $baseDir . '/app/protected/models/checkForm.php',
     'App\\Models\\Images' => $baseDir . '/app/protected/models/images.php',
     'App\\Models\\Index' => $baseDir . '/app/protected/models/index.php',
-    'App\\Models\\ManyItems' => $baseDir . '/app/protected/models/manyItems.php',
     'App\\Models\\Member' => $baseDir . '/app/protected/models/member.php',
     'App\\Models\\Response' => $baseDir . '/app/protected/models/response.php',
     'App\\Models\\Search' => $baseDir . '/app/protected/models/search.php',

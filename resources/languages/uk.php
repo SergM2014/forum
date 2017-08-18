@@ -59,6 +59,9 @@ $addCategoryL = "Додати категорію";
 $categoryCreatedL = "Нову категорію створенно!";
 $designateParentL = "Назначити батьківською";
 $topicCreatedL = "Нову тему створено";
+$categoriesL = "Категорії";
+
+
 
 //these functionare for translation in controllers and models
 function variableInController(){

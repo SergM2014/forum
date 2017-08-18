@@ -20,14 +20,14 @@ use function author;
 
      public function __construct()
      {
-         $this->categories = $this->getGeneralInfo();
+         $this->categories = $this->getGeneralCategoriesInfo();
          $this->currentLang = HelperService::currentLang();
 
      }
 
 
 
-     private function getGeneralInfo()
+     private function getGeneralCategoriesInfo()
      {
          $sql = "CREATE TEMPORARY TABLE `r2` SELECT `id`, `topic_id`, `member_id`, `response`,`created_at`, `updated_at`
                   FROM `responses`  ORDER BY `created_at` DESC ";
@@ -88,6 +88,36 @@ use function author;
      }
 
 
+
+     public function getCategoryTree($parent = 0, $stepLeft = '')
+     {
+         $print = "";
+         foreach ($this->categories as $category){
+             if($category->parent_id == $parent){
+                 $print.= "<li> <span class='category-item {$stepLeft}' data-category-id='{$category->id}'>{$category->title}</span>";
+
+                 foreach($this->categories as $subCategory){
+                     if($subCategory->parent_id == $category->id){
+                         $flag = true;
+                     }
+                 }
+
+                 if(isset($flag)){
+                     $stepLeft.= '_';
+                    $print.="<ul>";
+                     $print.= $this->getCategoryTree($category->id, $stepLeft);
+                    $print.= "</ul></li>";
+
+                     $flag = null; $stepLeft = mb_substr($stepLeft, 0, -1);
+                 } else { $print.= "</li>";}
+             }
+         }
+
+         return $print;
+     }
+
+
+
      public function getOneCategoryGeneralInfo($title)
      {
          $sql = "CREATE TEMPORARY TABLE IF NOT EXISTS `r2`  SELECT `id`, `topic_id`, `member_id`, `response`,`created_at`, `updated_at`
@@ -125,7 +155,7 @@ use function author;
 
      public static function getUser()
      {
-         $sql = "SELECT `id`, `avatar`, `login`, `email` FROM `subscribers` WHERE `id`=1";
+         $sql = "SELECT `id`, `avatar`, `login`, `email` FROM `subscribers` WHERE `id`= 1";
          $stmt = self::conn()->query($sql);
 
          $user = $stmt->fetch();
@@ -136,12 +166,12 @@ use function author;
 
      public static function getCategoryIdFromTitle($title)
      {
-         $sql = "SELECT `id` FROM `categories` WHERE `title`=?";
+         $sql = "SELECT `id` FROM `categories` WHERE `title` = ?";
          $stmt = self::conn()->prepare($sql);
          $stmt -> bindValue(1, $title, \PDO::PARAM_STR);
          $stmt -> execute();
          $stmt -> bindColumn(1, $id);
-         $stmt ->fetch();
+         $stmt -> fetch();
 
          return $id;
      }

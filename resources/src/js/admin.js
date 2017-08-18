@@ -176,9 +176,11 @@ document.getElementById('closeAlert').addEventListener('click', function(){
 
 document.body.addEventListener('click', function (e) {
 
+        if(e.target.classList.contains('category-item')){
+//alert('qwerty') //it works
+        }
 
-
-    })
+    });
 
 //hide popup menu
 document.getElementsByClassName('container')[0].addEventListener('click', function (e) {

@@ -2,7 +2,7 @@
 
 $routes = [
     /*
-     * 'route where {dum1} are arguments for controller => 'controller itself@this action'
+     * 'route where {dum1} are arguments for controller => 'controller itself@its action'
      *
      * '/article/{dum1}/update/{dum2}' => 'Controller2@update',
      *
@@ -46,7 +46,8 @@ $routes = [
 
     '/index/getLanguageComponents' => 'index@getLanguageComponents',
     '/images/uploadAvatar' =>'images@uploadAvatar',
-    '/images/deleteAvatar' =>'images@deleteAvatar'
+    '/images/deleteAvatar' =>'images@deleteAvatar',
+    '/admin/categories' => 'admincategories@index'
 
 
 ];

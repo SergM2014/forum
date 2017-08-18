@@ -59,6 +59,7 @@ $addCategoryL = "Add Category";
 $categoryCreatedL = "New Category added!";
 $designateParentL = "Designate as parent";
 $topicCreatedL = "New topic is created!";
+$categoriesL = "Categories";
 
 
 

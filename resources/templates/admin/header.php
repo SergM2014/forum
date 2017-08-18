@@ -54,6 +54,9 @@
                         <li class="main-header__menu-item"><a href="<?= \Lib\HelperService::currentLang() ?>/admin/user"
                                                               class="main-header__menu-item-link"><?= $usersL ?></a></li>
 
+                         <li class="main-header__menu-item"><a href="<?= \Lib\HelperService::currentLang() ?>/admin/categories"
+                                                           class="main-header__menu-item-link"><?= $categoriesL ?></a></li>
+
                         <div class="main-header__right-side">
 
                              <li class="main-header__admin">
@@ -90,7 +93,7 @@
 
         <?php endif; ?>
 
-       <section class="content">
+       <section class="content" id="app">
 
     <?php endif; ?>
 
