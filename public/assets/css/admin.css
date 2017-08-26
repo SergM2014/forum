@@ -294,6 +294,10 @@ th{
 .___{
   margin-left:30px;
 }
+.content-zone__header{
+  text-align:center;
+  color:red;
+}
 
 
 @media screen and (max-width: 750px) {

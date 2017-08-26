@@ -53,7 +53,6 @@ use Lib\CookieService;
 
      protected function setReferrer($referrer)
      {
-
          $_SESSION['form'] = [];
          $_SESSION['form'][$referrer] = $referrer;
      }

@@ -42,6 +42,11 @@ $routes = [
     '/admin' => 'admin@index',
     '/admin/login' =>'admin@login',
     '/admin/exit' =>'admin@logout',
+    '/showCategoriesPopUp'=>'popup@categories',
+    '/admin/category/create'=> 'admincategories@create',
+    '/admin/category/store' => 'admincategories@store',
+    '/admin/category/{category}/edit' => '',
+    '/admin/category/{category}/delete' => '',
 
 
     '/index/getLanguageComponents' => 'index@getLanguageComponents',

@@ -60,6 +60,10 @@ $categoryCreatedL = "New Category added!";
 $designateParentL = "Designate as parent";
 $topicCreatedL = "New topic is created!";
 $categoriesL = "Categories";
+$addL = "Add";
+$showL = "Show";
+$deleteL = "Delete";
+$chooseParentCategoryL = "Choose Parent Category";
 
 
 

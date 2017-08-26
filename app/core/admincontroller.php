@@ -23,9 +23,9 @@ class AdminController  extends BaseController{
      */
     public function __construct()
     {
-        session_start();
+        parent::__construct();
 
-        if(!isset($_SESSION['admin'])){
+        if(!isset($_SESSION['admin']['login'])){
             if (isset($_POST['ajax'])){
                 echo json_encode(["message" => "you do not have permission to fire off the controller"]); exit();
             }

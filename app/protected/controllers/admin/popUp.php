@@ -9,8 +9,14 @@ use App\Core\BaseController;
 
 
 
-class PopUp  extends BaseController
+class Popup  extends BaseController
 {
+
+    public function categories()
+    {
+
+        return ['view' => 'views/admin/popUpMenu/categories.php', 'ajax' => true ];
+    }
 
     public function lesson()
     {

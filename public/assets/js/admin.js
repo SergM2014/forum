@@ -142,8 +142,7 @@ function postAjax(givenUrl, formData){
         });
 
     return queryResult;
-
-}
+    }
 
 function hideAlert(){
     document.getElementById('alertZone').classList.add('hidden');
@@ -197,7 +196,7 @@ class PopUpMenu{
     }
 
 
-    fillUpMenuContent(id, popUpContr, processContr){
+    fillUpMenuContent(id, popUpContr, processContr = ''){
        this.drawMenu();
 
 
@@ -250,7 +249,14 @@ document.getElementById('closeAlert').addEventListener('click', function(){
 document.body.addEventListener('click', function (e) {
 
         if(e.target.classList.contains('category-item')){
-alert('qwerty')
+
+            // let formData = new FormData();
+            let categoryId = e.target.dataset.categoryId;
+            // formData.append('categoryId', categoryId);
+
+
+            new PopUpMenu(e).fillUpMenuContent(categoryId, '/showCategoriesPopUp')
+
         }
 
     });

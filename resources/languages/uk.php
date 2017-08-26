@@ -60,6 +60,10 @@ $categoryCreatedL = "Нову категорію створенно!";
 $designateParentL = "Назначити батьківською";
 $topicCreatedL = "Нову тему створено";
 $categoriesL = "Категорії";
+$addL = "Додати";
+$showL = "Показати";
+$deleteL = "Видалити";
+$chooseParentCategoryL = "Вибрати батьківську категорію";
 
 
 
