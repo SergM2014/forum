@@ -45,7 +45,8 @@ $routes = [
     '/showCategoriesPopUp'=>'popup@categories',
     '/admin/category/create'=> 'admincategories@create',
     '/admin/category/store' => 'admincategories@store',
-    '/admin/category/{category}/edit' => '',
+    '/admin/category/{category}/edit' => 'admincategories@edit',
+    '/admin/category/{category}/update' => 'admincategories@update',
     '/admin/category/{category}/delete' => '',
 
 

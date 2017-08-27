@@ -34,7 +34,7 @@ class Admincategories  extends AdminController {
 
     public function store()
     {
-       // $this->checkIfMember();
+
         TokenService::check('admin');
 
         if(@!$_SESSION['createCategory']) return $this->create();
@@ -52,6 +52,39 @@ class Admincategories  extends AdminController {
         unset($_SESSION['createCategory']);
 
         return ['view'=>'views/admin/categories/storedCategory.php' ];
+    }
+
+
+    public function edit($id,$errors = null)
+    {
+        $category = Category::getOneCategory($id);
+
+        $categoryDropDownList = (new Category)->getCategoryDropDownTree($category->parent_id);
+        $_SESSION['updateCategory'] = true;
+        return ['view' => 'views/admin/categories/edit.php', 'categoryDropDownList' => $categoryDropDownList,
+            'categoryId' => $id, 'title' => $category->title, 'errors' => $errors];
+
+    }
+
+    public function update($id)
+    {
+        TokenService::check('admin');
+
+        if(@!$_SESSION['updateCategory']) return $this->edit($id);
+
+        $cleanedUpInputs = self::escapeInputs('title');
+        $errors = CheckForm::checkUpdateCategoryForm($cleanedUpInputs);
+
+//if errors
+        if(!empty($errors)) {
+            return $this->edit($id, $errors);
+        };
+
+        Category::updateCategory($id,$cleanedUpInputs);
+
+        unset($_SESSION['updateCategory']);
+
+        return ['view'=>'views/admin/categories/updatedCategory.php' ];
     }
 
 }

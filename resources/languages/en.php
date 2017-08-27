@@ -64,7 +64,9 @@ $addL = "Add";
 $showL = "Show";
 $deleteL = "Delete";
 $chooseParentCategoryL = "Choose Parent Category";
-
+$editCategoryL = "Edit category";
+$updateCategoryL = "Update category";
+$categoryUpdatedL = "Category is updated!";
 
 
 

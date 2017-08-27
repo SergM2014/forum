@@ -64,6 +64,9 @@ $addL = "Додати";
 $showL = "Показати";
 $deleteL = "Видалити";
 $chooseParentCategoryL = "Вибрати батьківську категорію";
+$editCategoryL = "Вибрати категорію";
+$updateCategoryL = "Оновити категорію";
+$categoryUpdatedL = "Категорію оновленно!";
 
 
 

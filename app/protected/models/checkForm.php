@@ -182,6 +182,16 @@ class CheckForm extends DataBase
     }
 
 
+    public static function checkUpdateCategoryForm($inputs)
+    {
+        $errors =  new \stdClass();
+
+        self::checkIfNotEmpty($inputs, $errors);
+
+        return (array)$errors;
+    }
+
+
     protected static function ifUniqueTopicTitle(array $income, $errors)
     {
         $sql = "SELECT `title` FROM `topics` WHERE `title`=?";

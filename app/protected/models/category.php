@@ -33,14 +33,16 @@ class Category extends DataBase
     }
 
 
-    public function getCategoryDropDownTree($parent = 0, $prefix = '')
+    public function getCategoryDropDownTree($selected = null, $parent = 0, $prefix = '')
     {
-
-
         $print = "";
         foreach ($this->categories as $category){
             if($category->parent_id == $parent){
-                $print.= "<option value='{$category->id}'>
+                $print.= "<option value='{$category->id}'";
+
+                $selectedOption = ($selected === $category->id)? 'selected': '';
+//dd($selectedOption);
+                $print.= " $selectedOption >
                                 {$prefix}{$category->title}
                           </option>";
 
@@ -52,7 +54,7 @@ class Category extends DataBase
 
                 if(isset($flag)){
                     $prefix.='-';
-                    $print.= $this->getCategoryDropDownTree($category->id, $prefix);
+                    $print.= $this->getCategoryDropDownTree( $selected, $category->id, $prefix);
 
                     $flag = null; $prefix = substr($prefix,0,-1);
                 }
@@ -78,6 +80,21 @@ class Category extends DataBase
         return true;
     }
 
+    public static function updateCategory($id, $inputs)
+    {
+        $engTitle = LangService::translite_in_Latin($inputs['title']);
+
+        $sql = "UPDATE `categories` SET `parent_id`=?, `title`=?, `eng_title`=? WHERE `id`=? ";
+        $stmt = self::conn()->prepare($sql);
+        $stmt->bindValue(1, $_POST['parentId'], \PDO::PARAM_INT);
+        $stmt->bindValue(2, $inputs['title'], \PDO::PARAM_STR);
+        $stmt->bindValue(3, $engTitle, \PDO::PARAM_STR);
+        $stmt->bindValue(4, $id, \PDO::PARAM_INT);
+        $stmt->execute();
+
+        return true;
+    }
+
 
     public static function saveTopic($inputs)
     {
@@ -94,6 +111,18 @@ class Category extends DataBase
         $stmt -> execute();
 
         return true;
+    }
+
+
+    public static function getOneCategory($id)
+    {
+        $sql = "SELECT `id`, `parent_id`, `title`, `eng_title` FROM `categories` WHERE `id`=?";
+        $stmt = self::conn()->prepare($sql);
+        $stmt -> bindValue(1, $id, \PDO::PARAM_INT);
+        $stmt-> execute();
+        $category = $stmt ->fetch();
+        return $category;
+
     }
 
 
