@@ -67,6 +67,7 @@ $chooseParentCategoryL = "Choose Parent Category";
 $editCategoryL = "Edit category";
 $updateCategoryL = "Update category";
 $categoryUpdatedL = "Category is updated!";
+$shureToDelCategoryL = "Are You shure to delete this category?";
 
 
 
@@ -138,4 +139,14 @@ function repeatedEmail()
 function repeatedTitle()
 {
     return "Title ias already used!";
+}
+
+function categoryHasChildren()
+{
+    return "Current category has subCategories!";
+}
+
+function categoryDeleted()
+{
+    return 'Category is deleted!';
 }

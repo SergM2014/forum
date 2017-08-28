@@ -229,11 +229,16 @@ class Modal {
         document.body.insertBefore(background, document.body.firstChild);
     }
 
-    static createModalWindow(controller, formData){
+    static createModalWindow(route, formData){
         this.createBackground();
-        postAjax(controller,formData)
+        postAjax(route, formData)
              .then(response => response.text())
             .then(html =>document.getElementById('modalBackground').insertAdjacentHTML('afterBegin', html));
+    }
+
+    static removeWindow(){
+        document.getElementById('modalBackground').remove();
+
     }
 
 
@@ -255,8 +260,54 @@ document.body.addEventListener('click', function (e) {
             // formData.append('categoryId', categoryId);
 
 
-            new PopUpMenu(e).fillUpMenuContent(categoryId, '/showCategoriesPopUp')
+            new PopUpMenu(e).fillUpMenuContent(categoryId, '/showCategoriesPopUp');
 
+        }
+
+
+        if(e.target.id === 'adminDeleteCategory'){
+
+            PopUpMenu.hideMenu();
+
+            let url = e.target.closest('form').getAttribute('action');
+            //console.log(url);
+            let formData = new FormData(document.getElementById('adminDeleteCategoryForm'));
+
+            Modal.createModalWindow('/admin/category/modalWindow/delete', formData);
+
+        }
+
+
+
+//close modal warning window
+        if(e.target.id === 'canselBtn'){
+           Modal.removeWindow();
+        }
+
+
+        if(e.target.id === 'confirmDelAdmCategory'){
+            let formData = new FormData(document.getElementById('delCatForm'));
+            formData.append('ajax', true);
+            let categoryId = (formData.get('categoryId'));
+            fetch(`/admin/category/${categoryId}/delete`, {
+                method:'post',
+                credentials:'same-origin',
+                body:formData
+            })
+                .then(response => response.json())
+                .then(json => {
+                    if(json.hasChildren){
+                        Modal.removeWindow();
+                        document.getElementById('alertZoneText').innerText = json.message;
+                        document.getElementById('alertZone').classList.remove('hidden');
+                    }
+//console.log(json)
+//success, remove modal window, remove category in main list output, print out the message with success
+                    Modal.removeWindow();
+                    document.getElementById('alertZoneText').innerText = json.message;
+                    document.getElementById('alertZone').classList.remove('hidden');
+                    document.querySelector(`[data-category-id="${categoryId}"] `).remove();
+                })
         }
 
     });

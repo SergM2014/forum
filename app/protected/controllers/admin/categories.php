@@ -9,6 +9,9 @@ use App\Models\CheckForm;
 
 use App\Models\Index;
 
+use function categoryHasChildren;
+use function categoryDeleted;
+
 class Admincategories  extends AdminController {
 
     public function __construct()
@@ -85,6 +88,23 @@ class Admincategories  extends AdminController {
         unset($_SESSION['updateCategory']);
 
         return ['view'=>'views/admin/categories/updatedCategory.php' ];
+    }
+
+    public function modalWindowDelete()
+    {
+        return ['view'=>'views/admin/modalWindows/deleteCategory.php', 'ajax'=> true ];
+    }
+
+
+    public function delete(){
+
+        TokenService::check('admin');
+//chek if category has child categories
+       if( Category::hasChildren($_POST['categoryId'])){
+           echo json_encode(['hasChildren' => true, 'message' => categoryHasChildren() ]); exit();
+       }
+        Category::delete($_POST['categoryId']);
+        echo json_encode(['success'=>true, 'message'=> categoryDeleted()]); exit();
     }
 
 }

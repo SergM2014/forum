@@ -47,7 +47,8 @@ $routes = [
     '/admin/category/store' => 'admincategories@store',
     '/admin/category/{category}/edit' => 'admincategories@edit',
     '/admin/category/{category}/update' => 'admincategories@update',
-    '/admin/category/{category}/delete' => '',
+    '/admin/category/modalWindow/delete' => 'admincategories@modalWindowDelete',
+    '/admin/category/{category}/delete' => 'admincategories@delete',
 
 
     '/index/getLanguageComponents' => 'index@getLanguageComponents',

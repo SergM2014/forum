@@ -195,6 +195,7 @@ th{
   z-index:999;
   opacity: 0.9;
   display:flex;
+  top:0;
 }
 .modal-window{
   z-index: 1000;
@@ -261,7 +262,7 @@ th{
 .red-text{
   color:red;
 }
-.
+
 .image-download__delete-sign{
   position:absolute;
   top:0;

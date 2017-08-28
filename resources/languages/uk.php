@@ -67,7 +67,7 @@ $chooseParentCategoryL = "Вибрати батьківську категорі
 $editCategoryL = "Вибрати категорію";
 $updateCategoryL = "Оновити категорію";
 $categoryUpdatedL = "Категорію оновленно!";
-
+$shureToDelCategoryL = "Ви впевнені що бажаете видалити категорію?";
 
 
 //these functionare for translation in controllers and models
@@ -138,4 +138,14 @@ function repeatedEmail()
 function repeatedTitle()
 {
     return "Назву зайнято!";
+}
+
+function categoryHasChildren()
+{
+    return "Данна категорія має підкатегорії!";
+}
+
+function categoryDeleted()
+{
+    return 'Категорію видаленно!';
 }

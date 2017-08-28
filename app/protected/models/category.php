@@ -125,6 +125,28 @@ class Category extends DataBase
 
     }
 
+    public static function delete($id)
+    {
+        $sql = "DELETE FROM `categories` WHERE `id`=?";
+        $stmt = self::conn()->prepare($sql);
+        $stmt -> bindValue(1, $id, \PDO::PARAM_INT);
+        $stmt -> execute();
+
+        return;
+    }
+
+    public static function hasChildren($id)
+    {
+        $sql = "SELECT COUNT(DISTINCT `id`) FROM `categories` WHERE `parent_id` = ?";
+        $stmt = self::conn()->prepare($sql);
+        $stmt-> bindValue(1, $id, \PDO::PARAM_INT);
+        $stmt-> execute();
+        $stmt->bindColumn(1, $count);
+        $stmt-> fetch();
+        return !!$count;
+
+    }
+
 
 
 
