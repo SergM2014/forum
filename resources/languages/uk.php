@@ -68,7 +68,10 @@ $editCategoryL = "Вибрати категорію";
 $updateCategoryL = "Оновити категорію";
 $categoryUpdatedL = "Категорію оновленно!";
 $shureToDelCategoryL = "Ви впевнені що бажаете видалити категорію?";
-
+$topicsL = "Теми";
+$createTopicL = "Створити тему";
+$chooseMemberL= "Вибрати користувача";
+$topicCreatedL = "Тему створенно!";
 
 //these functionare for translation in controllers and models
 function variableInController(){

@@ -50,6 +50,15 @@ $routes = [
     '/admin/category/modalWindow/delete' => 'admincategories@modalWindowDelete',
     '/admin/category/{category}/delete' => 'admincategories@delete',
 
+    '/admin/topics' => 'admintopics@index',
+    '/showTopicsPopUp'=>'popup@topics',
+    '/admin/topic/create'=> 'admintopics@create',
+    '/admin/topic/store' => 'admintopics@store',
+    '/admin/topic/{topic}/edit' => 'admintopic@edit',
+    '/admin/topic/{topic}/update' => 'admintopic@update',
+    '/admin/topic/modalWindow/delete' => 'admintopic@modalWindowDelete',
+    '/admin/topic/{topic}/delete' => 'admintopic@delete',
+
 
     '/index/getLanguageComponents' => 'index@getLanguageComponents',
     '/images/uploadAvatar' =>'images@uploadAvatar',

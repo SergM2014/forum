@@ -78,6 +78,7 @@ class ComposerStaticInit14fc953014b49481d3c9d0477a55e3f8
     public static $classMap = array (
         'App\\Controllers\\Admin' => __DIR__ . '/../..' . '/app/protected/controllers/admin/admin.php',
         'App\\Controllers\\Admincategories' => __DIR__ . '/../..' . '/app/protected/controllers/admin/categories.php',
+        'App\\Controllers\\Admintopics' => __DIR__ . '/../..' . '/app/protected/controllers/admin/topics.php',
         'App\\Controllers\\Error_404' => __DIR__ . '/../..' . '/app/protected/controllers/common/404.php',
         'App\\Controllers\\Images' => __DIR__ . '/../..' . '/app/protected/controllers/common/images.php',
         'App\\Controllers\\Index' => __DIR__ . '/../..' . '/app/protected/controllers/common/index.php',
@@ -101,6 +102,7 @@ class ComposerStaticInit14fc953014b49481d3c9d0477a55e3f8
         'App\\Models\\Member' => __DIR__ . '/../..' . '/app/protected/models/member.php',
         'App\\Models\\Response' => __DIR__ . '/../..' . '/app/protected/models/response.php',
         'App\\Models\\Search' => __DIR__ . '/../..' . '/app/protected/models/search.php',
+        'App\\Models\\Topic' => __DIR__ . '/../..' . '/app/protected/models/topic.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',

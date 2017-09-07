@@ -18,16 +18,14 @@ class Popup  extends BaseController
         return ['view' => 'views/admin/popUpMenu/categories.php', 'ajax' => true ];
     }
 
-    public function lesson()
+
+    public function topics()
     {
-        return ['view' => 'views/admin/popUp/showMenu.php', 'ajax' => true ];
+
+        return ['view' => 'views/admin/popUpMenu/topics.php', 'ajax' => true ];
     }
 
 
 
-    public function drawDeleteLessonModal()
-    {
-        return ['view'=> '/views/admin/modalWindow/deleteLesson.php', 'ajax'=> true ];
-    }
 
 }

@@ -29,7 +29,4 @@ class AdminModel extends DataBase
 
 
 
-
-
-
 }

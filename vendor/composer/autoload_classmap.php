@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Controllers\\Admin' => $baseDir . '/app/protected/controllers/admin/admin.php',
     'App\\Controllers\\Admincategories' => $baseDir . '/app/protected/controllers/admin/categories.php',
+    'App\\Controllers\\Admintopics' => $baseDir . '/app/protected/controllers/admin/topics.php',
     'App\\Controllers\\Error_404' => $baseDir . '/app/protected/controllers/common/404.php',
     'App\\Controllers\\Images' => $baseDir . '/app/protected/controllers/common/images.php',
     'App\\Controllers\\Index' => $baseDir . '/app/protected/controllers/common/index.php',
@@ -31,6 +32,7 @@ return array(
     'App\\Models\\Member' => $baseDir . '/app/protected/models/member.php',
     'App\\Models\\Response' => $baseDir . '/app/protected/models/response.php',
     'App\\Models\\Search' => $baseDir . '/app/protected/models/search.php',
+    'App\\Models\\Topic' => $baseDir . '/app/protected/models/topic.php',
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
     'Carbon\\CarbonInterval' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
     'Carbon\\Exceptions\\InvalidDateException' => $vendorDir . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',

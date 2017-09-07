@@ -182,13 +182,9 @@ document.body.addEventListener('click', function (e) {
 
         if(e.target.classList.contains('category-item')){
 
-            // let formData = new FormData();
             let categoryId = e.target.dataset.categoryId;
-            // formData.append('categoryId', categoryId);
-
 
             new PopUpMenu(e).fillUpMenuContent(categoryId, '/showCategoriesPopUp');
-
         }
 
 
@@ -197,7 +193,7 @@ document.body.addEventListener('click', function (e) {
             PopUpMenu.hideMenu();
 
             let url = e.target.closest('form').getAttribute('action');
-            //console.log(url);
+
             let formData = new FormData(document.getElementById('adminDeleteCategoryForm'));
 
             Modal.createModalWindow('/admin/category/modalWindow/delete', formData);
@@ -234,6 +230,15 @@ document.body.addEventListener('click', function (e) {
                     document.getElementById('alertZone').classList.remove('hidden');
                     document.querySelector(`[data-category-id="${categoryId}"] `).remove();
                 })
+        }
+
+
+        if(e.target.classList.contains('topic-item')){
+
+            let topicId = e.target.dataset.topicId;
+
+            new PopUpMenu(e).fillUpMenuContent(topicId, '/showTopicsPopUp');
+
         }
 
     });

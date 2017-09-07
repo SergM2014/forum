@@ -68,7 +68,10 @@ $editCategoryL = "Edit category";
 $updateCategoryL = "Update category";
 $categoryUpdatedL = "Category is updated!";
 $shureToDelCategoryL = "Are You shure to delete this category?";
-
+$topicsL = "Topics";
+$createTopicL = "Create topic";
+$chooseMemberL = "Choose Member";
+$topicCreatedL = "Topic is created!";
 
 
 //these functionare for translation in controllers and models

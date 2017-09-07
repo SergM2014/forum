@@ -301,13 +301,21 @@ document.body.addEventListener('click', function (e) {
                         document.getElementById('alertZoneText').innerText = json.message;
                         document.getElementById('alertZone').classList.remove('hidden');
                     }
-//console.log(json)
-//success, remove modal window, remove category in main list output, print out the message with success
+
                     Modal.removeWindow();
                     document.getElementById('alertZoneText').innerText = json.message;
                     document.getElementById('alertZone').classList.remove('hidden');
                     document.querySelector(`[data-category-id="${categoryId}"] `).remove();
                 })
+        }
+
+
+        if(e.target.classList.contains('topic-item')){
+
+            let topicId = e.target.dataset.topicId;
+
+            new PopUpMenu(e).fillUpMenuContent(topicId, '/showTopicsPopUp');
+
         }
 
     });

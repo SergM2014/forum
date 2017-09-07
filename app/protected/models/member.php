@@ -181,6 +181,16 @@ class Member extends DataBase
     }
 
 
+    public static function getAllMembers()
+    {
+        $sql = "SELECT `id`, `user_id`, `avatar`, `name` FROM `members`";
+        $stmt = self::conn()->query($sql);
+        $members = $stmt->fetchAll();
+
+        return $members;
+    }
+
+
 
 
 }

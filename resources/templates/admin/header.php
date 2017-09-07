@@ -58,6 +58,10 @@
                          <li class="main-header__menu-item"><a href="<?= \Lib\HelperService::currentLang() ?>/admin/categories"
                                                            class="main-header__menu-item-link"><?= $categoriesL ?></a></li>
 
+                        <li class="main-header__menu-item"><a href="<?= \Lib\HelperService::currentLang() ?>/admin/topics"
+                                                           class="main-header__menu-item-link"><?= $topicsL ?></a></li>
+
+
                         <div class="main-header__right-side">
 
                              <li class="main-header__admin">
