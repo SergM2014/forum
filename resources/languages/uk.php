@@ -72,6 +72,8 @@ $topicsL = "Теми";
 $createTopicL = "Створити тему";
 $chooseMemberL= "Вибрати користувача";
 $topicCreatedL = "Тему створенно!";
+$updateTopicL = "Оновити тему";
+$topicUpdatedL = "Тему оновленно!";
 
 //these functionare for translation in controllers and models
 function variableInController(){

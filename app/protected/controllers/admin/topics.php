@@ -43,7 +43,6 @@ class Admintopics  extends AdminController {
 
     public function store()
     {
-
         TokenService::check('admin');
 
         if(@!$_SESSION['createTopic']) return $this->create();
@@ -66,12 +65,18 @@ class Admintopics  extends AdminController {
 
     public function edit($id,$errors = null)
     {
-        $category = Category::getOneCategory($id);
+        $topic = Topic::getOneTopic($id);
 
-        $categoryDropDownList = (new Category)->getCategoryDropDownTree($category->parent_id);
-        $_SESSION['updateCategory'] = true;
-        return ['view' => 'views/admin/categories/edit.php', 'categoryDropDownList' => $categoryDropDownList,
-            'categoryId' => $id, 'title' => $category->title, 'errors' => $errors];
+        $selectedCategory = $_POST['categoryId']?? $topic->category_id;
+
+        $categoryDropDownList = (new Category)->getCategoryDropDownTree($selectedCategory);
+
+        $members = Member::getAllMembers();
+
+        $_SESSION['updateTopic'] = true;
+        return ['view' => 'views/admin/topics/edit.php', 'categoryDropDownList' => $categoryDropDownList, 'id'=> $id,
+            'categoryId' => $id, 'title' => $topic->title, 'members' => $members, 'memberId' => $topic->member_id,
+            'errors' => $errors];
 
     }
 
@@ -79,7 +84,7 @@ class Admintopics  extends AdminController {
     {
         TokenService::check('admin');
 
-        if(@!$_SESSION['updateCategory']) return $this->edit($id);
+        if(@!$_SESSION['updateTopic']) return $this->edit($id);
 
         $cleanedUpInputs = self::escapeInputs('title');
         $errors = CheckForm::checkUpdateCategoryForm($cleanedUpInputs);
@@ -89,11 +94,11 @@ class Admintopics  extends AdminController {
             return $this->edit($id, $errors);
         };
 
-        Category::updateCategory($id,$cleanedUpInputs);
+        Topic::update($id,$cleanedUpInputs);
 
-        unset($_SESSION['updateCategory']);
+        unset($_SESSION['updateTopic']);
 
-        return ['view'=>'views/admin/categories/updatedCategory.php' ];
+        return ['view'=>'views/admin/topics/updated.php' ];
     }
 
     public function modalWindowDelete()

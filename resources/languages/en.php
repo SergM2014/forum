@@ -72,6 +72,8 @@ $topicsL = "Topics";
 $createTopicL = "Create topic";
 $chooseMemberL = "Choose Member";
 $topicCreatedL = "Topic is created!";
+$updateTopicL = "Update topic";
+$topicUpdatedL = "Topic is updated!";
 
 
 //these functionare for translation in controllers and models

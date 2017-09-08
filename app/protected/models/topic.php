@@ -83,16 +83,31 @@ class Topic extends DataBase
         return true;
     }
 
-    public static function updateCategory($id, $inputs)
+
+    public static function getOneTopic($id)
+    {
+        $sql = "SELECT `id`, `category_id`, `member_id`, `title`, `eng_title` FROM `topics` WHERE `id`=?";
+        $stmt = self::conn()->prepare($sql);
+        $stmt -> bindValue(1, $id, \PDO::PARAM_INT);
+        $stmt-> execute();
+        $topic = $stmt ->fetch();
+        return $topic;
+
+    }
+
+
+
+    public static function update($id, $inputs)
     {
         $engTitle = LangService::translite_in_Latin($inputs['title']);
 
-        $sql = "UPDATE `categories` SET `parent_id`=?, `title`=?, `eng_title`=? WHERE `id`=? ";
+        $sql = "UPDATE `topics` SET `category_id`=?, `member_id`=?, `title`=?, `eng_title`=? WHERE `id`=? ";
         $stmt = self::conn()->prepare($sql);
-        $stmt->bindValue(1, $_POST['parentId'], \PDO::PARAM_INT);
-        $stmt->bindValue(2, $inputs['title'], \PDO::PARAM_STR);
-        $stmt->bindValue(3, $engTitle, \PDO::PARAM_STR);
-        $stmt->bindValue(4, $id, \PDO::PARAM_INT);
+        $stmt->bindValue(1, $_POST['categoryId'], \PDO::PARAM_INT);
+        $stmt->bindValue(2, $_POST['memberId'], \PDO::PARAM_INT);
+        $stmt->bindValue(3, $inputs['title'], \PDO::PARAM_STR);
+        $stmt->bindValue(4, $engTitle, \PDO::PARAM_STR);
+        $stmt->bindValue(5, $id, \PDO::PARAM_INT);
         $stmt->execute();
 
         return true;
@@ -117,16 +132,7 @@ class Topic extends DataBase
     }
 
 
-    public static function getOneCategory($id)
-    {
-        $sql = "SELECT `id`, `parent_id`, `title`, `eng_title` FROM `categories` WHERE `id`=?";
-        $stmt = self::conn()->prepare($sql);
-        $stmt -> bindValue(1, $id, \PDO::PARAM_INT);
-        $stmt-> execute();
-        $category = $stmt ->fetch();
-        return $category;
 
-    }
 
     public static function delete($id)
     {

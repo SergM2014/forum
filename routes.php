@@ -54,8 +54,8 @@ $routes = [
     '/showTopicsPopUp'=>'popup@topics',
     '/admin/topic/create'=> 'admintopics@create',
     '/admin/topic/store' => 'admintopics@store',
-    '/admin/topic/{topic}/edit' => 'admintopic@edit',
-    '/admin/topic/{topic}/update' => 'admintopic@update',
+    '/admin/topic/{topic}/edit' => 'admintopics@edit',
+    '/admin/topic/{topic}/update' => 'admintopics@update',
     '/admin/topic/modalWindow/delete' => 'admintopic@modalWindowDelete',
     '/admin/topic/{topic}/delete' => 'admintopic@delete',
 

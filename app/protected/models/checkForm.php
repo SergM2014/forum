@@ -214,6 +214,16 @@ class CheckForm extends DataBase
     }
 
 
+    public static function checkUpdateTopicForm($inputs)
+    {
+        $errors =  new \stdClass();
+
+        self::checkIfNotEmpty($inputs, $errors);
+
+        return (array)$errors;
+    }
+
+
 
 
 
