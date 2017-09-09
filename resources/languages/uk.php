@@ -74,6 +74,7 @@ $chooseMemberL= "Вибрати користувача";
 $topicCreatedL = "Тему створенно!";
 $updateTopicL = "Оновити тему";
 $topicUpdatedL = "Тему оновленно!";
+$shureToDelTopicL = "Ві впевнені що хочети видалити тему?";
 
 //these functionare for translation in controllers and models
 function variableInController(){
@@ -153,4 +154,9 @@ function categoryHasChildren()
 function categoryDeleted()
 {
     return 'Категорію видаленно!';
+}
+
+function topicDeleted()
+{
+    return 'Тему видаленно!';
 }

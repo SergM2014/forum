@@ -241,6 +241,43 @@ document.body.addEventListener('click', function (e) {
 
         }
 
+        if(e.target.id === 'adminDeleteTopic'){
+            let id = document.getElementById('topicId').value;
+            let formData = new FormData;
+            formData.append('id', id);
+            Modal.createModalWindow('/admin/topic/modalWindow/delete',formData)
+        }
+
+
+    if(e.target.id === 'confirmDelAdmTopic'){
+
+        PopUpMenu.hideMenu();
+
+        let formData = new FormData(document.getElementById('delTopicForm'));
+        formData.append('ajax', true);
+        let topicId = (formData.get('topicId'));
+
+        fetch(`/admin/topic/${topicId}/delete`, {
+            method:'post',
+            credentials:'same-origin',
+            body:formData
+        })
+            .then(response => response.json())
+            .then(json => {
+                if(json.hasChildren){
+                    Modal.removeWindow();
+                    document.getElementById('alertZoneText').innerText = json.message;
+                    document.getElementById('alertZone').classList.remove('hidden');
+                }
+
+                Modal.removeWindow();
+                document.getElementById('alertZoneText').innerText = json.message;
+                document.getElementById('alertZone').classList.remove('hidden');
+                document.querySelector(`[data-topic-id="${topicId}"] `).remove();
+            })
+    }
+
+
     });
 
 //hide popup menu

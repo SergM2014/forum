@@ -74,6 +74,7 @@ $chooseMemberL = "Choose Member";
 $topicCreatedL = "Topic is created!";
 $updateTopicL = "Update topic";
 $topicUpdatedL = "Topic is updated!";
+$shureToDelTopicL = "Are You shure to delete the topic?";
 
 
 //these functionare for translation in controllers and models
@@ -154,4 +155,9 @@ function categoryHasChildren()
 function categoryDeleted()
 {
     return 'Category is deleted!';
+}
+
+function topicDeleted()
+{
+    return 'Topic deleted!';
 }

@@ -56,8 +56,8 @@ $routes = [
     '/admin/topic/store' => 'admintopics@store',
     '/admin/topic/{topic}/edit' => 'admintopics@edit',
     '/admin/topic/{topic}/update' => 'admintopics@update',
-    '/admin/topic/modalWindow/delete' => 'admintopic@modalWindowDelete',
-    '/admin/topic/{topic}/delete' => 'admintopic@delete',
+    '/admin/topic/modalWindow/delete' => 'admintopics@modalWindowDelete',
+    '/admin/topic/{topic}/delete' => 'admintopics@delete',
 
 
     '/index/getLanguageComponents' => 'index@getLanguageComponents',

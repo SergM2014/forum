@@ -136,7 +136,7 @@ class Topic extends DataBase
 
     public static function delete($id)
     {
-        $sql = "DELETE FROM `categories` WHERE `id`=?";
+        $sql = "DELETE FROM `topics` WHERE `id`=?";
         $stmt = self::conn()->prepare($sql);
         $stmt -> bindValue(1, $id, \PDO::PARAM_INT);
         $stmt -> execute();

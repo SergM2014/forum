@@ -9,10 +9,11 @@ use Lib\TokenService;
 use App\Models\CheckForm;
 use App\Models\Member;
 
-use App\Models\Index;
 
-use function categoryHasChildren;
+
+
 use function categoryDeleted;
+use function topicDeleted;
 
 class Admintopics  extends AdminController {
 
@@ -103,19 +104,16 @@ class Admintopics  extends AdminController {
 
     public function modalWindowDelete()
     {
-        return ['view'=>'views/admin/modalWindows/deleteCategory.php', 'ajax'=> true ];
+        return ['view'=>'views/admin/modalWindows/deleteTopic.php', 'ajax'=> true ];
     }
 
 
     public function delete(){
 
         TokenService::check('admin');
-//chek if category has child categories
-       if( Category::hasChildren($_POST['categoryId'])){
-           echo json_encode(['hasChildren' => true, 'message' => categoryHasChildren() ]); exit();
-       }
-        Category::delete($_POST['categoryId']);
-        echo json_encode(['success'=>true, 'message'=> categoryDeleted()]); exit();
+
+        Topic::delete($_POST['topicId']);
+        echo json_encode(['success'=>true, 'message'=> topicDeleted()]); exit();
     }
 
 }
