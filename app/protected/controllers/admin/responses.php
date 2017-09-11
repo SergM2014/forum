@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\AdminController;
-use App\Models\Topic;
+use App\Models\Response;
 use App\Models\Category;
 use Lib\TokenService;
 use App\Models\CheckForm;
@@ -12,12 +12,12 @@ use App\Models\Member;
 
 use function topicDeleted;
 
-class Admintopics  extends AdminController {
+class Adminresponses  extends AdminController {
 
     public function index()
     {
-        $topics = Topic::getAllTopics();
-        return ['view' => 'views/admin/topics/index.php', 'topics' => $topics];
+        $responses = Response::getAllResponses();
+        return ['view' => 'views/admin/responses/index.php', 'responses' => $responses];
     }
 
     public function create($errors = null)

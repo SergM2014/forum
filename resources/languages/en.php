@@ -75,6 +75,14 @@ $topicCreatedL = "Topic is created!";
 $updateTopicL = "Update topic";
 $topicUpdatedL = "Topic is updated!";
 $shureToDelTopicL = "Are You shure to delete the topic?";
+$topicL = "Topic";
+$memberL = "Member";
+$responseL = "Response";
+$publishedL = "Published";
+$changedL = "Changed";
+$addedAtL = "Added at";
+$yesL = "Yes";
+$noL = "No";
 
 
 //these functionare for translation in controllers and models

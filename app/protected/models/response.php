@@ -146,4 +146,16 @@ use function answer;
         return $title;
     }
 
+
+    public static function getAllResponses()
+    {
+        $sql = "SELECT `r`.`id`, `r`.`topic_id`, `r`.`response`, `r`.`published`, `r`.`changed`, `r`.`created_at`,
+                `m`.`name`, `t`.`title` FROM `responses` `r` JOIN `members` `m` ON `r`.`member_id`=`m`.`id` JOIN `topics` `t`
+                 ON `r`.`topic_id` = `t`.`id` ORDER BY `r`.`created_at` DESC";
+        $stmt = self::conn()->query($sql);
+        $responses = $stmt->fetchAll();
+
+        return $responses;
+    }
+
  }

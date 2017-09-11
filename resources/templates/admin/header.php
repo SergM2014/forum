@@ -61,6 +61,9 @@
                         <li class="main-header__menu-item"><a href="<?= \Lib\HelperService::currentLang() ?>/admin/topics"
                                                            class="main-header__menu-item-link"><?= $topicsL ?></a></li>
 
+                         <li class="main-header__menu-item"><a href="<?= \Lib\HelperService::currentLang() ?>/admin/responses"
+                                                           class="main-header__menu-item-link"><?= $responsesL ?></a></li>
+
 
                         <div class="main-header__right-side">
 

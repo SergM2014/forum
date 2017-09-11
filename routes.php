@@ -17,6 +17,12 @@ $routes = [
     '/many/update' => 'many@update',*/
 
     '/'=>'Index@index',
+    '/index/getLanguageComponents' => 'index@getLanguageComponents',
+    '/images/uploadAvatar' =>'images@uploadAvatar',
+    '/images/deleteAvatar' =>'images@deleteAvatar',
+    '/admin/categories' => 'admincategories@index',
+    
+    
     '/category/{title}' => 'index@category',
     '/topic/store' => 'topic@store',
     '/topic/{topic}' => 'topic@showResponses',
@@ -60,10 +66,17 @@ $routes = [
     '/admin/topic/{topic}/delete' => 'admintopics@delete',
 
 
-    '/index/getLanguageComponents' => 'index@getLanguageComponents',
-    '/images/uploadAvatar' =>'images@uploadAvatar',
-    '/images/deleteAvatar' =>'images@deleteAvatar',
-    '/admin/categories' => 'admincategories@index'
+    '/admin/responses' => 'adminresponses@index',
+    '/showResponsesPopUp'=>'popup@responses',
+    '/admin/response/create'=> 'adminresponses@create',
+    '/admin/response/store' => 'adminresponses@store',
+    '/admin/response/{response}/edit' => 'adminresponses@edit',
+    '/admin/response/{response}/update' => 'adminresponses@update',
+    '/admin/response/modalWindow/delete' => 'adminresponses@modalWindowDelete',
+    '/admin/response/{response}/delete' => 'adminresponses@delete',
+
+
+   
 
 
 ];

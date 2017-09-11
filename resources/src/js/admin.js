@@ -277,6 +277,13 @@ document.body.addEventListener('click', function (e) {
             })
     }
 
+    if(e.target.closest('.response-item')){
+
+         let responseId = e.target.closest('.response-item').dataset.responseId;
+
+         new PopUpMenu(e).fillUpMenuContent(responseId, '/showResponsesPopUp');
+    }
+
 
     });
 

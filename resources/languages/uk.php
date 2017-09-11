@@ -75,6 +75,14 @@ $topicCreatedL = "Тему створенно!";
 $updateTopicL = "Оновити тему";
 $topicUpdatedL = "Тему оновленно!";
 $shureToDelTopicL = "Ві впевнені що хочети видалити тему?";
+$topicL = "Тема";
+$memberL = "Користувач";
+$responseL = "Відповідь";
+$publishedL = "Опубліковано";
+$changedL = "Змінено";
+$addedAtL = "Додано";
+$yesL = "Так";
+$noL = "Ні";
 
 //these functionare for translation in controllers and models
 function variableInController(){
