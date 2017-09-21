@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Core\AdminController;
 use App\Models\Response;
-use App\Models\Category;
+use App\Models\Topic;
 use Lib\TokenService;
 use App\Models\CheckForm;
 use App\Models\Member;
@@ -17,40 +17,54 @@ class Adminresponses  extends AdminController {
     public function index()
     {
         $responses = Response::getAllResponses();
-        return ['view' => 'views/admin/responses/index.php', 'responses' => $responses];
+        $pages = Response::countAdminPages();
+        return ['view' => 'views/admin/responses/index.php', 'responses' => $responses, 'pages' =>$pages];
     }
 
     public function create($errors = null)
     {
-       $categoryDropDownList = (new Category)->getCategoryDropDownTree();
+       $topics = Topic::getAllTopics();
 //get members List
         $members = Member::getAllMembers();
 
-        $_SESSION['createTopic'] = true;
-       return ['view' => 'views/admin/topics/create.php', 'categoryDropDownList' => $categoryDropDownList,
+        $_SESSION['createResponse'] = true;
+       return ['view' => 'views/admin/responses/create.php', 'topics' => $topics, //'responsesDropDownList' => $responsesDropDownList,
            'members' => $members, 'errors' => $errors];
 
     }
+
+
+    public function showTreeStructure()
+    {
+
+
+        $responsesDropDownList = (new Response($_POST['id']))->getAdminResponsesTreeStructure();
+
+       return ['view' => 'views/admin/responses/showTreeStructure.php', 'responsesDropDownList' => $responsesDropDownList, 'ajax' => true ];
+
+    }
+
 
     public function store()
     {
         TokenService::check('admin');
 
-        if(@!$_SESSION['createTopic']) return $this->create();
+        if(@!$_SESSION['createResponse']) return $this->create();
 
-        $cleanedUpInputs = self::escapeInputs('title');
-        $errors = CheckForm::checkCreateTopicForm($cleanedUpInputs);
+        $cleanedUpInputs['response'] = self::stripTags($_POST['response']);
+
+        $errors = CheckForm::checkCreateResponseForm($cleanedUpInputs);
 
 //if errors
         if(!empty($errors)) {
             return $this->create($errors);
         };
 
-        Topic::store($cleanedUpInputs);
+        Response::store($cleanedUpInputs['response']);
 
-        unset($_SESSION['createTopic']);
+        unset($_SESSION['createResponse']);
 
-        return ['view'=>'views/admin/topics/stored.php' ];
+        return ['view'=>'views/admin/responses/stored.php' ];
     }
 
 

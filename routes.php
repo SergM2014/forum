@@ -69,6 +69,7 @@ $routes = [
     '/admin/responses' => 'adminresponses@index',
     '/showResponsesPopUp'=>'popup@responses',
     '/admin/response/create'=> 'adminresponses@create',
+    '/admin/response/showTreeStructure' => 'adminresponses@showTreeStructure',
     '/admin/response/store' => 'adminresponses@store',
     '/admin/response/{response}/edit' => 'adminresponses@edit',
     '/admin/response/{response}/update' => 'adminresponses@update',

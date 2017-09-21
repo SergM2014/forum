@@ -1,1 +1,1 @@
-<h1 class="content-zone__header"><?= $topicCreatedL ?></h1>
+<h1 class="content-zone__header"><?= $responseCreatedL ?></h1>

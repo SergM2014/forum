@@ -223,6 +223,15 @@ class CheckForm extends DataBase
         return (array)$errors;
     }
 
+    public static function checkCreateResponseForm($inputs)
+    {
+        $errors =  new \stdClass();
+
+        self::checkIfNotEmpty($inputs, $errors);
+
+        return (array)$errors;
+    }
+
 
 
 

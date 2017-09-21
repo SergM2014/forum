@@ -172,6 +172,15 @@ class Modal {
 }
 
 
+function hideResponseTreeStructure(){
+    document.getElementById('chooseParentCommentId').innerHTML = '';
+    document.getElementById('chooseParentCommentId').classList.add('hidden');
+    document.getElementById('parentId').value = 0;
+    document.getElementById('showTreeStructure').checked = false;
+    document.getElementById('hideTreeStructure').checked = true;
+}
+
+
 //close alert window
 document.getElementById('closeAlert').addEventListener('click', function(){
   hideAlert();
@@ -285,6 +294,44 @@ document.body.addEventListener('click', function (e) {
     }
 
 
+    if(e.target.id === 'showTreeStructure'){
+        document.getElementById('chooseParentCommentId').classList.remove('hidden');
+        let e = document.getElementById('topicId');
+        let id = e.options[e.selectedIndex].value;
+
+        let formData = new FormData;
+        formData.append('id', id);
+
+        fetch('/admin/response/showTreeStructure', {
+            method:'post',
+            credentials:'same-origin',
+            body:formData
+        })
+            .then(response => response.text())
+            .then(html => document.getElementById('chooseParentCommentId').innerHTML = html )
+    }
+
+    if(e.target.id === 'hideTreeStructure'){
+
+       hideResponseTreeStructure()
+    }
+
+
+    if(e.target.closest('.response_item')){
+
+        let responses = document.getElementById('responseStructure').querySelectorAll('.response_item');
+        for(let i=0; i<responses.length; i++){
+            if(responses[i].classList.contains('choosen-item')){
+                responses[i].classList.remove('choosen-item')
+            }
+        }
+
+        e.target.closest('.response_item').classList.add('choosen-item');
+        let id = e.target.closest('.response_item').dataset.responseId;
+
+        document.getElementById('parentId').value = id;
+    }
+
     });
 
 //hide popup menu
@@ -297,6 +344,20 @@ document.getElementsByClassName('container')[0].addEventListener('click', functi
          document.getElementById('alertZone').classList.add('hidden');
      }
 });
+
+
+
+
+document.body.addEventListener('click', function(e){
+
+    if(e.target.closest('#topicId')){
+        hideResponseTreeStructure();
+    }
+
+});
+// document.getElementById('topicId').addEventListener('change', function(){
+//   hideResponseTreeStructure();
+// });
 
 
 

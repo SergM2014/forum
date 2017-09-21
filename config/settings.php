@@ -12,7 +12,7 @@
     define('NAMESITE','forum');
     define('URL','http://forum/');
     define('AMOUNTONPAGE',3);
-    define('AMOUNTONPAGEADMIN',6);
+    define('AMOUNTONPAGEADMIN',3);
     define('HOST', 'localhost'); //сервер
     define('USER', 'root'); //пользователь
     define('PASSWORD', '1'); //пароль

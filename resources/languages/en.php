@@ -83,7 +83,13 @@ $changedL = "Changed";
 $addedAtL = "Added at";
 $yesL = "Yes";
 $noL = "No";
-
+$chooseTopicL = "Choose topic";
+$createResponseL = "Create Response";
+$responseCreatedL = "Response created!";
+$taxonomyL = "Taxonomy";
+$designateStartL = "Designate start";
+$chooseParentCommentL = "Choose Parent Comment";
+$yourFirstResponseL = "You comment will be first";
 
 //these functionare for translation in controllers and models
 function variableInController(){

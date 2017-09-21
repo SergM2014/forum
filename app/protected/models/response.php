@@ -20,20 +20,22 @@ use function answer;
      public function __construct($topic)
      {
          $this->responses = $this->getTopicResponses($topic);
+
      }
 
 
 
 
-    private function getTopicResponses($topic)
+    private function getTopicResponses($indentifier)
         {
             $sql = "SELECT `m`.`id` AS `member_id`, `m`.`avatar`, `m`.`name` AS `member_name`, `m`.`added_at` AS `member_added_at`,
             `r`.`id`, `r`.`parent_id`, `r`.`response`, `r`.`created_at`, `t`.`title` FROM `responses` `r` JOIN
-                    `topics` `t` ON `t`.`id`= `r`.`topic_id` JOIN `members` `m` ON `m`.`id`= `r`.`member_id` WHERE `t`.`title`=? 
+                    `topics` `t` ON `t`.`id`= `r`.`topic_id` JOIN `members` `m` ON `m`.`id`= `r`.`member_id`
+                     WHERE `t`.`title`= :indentifier OR `t`.`id`= :indentifier
                     AND `r`.`published`='1'";
 
             $stmt = self::conn()->prepare($sql);
-            $stmt->bindValue(1, $topic, \PDO::PARAM_STR);
+            $stmt->bindValue(':indentifier', $indentifier, \PDO::PARAM_STR);
             $stmt->execute();
             $responses = $stmt->fetchAll();
             return $responses;
@@ -137,7 +139,7 @@ use function answer;
     }
 
 
-    public static function getTopicNameFromResponse($responseId)
+    public static function getTopicNameFromResponse($indentifier)
     {
         $sql = "SELECT `t`.`eng_title` FROM `topics` `t` JOIN `responses` `r` ON `t`.`id`= `r`.`topic_id`";
         $stmt = self::conn()->query($sql);
@@ -149,13 +151,100 @@ use function answer;
 
     public static function getAllResponses()
     {
+        $page = @$_GET['p']? $_GET['p'] : 1;
+        $start = ($page-1)*AMOUNTONPAGEADMIN;
         $sql = "SELECT `r`.`id`, `r`.`topic_id`, `r`.`response`, `r`.`published`, `r`.`changed`, `r`.`created_at`,
                 `m`.`name`, `t`.`title` FROM `responses` `r` JOIN `members` `m` ON `r`.`member_id`=`m`.`id` JOIN `topics` `t`
-                 ON `r`.`topic_id` = `t`.`id` ORDER BY `r`.`created_at` DESC";
-        $stmt = self::conn()->query($sql);
+                 ON `r`.`topic_id` = `t`.`id` ORDER BY `r`.`created_at` DESC LIMIT ?,". AMOUNTONPAGEADMIN;
+        $stmt = self::conn()->prepare($sql);
+        $stmt->bindValue(1, $start, \PDO::PARAM_INT);
+        $stmt->execute();
         $responses = $stmt->fetchAll();
 
         return $responses;
+    }
+
+    public static function countAdminPages()
+    {
+        $sql = "SELECT COUNT(`id`) FROM `responses`";
+        $stmt = self::conn()->query($sql);
+        $stmt->bindColumn(1, $count);
+        $stmt->fetch();
+
+        $pages = ceil($count/AMOUNTONPAGEADMIN);
+        return $pages;
+    }
+
+
+//in admin part
+     public static function store($response)
+     {
+         $sql = "INSERT INTO `responses` (`topic_id`, `parent_id`, `member_id`, `response`, `published`) VALUES( ?, ?, ?, ?, ?) ";
+         $stmt = self::conn()->prepare($sql);
+         $stmt->bindValue(1, $_POST['topicId'], \PDO::PARAM_INT);
+         $stmt->bindValue(2, $_POST['parentId'], \PDO::PARAM_INT);
+         $stmt->bindValue(3, $_POST['memberId'], \PDO::PARAM_STR);
+         $stmt->bindValue(4, $response, \PDO::PARAM_STR);
+         $stmt->bindValue(5, $_POST['published'], \PDO::PARAM_INT);
+         $stmt->execute();
+     }
+
+
+
+    public function getAdminResponsesTreeStructure($parent = 0, $responseId = null)
+    {
+        $print = "";
+        static $leftAttr= 1;
+
+        foreach($this->responses as $response){
+            if($response->parent_id == $parent){
+
+                $choosenRespose= (@$responseId == $response->id)? 'choosenResponse': '';
+                $ancor = (@$responseId == $response->id) ? "<a name='show'></a>": '';
+
+
+
+                $print.= "<li>$ancor<div data-response-id='$response->id' class='response_item left{$leftAttr} $choosenRespose'>
+                <div class='response_user_info'>".added().": {$response->member_added_at}";
+
+                if($response->avatar) {
+                    $print.= "<img src= '/uploads/avatars/{$response->avatar}' alt='' class='response-item__avatar'>";
+                }
+
+                $print.= "<br>".name().":  {$response->member_name}</div><div class='response_user_text'>{$response->response}
+                        
+                    </div>";
+
+                if(isset($_SESSION['member'])) {
+
+                    $print.= "<div class='response_answer-container' > 
+                            <a href = '#parentComment' >
+                                <button type = 'button'class='response_answer-btn' data-response-id = '{$response->id}'
+                                 > ".answer()."</button >
+                            </a >
+                        </div >";
+                }
+
+                $print.= "</div>";
+
+                foreach($this->responses as $subresponse){
+                    if($subresponse->parent_id == $response->id){ $flag = true;}
+                }
+
+                if(isset($flag)){
+                    $print.= "<ul>";
+                    $leftAttr++;
+                    $print.= $this->getAdminResponsesTreeStructure($response->id, @$responseId);
+                    $print.= "</ul>";
+                    $leftAttr--;
+                    $print.= "</li>";
+                    $flag = null;
+                } else {
+                    $print.= "</li>";
+                }
+            }
+        }
+        return $print;
     }
 
  }

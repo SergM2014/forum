@@ -77,12 +77,19 @@ $topicUpdatedL = "Тему оновленно!";
 $shureToDelTopicL = "Ві впевнені що хочети видалити тему?";
 $topicL = "Тема";
 $memberL = "Користувач";
-$responseL = "Відповідь";
+$responseL = "Відгук";
 $publishedL = "Опубліковано";
 $changedL = "Змінено";
 $addedAtL = "Додано";
 $yesL = "Так";
 $noL = "Ні";
+$chooseTopicL = "Вибрати тему";
+$createResponseL = "Створити відгук";
+$responseCreatedL = "Відгук створенно!";
+$taxonomyL = "Таксономія";
+$designateStartL = "Назначити стартовом";
+$chooseParentCommentL = "Вибрати батьківський коментар";
+$yourFirstResponseL ="Ваш коментар буде першим!";
 
 //these functionare for translation in controllers and models
 function variableInController(){

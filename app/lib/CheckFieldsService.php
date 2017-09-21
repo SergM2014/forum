@@ -42,6 +42,7 @@ trait CheckFieldsService {
      */
     public function stripTags($content)
     {
+
         $content = $this->closeTags($content);
 
        $content = self::stripMaliciousTags($content);
