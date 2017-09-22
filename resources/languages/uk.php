@@ -90,6 +90,10 @@ $taxonomyL = "Таксономія";
 $designateStartL = "Назначити стартовом";
 $chooseParentCommentL = "Вибрати батьківський коментар";
 $yourFirstResponseL ="Ваш коментар буде першим!";
+$membersAZL = "Користувач за алфавитом";
+$membersZAL = "Користувачі проти алфавіту";
+$oldFirstL = "Спочатку старіші";
+$newFirstL = "Спочатку новіші";
 
 //these functionare for translation in controllers and models
 function variableInController(){

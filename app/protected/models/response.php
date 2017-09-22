@@ -153,9 +153,21 @@ use function answer;
     {
         $page = @$_GET['p']? $_GET['p'] : 1;
         $start = ($page-1)*AMOUNTONPAGEADMIN;
+
+
+        switch (@$_GET['order']){
+            case 'nameAZ': $order = ' `m`.`name` DESC, `r`.`created_at` DESC '; break;
+            case 'nameZA': $order = ' `m`.`name` ASC, `r`.`created_at` ASC '; break;
+            case 'oldestFirst': $order = ' `r`.`created_at` ASC '; break;
+            case 'newestFirst': $order = ' `r`.`created_at` DESC '; break;
+            default:  $order = ' `r`.`created_at` DESC '; break;
+        }
+
+
         $sql = "SELECT `r`.`id`, `r`.`topic_id`, `r`.`response`, `r`.`published`, `r`.`changed`, `r`.`created_at`,
                 `m`.`name`, `t`.`title` FROM `responses` `r` JOIN `members` `m` ON `r`.`member_id`=`m`.`id` JOIN `topics` `t`
-                 ON `r`.`topic_id` = `t`.`id` ORDER BY `r`.`created_at` DESC LIMIT ?,". AMOUNTONPAGEADMIN;
+                 ON `r`.`topic_id` = `t`.`id` ORDER BY $order  LIMIT ?,". AMOUNTONPAGEADMIN;
+
         $stmt = self::conn()->prepare($sql);
         $stmt->bindValue(1, $start, \PDO::PARAM_INT);
         $stmt->execute();

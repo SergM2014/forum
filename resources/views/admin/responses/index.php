@@ -1,6 +1,27 @@
 <h1 class="h1">This is topics</h1>
 
+
+
+
+
 <section class="centered">
+
+    <div class="order-selector">
+        <form method="get" action="/admin/responses">
+
+            <select name="order">
+                <option value="nameAZ" <?= @$_POST['order'] == "nameAZ"? 'selected':'' ?>><?= $membersAZL ?></option>
+                <option value="nameZA" <?= @$_POST['order'] == "nameZA"? 'selected':'' ?>><?= $membersZAL ?></option>
+                <option value="oldestFirst" <?= @$_POST['order'] == "oldestFirst"? 'selected':'' ?> ><?= $oldFirstL ?></option>
+                <option value="newestFirst" <?= @$_POST['order'] == "newestFirst"? 'selected':'' ?> ><?= $newFirstL ?></option>
+            </select>
+
+            <button type="submit">OK</button>
+
+        </form>
+    </div>
+
+
     <table>
         <tr>
             <th>#</th>

@@ -90,6 +90,10 @@ $taxonomyL = "Taxonomy";
 $designateStartL = "Designate start";
 $chooseParentCommentL = "Choose Parent Comment";
 $yourFirstResponseL = "You comment will be first";
+$membersAZL = "Members A-Z";
+$membersZAL = "Members Z-A";
+$oldFirstL = "Old first";
+$newFirstL = "New first";
 
 //these functionare for translation in controllers and models
 function variableInController(){
