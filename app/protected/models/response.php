@@ -99,12 +99,13 @@ use function answer;
     }
 
 
-    public static function getOneComment()
+    public static function getOneComment($id = null )
     {
-        $id = $_POST['id'];
+        $id =  $id?? $_POST['id'];
         $sql = "SELECT `m`.`id` AS `member_id`, `m`.`avatar`, `m`.`name` AS `member_name`, `m`.`added_at` AS `member_added_at`,
-            `r`.`id`, `r`.`parent_id`, `r`.`response`, `r`.`created_at` FROM `responses` `r`  JOIN `members` `m` 
-            ON `m`.`id`= `r`.`member_id` WHERE `r`.`id`=?";
+            `r`.`id`, `r`.`parent_id`, `r`.`response`, `r`.`created_at`,`r`.`published`, `r`.`changed`, 
+            `t`.`id` AS `topic_id`, `t`.`title` AS `topic_title` FROM `responses` `r`  JOIN `members` `m` 
+            ON `m`.`id`= `r`.`member_id` JOIN `topics` `t` ON `r`.`topic_id` = `t`.`id` WHERE `r`.`id`=?";
         $stmt = self::conn()->prepare($sql);
         $stmt->bindValue(1, $id, \PDO::PARAM_INT);
         $stmt->execute();
@@ -205,10 +206,13 @@ use function answer;
 
     public function getAdminResponsesTreeStructure($parent = 0, $responseId = null)
     {
+
         $print = "";
         static $leftAttr= 1;
 
         foreach($this->responses as $response){
+            if($response->id === $_POST['responseId']) continue;
+
             if($response->parent_id == $parent){
 
                 $choosenRespose= (@$responseId == $response->id)? 'choosenResponse': '';
@@ -257,6 +261,22 @@ use function answer;
             }
         }
         return $print;
+    }
+
+
+    public static function update($id, $cleanedInputs)
+    {
+
+        $sql ="UPDATE `responses` SET `parent_id` = ?, `topic_id` =?, `response` = ?, `published` = ? , `changed` = '1' WHERE `id`=?";
+        $stmt = self::conn()->prepare($sql);
+        $stmt ->bindValue(1, $_POST['parentId'], \PDO::PARAM_INT);
+        $stmt ->bindValue(2, $_POST['topicId'], \PDO::PARAM_INT);
+        $stmt ->bindValue(3, $cleanedInputs['response'], \PDO::PARAM_STR);
+        $stmt ->bindValue(4, $_POST['published'], \PDO::PARAM_INT);
+        $stmt ->bindValue(5, $id, \PDO::PARAM_INT);
+        $stmt -> execute();
+
+
     }
 
  }

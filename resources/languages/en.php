@@ -94,6 +94,9 @@ $membersAZL = "Members A-Z";
 $membersZAL = "Members Z-A";
 $oldFirstL = "Old first";
 $newFirstL = "New first";
+$updateResponseL = "Update Response";
+$responseUpdatedL = "Response is updated!";
+
 
 //these functionare for translation in controllers and models
 function variableInController(){

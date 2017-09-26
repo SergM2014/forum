@@ -78,7 +78,7 @@
 
         <br>
         <p>
-            <button  type="submit" class="form__button"><?= $addTopicL ?></button>
+            <button  type="submit" class="form__button"><?= $addResponseL ?></button>
         </p>
 
     </form>

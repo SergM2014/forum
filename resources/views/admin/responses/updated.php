@@ -1,1 +1,1 @@
-<h1 class="content-zone__header"><?= $topicUpdatedL ?></h1>
+<h1 class="content-zone__header"><?= $responseUpdatedL ?></h1>

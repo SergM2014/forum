@@ -74,7 +74,7 @@ $chooseMemberL= "Вибрати користувача";
 $topicCreatedL = "Тему створенно!";
 $updateTopicL = "Оновити тему";
 $topicUpdatedL = "Тему оновленно!";
-$shureToDelTopicL = "Ві впевнені що хочети видалити тему?";
+$shureToDelTopicL = "Ви впевнені що хочети видалити тему?";
 $topicL = "Тема";
 $memberL = "Користувач";
 $responseL = "Відгук";
@@ -94,6 +94,8 @@ $membersAZL = "Користувач за алфавитом";
 $membersZAL = "Користувачі проти алфавіту";
 $oldFirstL = "Спочатку старіші";
 $newFirstL = "Спочатку новіші";
+$updateResponseL = "Оновити коментар";
+$responseUpdatedL = "Відгук оновленно!";
 
 //these functionare for translation in controllers and models
 function variableInController(){

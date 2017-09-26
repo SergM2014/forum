@@ -296,11 +296,18 @@ document.body.addEventListener('click', function (e) {
 
     if(e.target.id === 'showTreeStructure'){
         document.getElementById('chooseParentCommentId').classList.remove('hidden');
-        let e = document.getElementById('topicId');
-        let id = e.options[e.selectedIndex].value;
+        let el = document.getElementById('topicId');
+        let id;
+
+        if(el.options){ id = el.options[el.selectedIndex].value; } else {  id = el.value; }
+
 
         let formData = new FormData;
         formData.append('id', id);
+
+        if(document.getElementById('responseId')){
+            formData.append('responseId', document.getElementById('responseId').value)
+        }
 
         fetch('/admin/response/showTreeStructure', {
             method:'post',

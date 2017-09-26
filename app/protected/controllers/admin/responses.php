@@ -10,6 +10,8 @@ use App\Models\CheckForm;
 use App\Models\Member;
 
 
+
+
 use function topicDeleted;
 
 class Adminresponses  extends AdminController {
@@ -28,7 +30,7 @@ class Adminresponses  extends AdminController {
         $members = Member::getAllMembers();
 
         $_SESSION['createResponse'] = true;
-       return ['view' => 'views/admin/responses/create.php', 'topics' => $topics, //'responsesDropDownList' => $responsesDropDownList,
+       return ['view' => 'views/admin/responses/create.php', 'topics' => $topics,
            'members' => $members, 'errors' => $errors];
 
     }
@@ -70,18 +72,13 @@ class Adminresponses  extends AdminController {
 
     public function edit($id,$errors = null)
     {
-        $topic = Topic::getOneTopic($id);
+        $response = Response::getOneComment($id);
+        $topics = Topic::getAllTopics();
 
-        $selectedCategory = $_POST['categoryId']?? $topic->category_id;
 
-        $categoryDropDownList = (new Category)->getCategoryDropDownTree($selectedCategory);
-
-        $members = Member::getAllMembers();
-
-        $_SESSION['updateTopic'] = true;
-        return ['view' => 'views/admin/topics/edit.php', 'categoryDropDownList' => $categoryDropDownList, 'id'=> $id,
-            'categoryId' => $id, 'title' => $topic->title, 'members' => $members, 'memberId' => $topic->member_id,
-            'errors' => $errors];
+        $_SESSION['editResponse'] = true;
+        return ['view' => 'views/admin/responses/edit.php', 'topics' => $topics, 'id' =>$id,
+            'errors' => $errors, 'response' => $response];
 
     }
 
@@ -89,21 +86,21 @@ class Adminresponses  extends AdminController {
     {
         TokenService::check('admin');
 
-        if(@!$_SESSION['updateTopic']) return $this->edit($id);
+        if(@!$_SESSION['editResponse']) return $this->index();
 
-        $cleanedUpInputs = self::escapeInputs('title');
-        $errors = CheckForm::checkUpdateCategoryForm($cleanedUpInputs);
+        $cleanedUpInputs = self::escapeInputs('response');
+        $errors = CheckForm::checkCreateResponseForm($cleanedUpInputs);
 
 //if errors
         if(!empty($errors)) {
             return $this->edit($id, $errors);
         };
 
-        Topic::update($id,$cleanedUpInputs);
+        Response::update($id,$cleanedUpInputs);
 
-        unset($_SESSION['updateTopic']);
+        unset($_SESSION['editResponse']);
 
-        return ['view'=>'views/admin/topics/updated.php' ];
+        return ['view'=>'views/admin/responses/updated.php' ];
     }
 
     public function modalWindowDelete()
