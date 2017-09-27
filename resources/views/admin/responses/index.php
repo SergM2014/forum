@@ -35,7 +35,7 @@
         <?php foreach($responses as $response): ?>
 
             <tr class="table__row response-item" data-response-id="<?= $response->id ?>">
-                <td><?= @$counter? ++$counter: $counter=1 ?></td>
+                <td><?=  ++$counter ?></td>
                 <td><?= $response->title ?></td>
                 <td><?= $response->name ?></td>
                 <td><?= $response->response ?></td>

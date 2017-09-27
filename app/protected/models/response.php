@@ -150,9 +150,10 @@ use function answer;
     }
 
 
-    public static function getAllResponses()
+    public static function getAllResponses($pages)
     {
-        $page = @$_GET['p']? $_GET['p'] : 1;
+        $page = @$_GET['p']>0? $_GET['p'] : 1;
+        $page = $page > $pages? $pages: $page;
         $start = ($page-1)*AMOUNTONPAGEADMIN;
 
 
@@ -277,6 +278,14 @@ use function answer;
         $stmt -> execute();
 
 
+    }
+
+    public static function getTableCounter($pages)
+    {
+        $page = ($_GET['p']>0? $_GET['p']: 1);
+        $page = $page >= $pages? $pages : $page;
+        $startCounter = AMOUNTONPAGEADMIN* ($page-1);
+        return $startCounter;
     }
 
  }

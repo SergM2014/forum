@@ -18,9 +18,14 @@ class Adminresponses  extends AdminController {
 
     public function index()
     {
-        $responses = Response::getAllResponses();
         $pages = Response::countAdminPages();
-        return ['view' => 'views/admin/responses/index.php', 'responses' => $responses, 'pages' =>$pages];
+        $responses = Response::getAllResponses($pages);
+
+
+
+        $counter = Response::getTableCounter($pages);
+
+        return ['view' => 'views/admin/responses/index.php', 'responses' => $responses, 'pages' =>$pages, 'counter' =>$counter];
     }
 
     public function create($errors = null)
