@@ -97,6 +97,8 @@ $newFirstL = "New first";
 $updateResponseL = "Update Response";
 $responseUpdatedL = "Response is updated!";
 $shureToDelResponseL = "Are You shure to delete the response?";
+$membersL = "Members";
+$avatarL = "Avatar";
 
 
 

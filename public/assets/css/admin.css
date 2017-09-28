@@ -380,6 +380,10 @@ th{
 .order-selector{
   margin-bottom:30px;
 }
+.table-thumb{
+  max-width:120px;
+  max-height:120px;
+}
 
 
 

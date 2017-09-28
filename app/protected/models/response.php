@@ -280,14 +280,6 @@ use function answer;
 
     }
 
-    public static function getTableCounter($pages)
-    {
-        $page = (@$_GET['p']>0? $_GET['p']: 1);
-        $page = $page >= $pages? $pages : $page;
-        $startCounter = AMOUNTONPAGEADMIN* ($page-1);
-        return $startCounter;
-    }
-
 
     public static function delete($id)
     {

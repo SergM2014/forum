@@ -183,11 +183,24 @@ class Member extends DataBase
 
     public static function getAllMembers()
     {
-        $sql = "SELECT `id`, `user_id`, `avatar`, `name` FROM `members`";
+        $sql = "SELECT `id`, `user_id`, `avatar`, `name`, `email`, `added_at` FROM `members`";
         $stmt = self::conn()->query($sql);
         $members = $stmt->fetchAll();
 
         return $members;
+    }
+
+    public static function countMemberPages()
+    {
+         $sql = "SELECT COUNT(`id`) FROM `members`";
+        $stmt = self::conn()->query($sql);
+        $stmt->bindColumn(1, $count);
+        $stmt->fetch();
+
+        $pages = ceil($count/AMOUNTONPAGEADMIN);
+        return $pages;
+
+
     }
 
 

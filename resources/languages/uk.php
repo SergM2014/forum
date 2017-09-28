@@ -97,6 +97,8 @@ $newFirstL = "Спочатку новіші";
 $updateResponseL = "Оновити коментар";
 $responseUpdatedL = "Відгук оновленно!";
 $shureToDelResponseL = "Ви впевнені чо хочете видалити відгук?";
+$membersL = "Користувачі";
+$avatarL = "Аватар";
 
 
 

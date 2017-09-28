@@ -76,7 +76,7 @@ $routes = [
     '/admin/response/modalWindow/delete' => 'adminresponses@modalWindowDelete',
     '/admin/response/{response}/delete' => 'adminresponses@delete',
 
-
+    '/admin/members' => 'adminmembers@index',
    
 
 
