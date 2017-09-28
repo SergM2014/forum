@@ -286,6 +286,8 @@ document.body.addEventListener('click', function (e) {
             })
     }
 
+
+//click to show popup menu
     if(e.target.closest('.response-item')){
 
          let responseId = e.target.closest('.response-item').dataset.responseId;
@@ -339,6 +341,55 @@ document.body.addEventListener('click', function (e) {
         document.getElementById('parentId').value = id;
     }
 
+
+
+    if(e.target.closest('#topicId')){
+        hideResponseTreeStructure();
+    }
+
+
+
+//click to delete response
+    if(e.target.id === 'adminDeleteResponse'){
+
+        PopUpMenu.hideMenu();
+
+
+        let formData = new FormData(document.getElementById('adminDeleteResponseForm'));
+
+        Modal.createModalWindow('/admin/response/modalWindow/delete', formData);
+
+    }
+
+
+    if(e.target.id === 'confirmDelAdmResponse'){
+
+        PopUpMenu.hideMenu();
+
+        let formData = new FormData(document.getElementById('delResponseForm'));
+        formData.append('ajax', true);
+        let responseId = (formData.get('responseId'));
+
+        fetch(`/admin/response/${responseId}/delete`, {
+            method:'post',
+            credentials:'same-origin',
+            body:formData
+        })
+            .then(response => response.json())
+            .then(json => {
+                if(json.hasChildren){
+                    Modal.removeWindow();
+                    document.getElementById('alertZoneText').innerText = json.message;
+                    document.getElementById('alertZone').classList.remove('hidden');
+                }
+
+                Modal.removeWindow();
+                document.getElementById('alertZoneText').innerText = json.message;
+                document.getElementById('alertZone').classList.remove('hidden');
+                document.querySelector(`[data-response-id="${responseId}"] `).remove();
+            })
+    }
+
     });
 
 //hide popup menu
@@ -355,16 +406,7 @@ document.getElementsByClassName('container')[0].addEventListener('click', functi
 
 
 
-document.body.addEventListener('click', function(e){
 
-    if(e.target.closest('#topicId')){
-        hideResponseTreeStructure();
-    }
-
-});
-// document.getElementById('topicId').addEventListener('change', function(){
-//   hideResponseTreeStructure();
-// });
 
 
 

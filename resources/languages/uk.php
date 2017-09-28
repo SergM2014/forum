@@ -96,6 +96,9 @@ $oldFirstL = "Спочатку старіші";
 $newFirstL = "Спочатку новіші";
 $updateResponseL = "Оновити коментар";
 $responseUpdatedL = "Відгук оновленно!";
+$shureToDelResponseL = "Ви впевнені чо хочете видалити відгук?";
+
+
 
 //these functionare for translation in controllers and models
 function variableInController(){
@@ -180,4 +183,9 @@ function categoryDeleted()
 function topicDeleted()
 {
     return 'Тему видаленно!';
+}
+
+function responseDeleted()
+{
+    return 'Відгук видаленно!';
 }

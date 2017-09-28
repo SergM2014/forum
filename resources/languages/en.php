@@ -96,6 +96,9 @@ $oldFirstL = "Old first";
 $newFirstL = "New first";
 $updateResponseL = "Update Response";
 $responseUpdatedL = "Response is updated!";
+$shureToDelResponseL = "Are You shure to delete the response?";
+
+
 
 
 //these functionare for translation in controllers and models
@@ -180,5 +183,10 @@ function categoryDeleted()
 
 function topicDeleted()
 {
-    return 'Topic deleted!';
+    return 'Topic is deleted!';
+}
+
+function responseDeleted()
+{
+    return 'response is deleted!';
 }

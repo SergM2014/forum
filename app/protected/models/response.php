@@ -282,10 +282,18 @@ use function answer;
 
     public static function getTableCounter($pages)
     {
-        $page = ($_GET['p']>0? $_GET['p']: 1);
+        $page = (@$_GET['p']>0? $_GET['p']: 1);
         $page = $page >= $pages? $pages : $page;
         $startCounter = AMOUNTONPAGEADMIN* ($page-1);
         return $startCounter;
     }
 
+
+    public static function delete($id)
+    {
+        $sql = "DELETE FROM `responses` WHERE `id` =?";
+        $stmt = self::conn()->prepare($sql);
+        $stmt -> bindValue(1, $id, \PDO::PARAM_INT);
+        $stmt ->execute();
+    }
  }

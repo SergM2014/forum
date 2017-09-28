@@ -12,7 +12,7 @@ use App\Models\Member;
 
 
 
-use function topicDeleted;
+use function responseDeleted;
 
 class Adminresponses  extends AdminController {
 
@@ -110,7 +110,7 @@ class Adminresponses  extends AdminController {
 
     public function modalWindowDelete()
     {
-        return ['view'=>'views/admin/modalWindows/deleteTopic.php', 'ajax'=> true ];
+        return ['view'=>'views/admin/modalWindows/deleteResponse.php', 'ajax'=> true ];
     }
 
 
@@ -118,8 +118,8 @@ class Adminresponses  extends AdminController {
 
         TokenService::check('admin');
 
-        Topic::delete($_POST['topicId']);
-        echo json_encode(['success'=>true, 'message'=> topicDeleted()]); exit();
+        Response::delete($_POST['responseId']);
+        echo json_encode(['success'=>true, 'message'=> responseDeleted()]); exit();
     }
 
 }
