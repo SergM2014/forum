@@ -32,7 +32,7 @@
         </tr>
         <?php foreach($members as $member): ?>
 
-            <tr class="table__row member-item" data-member-id="<?= $member->id ?>">
+            <tr class="table__row member_item" data-member-id="<?= $member->id ?>">
                 <td><?=  ++$counter ?></td>
                 <td><?php if($member->avatar): ?> <img src="/uploads/avatars/<?= $member->avatar ?> " class="table-thumb" alt="" ><?php endif; ?></td>
                 <td><?= $member->name ?></td>

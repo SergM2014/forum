@@ -232,6 +232,16 @@ class CheckForm extends DataBase
         return (array)$errors;
     }
 
+    public static function checkMemberForm($inputs)
+    {
+        $errors =  new \stdClass();
+
+        self::checkIfNotEmpty($inputs, $errors);
+        self::checkFieldsLength($_POST, 6, $errors);
+
+        return (array)$errors;
+    }
+
 
 
 

@@ -463,6 +463,15 @@ document.body.addEventListener('click', function (e) {
             })
     }
 
+//member section
+    if(e.target.closest('.member_item')){
+
+        let memberId = e.target.closest('.member_item').dataset.memberId;
+
+        new PopUpMenu(e).fillUpMenuContent(memberId, '/showMembersPopUp');
+
+    }
+
     });
 
 //hide popup menu
@@ -479,13 +488,7 @@ document.getElementsByClassName('container')[0].addEventListener('click', functi
 
 
 
-document.body.addEventListener('click', function(e){
 
-
-});
-// document.getElementById('topicId').addEventListener('change', function(){
-//   hideResponseTreeStructure();
-// });
 
 
 

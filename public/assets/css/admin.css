@@ -163,6 +163,10 @@ th{
 .red{
   color: #aa1111;
 }
+.error{
+  border-bottom:1px dotted red;
+  display:inline-block;
+}
 
 
 .image-download__preview {
@@ -275,6 +279,10 @@ th{
   color:red;
 }
 
+.image-download__block{
+  margin-bottom:10px;
+  position:relative;
+}
 .image-download__delete-sign{
   position:absolute;
   top:0;

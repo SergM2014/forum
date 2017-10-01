@@ -77,6 +77,9 @@ $routes = [
     '/admin/response/{response}/delete' => 'adminresponses@delete',
 
     '/admin/members' => 'adminmembers@index',
+    '/showMembersPopUp' => 'popup@members',
+    '/admin/members/create' => 'adminmembers@create',
+    '/admin/members/store'  => 'adminmembers@store',
    
 
 

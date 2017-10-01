@@ -99,7 +99,9 @@ $responseUpdatedL = "Response is updated!";
 $shureToDelResponseL = "Are You shure to delete the response?";
 $membersL = "Members";
 $avatarL = "Avatar";
-
+$createMemberL = "Create Member";
+$addMemberL = "Add member";
+$newMemberSavedL = "Нового користувача збережено!";
 
 
 

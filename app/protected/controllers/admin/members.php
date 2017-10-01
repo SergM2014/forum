@@ -28,24 +28,8 @@ class Adminmembers  extends AdminController {
 
     public function create($errors = null)
     {
-       $topics = Topic::getAllTopics();
-//get members List
-        $members = Member::getAllMembers();
-
-        $_SESSION['createResponse'] = true;
-       return ['view' => 'views/admin/responses/create.php', 'topics' => $topics,
-           'members' => $members, 'errors' => $errors];
-
-    }
-
-
-    public function showTreeStructure()
-    {
-
-
-        $responsesDropDownList = (new Response($_POST['id']))->getAdminResponsesTreeStructure();
-
-       return ['view' => 'views/admin/responses/showTreeStructure.php', 'responsesDropDownList' => $responsesDropDownList, 'ajax' => true ];
+        $_SESSION['createMember'] = true;
+       return ['view' => 'views/admin/members/create.php', 'errors' => $errors];
 
     }
 
@@ -54,22 +38,22 @@ class Adminmembers  extends AdminController {
     {
         TokenService::check('admin');
 
-        if(@!$_SESSION['createResponse']) return $this->create();
+        if(@!$_SESSION['createMember']) return $this->create();
 
-        $cleanedUpInputs['response'] = self::stripTags($_POST['response']);
+        $cleanedUpInputs = self::escapeInputs('name', 'email', 'password');
 
-        $errors = CheckForm::checkCreateResponseForm($cleanedUpInputs);
+        $errors = CheckForm::checkRegisterMemberForm($cleanedUpInputs);
 
 //if errors
         if(!empty($errors)) {
             return $this->create($errors);
         };
 
-        Response::store($cleanedUpInputs['response']);
+        Member::persistMember($cleanedUpInputs);
 
-        unset($_SESSION['createResponse']);
+        unset($_SESSION['createMember']);
 
-        return ['view'=>'views/admin/responses/stored.php' ];
+        return ['view'=>'views/admin/members/stored.php' ];
     }
 
 

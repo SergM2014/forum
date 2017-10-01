@@ -99,7 +99,9 @@ $responseUpdatedL = "Відгук оновленно!";
 $shureToDelResponseL = "Ви впевнені чо хочете видалити відгук?";
 $membersL = "Користувачі";
 $avatarL = "Аватар";
-
+$createMemberL = "Створити користувача";
+$addMemberL= "Додати користувача";
+$newMemberSavedL = "New Member saved!";
 
 
 //these functionare for translation in controllers and models
