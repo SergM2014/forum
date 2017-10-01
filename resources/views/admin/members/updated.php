@@ -1,0 +1,1 @@
+<h1 class="content-zone__header"><?= $memberUpdatedSuccessfullyL ?></h1>

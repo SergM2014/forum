@@ -61,11 +61,11 @@ class Member extends DataBase
     }
 
 
-    public static function getMember($name)
+    public static function getMember($indentifier)
     {
-        $sql = "SELECT `id`, `avatar`, `name`, `password`, `email` FROM `members` WHERE `name`=?";
+        $sql = "SELECT `id`, `avatar`, `name`, `password`, `email` FROM `members` WHERE `name`= :indentifier OR `id`= :indentifier";
         $stmt = self::conn()->prepare($sql);
-        $stmt->bindValue(1, $name, \PDO::PARAM_STR);
+        $stmt->bindValue(':indentifier', $indentifier, \PDO::PARAM_STR);
         $stmt->execute();
         $member = $stmt->fetch();
 
@@ -74,7 +74,6 @@ class Member extends DataBase
 
     public static function update($inputs)
     {
-
         if($inputs['password']!=''){
 
             $password = password_hash($inputs['password'], PASSWORD_DEFAULT );
@@ -200,8 +199,32 @@ class Member extends DataBase
         $pages = ceil($count/AMOUNTONPAGEADMIN);
         return $pages;
 
-
     }
+
+
+    public static function adminUpdate($id,$inputs)
+    {
+        if($inputs['password']!=''){
+
+            $password = password_hash($inputs['password'], PASSWORD_DEFAULT );
+
+            $sql = "UPDATE `members` SET  `password` = ? WHERE `id`= ?";
+            $stmt = self::conn()->prepare($sql);
+            $stmt->bindValue(1, $password, \PDO::PARAM_STR);
+            $stmt->bindValue(2, $id, \PDO::PARAM_INT);
+            $stmt->execute();
+        }
+
+        $avatar = !empty($_POST['imageData']) ? $_POST['imageData']: null;
+        $sql = "UPDATE `members` SET `avatar` = ?,  `name` = ?,  `email` = ? WHERE `id`= ?";
+        $stmt = self::conn()->prepare($sql);
+        $stmt->bindValue(1, $avatar, \PDO::PARAM_STR);
+        $stmt->bindValue(2, $inputs['name'], \PDO::PARAM_STR);
+        $stmt->bindValue(3, $inputs['email'], \PDO::PARAM_STR);
+        $stmt->bindValue(4, $id, \PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
 
 
 

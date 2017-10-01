@@ -14,7 +14,7 @@ use App\Models\CheckForm;
 
 use function responseDeleted;
 
-class Adminmembers  extends AdminController {
+class AdminMembers  extends AdminController {
 
     public function index()
     {
@@ -59,13 +59,12 @@ class Adminmembers  extends AdminController {
 
     public function edit($id,$errors = null)
     {
-        $response = Response::getOneComment($id);
-        $topics = Topic::getAllTopics();
 
+        $member = Member::getMember($id);
 
-        $_SESSION['editResponse'] = true;
-        return ['view' => 'views/admin/responses/edit.php', 'topics' => $topics, 'id' =>$id,
-            'errors' => $errors, 'response' => $response];
+        $_SESSION['editMember'] = true;
+        return ['view' => 'views/admin/members/edit.php', 'member' => $member, 'id' =>$id,
+            'errors' => $errors ];
 
     }
 
@@ -73,21 +72,21 @@ class Adminmembers  extends AdminController {
     {
         TokenService::check('admin');
 
-        if(@!$_SESSION['editResponse']) return $this->index();
+        if(@!$_SESSION['editMember']) return $this->edit($id);
 
-        $cleanedUpInputs = self::escapeInputs('response');
-        $errors = CheckForm::checkCreateResponseForm($cleanedUpInputs);
+        $cleanedUpInputs = self::escapeInputs('name', 'email', 'password');
+        $errors = CheckForm::checkUpdateMemberForm($cleanedUpInputs);
 
 //if errors
         if(!empty($errors)) {
             return $this->edit($id, $errors);
         };
 
-        Response::update($id,$cleanedUpInputs);
+        Member::adminUpdate($id,$cleanedUpInputs);
 
-        unset($_SESSION['editResponse']);
+        unset($_SESSION['editMember']);
 
-        return ['view'=>'views/admin/responses/updated.php' ];
+        return ['view'=>'views/admin/members/updated.php' ];
     }
 
     public function modalWindowDelete()

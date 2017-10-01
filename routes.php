@@ -76,10 +76,15 @@ $routes = [
     '/admin/response/modalWindow/delete' => 'adminresponses@modalWindowDelete',
     '/admin/response/{response}/delete' => 'adminresponses@delete',
 
-    '/admin/members' => 'adminmembers@index',
-    '/showMembersPopUp' => 'popup@members',
-    '/admin/members/create' => 'adminmembers@create',
-    '/admin/members/store'  => 'adminmembers@store',
+
+    '/admin/members/{member}/update'  => 'AdminMembers@update',
+
+    '/admin/members' => 'AdminMembers@index',
+    '/showMembersPopUp' => 'Popup@members',
+    '/admin/members/create' => 'AdminMembers@create',
+    '/admin/members/store'  => 'AdminMembers@store',
+    '/admin/members/{member}/edit'  => 'AdminMembers@edit',
+
    
 
 
