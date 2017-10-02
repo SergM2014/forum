@@ -189,6 +189,20 @@ class Member extends DataBase
         return $members;
     }
 
+    public static function getAdminAllMembers($pages)
+    {
+        $page = @$_GET['p']>0? $_GET['p'] : 1;
+        $page = $page > $pages? $pages: $page;
+        $start = ($page-1)*AMOUNTONPAGEADMIN;
+
+        $sql = "SELECT `id`, `user_id`, `avatar`, `name`, `email`, `added_at` FROM `members` LIMIT $start, ".AMOUNTONPAGEADMIN;
+        $stmt = self::conn()->query($sql);
+        $members = $stmt->fetchAll();
+
+        return $members;
+    }
+
+
     public static function countMemberPages()
     {
          $sql = "SELECT COUNT(`id`) FROM `members`";

@@ -17,7 +17,7 @@ class AdminMembers  extends AdminController {
     public function index()
     {
         $pages = Member::countMemberPages();
-        $members = Member::getAllMembers();
+        $members = Member::getAdminAllMembers($pages);
         $counter = Member::getTableCounter($pages);
 
 
