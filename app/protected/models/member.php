@@ -226,6 +226,15 @@ class Member extends DataBase
     }
 
 
+    public static function deleteMember($id)
+    {
+        $sql = "DELETE FROM `members` WHERE `id`= ?";
+        $stmt = self::conn()->prepare($sql);
+        $stmt->bindValue(1, $id, \PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+
 
 
 

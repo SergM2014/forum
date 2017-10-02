@@ -102,6 +102,7 @@ $avatarL = "Avatar";
 $createMemberL = "Create Member";
 $addMemberL = "Add member";
 $newMemberSavedL = "Нового користувача збережено!";
+$shureToDelMemberL = "Are You shurte to delete the member?";
 
 
 
@@ -193,4 +194,9 @@ function topicDeleted()
 function responseDeleted()
 {
     return 'response is deleted!';
+}
+
+function memberDeleted()
+{
+    return 'Member is deleted!';
 }

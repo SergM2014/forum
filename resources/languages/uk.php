@@ -102,6 +102,7 @@ $avatarL = "Аватар";
 $createMemberL = "Створити користувача";
 $addMemberL= "Додати користувача";
 $newMemberSavedL = "New Member saved!";
+$shureToDelMemberL ="Ви впевнені що хочети видалити користувача?";
 
 
 //these functionare for translation in controllers and models
@@ -192,4 +193,9 @@ function topicDeleted()
 function responseDeleted()
 {
     return 'Відгук видаленно!';
+}
+
+function memberDeleted()
+{
+    return 'Користувача видаленно!';
 }

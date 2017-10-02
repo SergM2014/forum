@@ -4,15 +4,13 @@ namespace App\Controllers;
 
 use App\Core\AdminController;
 use App\Models\Member;
-use App\Models\Topic;
 use Lib\TokenService;
 use App\Models\CheckForm;
 
 
+use function memberDeleted;
 
 
-
-use function responseDeleted;
 
 class AdminMembers  extends AdminController {
 
@@ -91,16 +89,16 @@ class AdminMembers  extends AdminController {
 
     public function modalWindowDelete()
     {
-        return ['view'=>'views/admin/modalWindows/deleteResponse.php', 'ajax'=> true ];
+        return ['view'=>'views/admin/modalWindows/deleteMember.php', 'ajax'=> true ];
     }
 
 
-    public function delete(){
+    public function delete($id){
 
         TokenService::check('admin');
 
-        Response::delete($_POST['responseId']);
-        echo json_encode(['success'=>true, 'message'=> responseDeleted()]); exit();
+         Member::deleteMember($id);
+        echo json_encode(['success'=>true, 'message'=> memberDeleted()]); exit();
     }
 
 }

@@ -84,7 +84,9 @@ $routes = [
     '/admin/members/create' => 'AdminMembers@create',
     '/admin/members/store'  => 'AdminMembers@store',
     '/admin/members/{member}/edit'  => 'AdminMembers@edit',
-
+    '/admin/members/{member}/update'  => 'AdminMembers@update',
+    '/admin/members/modalWindow/delete' => 'AdminMembers@modalWindowDelete',
+    '/admin/members/{member}/delete' => 'AdminMembers@delete',
    
 
 

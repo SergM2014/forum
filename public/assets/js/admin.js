@@ -472,9 +472,51 @@ document.body.addEventListener('click', function (e) {
 
     }
 
+
+    if(e.target.id === 'adminDeleteMember'){
+
+        PopUpMenu.hideMenu();
+
+
+        let formData = new FormData(document.getElementById('adminDeleteMemberForm'));
+
+        Modal.createModalWindow('/admin/members/modalWindow/delete', formData);
+
+    }
+
+
+    if(e.target.id === 'confirmDelAdmMember'){
+
+        PopUpMenu.hideMenu();
+
+        let formData = new FormData(document.getElementById('delMemberForm'));
+        formData.append('ajax', true);
+        let memberId = (formData.get('memberId'));
+
+        fetch(`/admin/members/${memberId}/delete`, {
+            method:'post',
+            credentials:'same-origin',
+            body:formData
+        })
+            .then(response => response.json())
+            .then(json => {
+                if(json.hasChildren){
+                    Modal.removeWindow();
+                    document.getElementById('alertZoneText').innerText = json.message;
+                    document.getElementById('alertZone').classList.remove('hidden');
+                }
+
+                Modal.removeWindow();
+                document.getElementById('alertZoneText').innerText = json.message;
+                document.getElementById('alertZone').classList.remove('hidden');
+                document.querySelector(`[data-member-id="${memberId}"] `).remove();
+            })
+    }
+
+
     });
 
-//hide popup menu
+//hide popup menu at click of outside the table
 document.getElementsByClassName('container')[0].addEventListener('click', function (e) {
     if( document.getElementById('popupMenu')){
 
