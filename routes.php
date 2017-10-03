@@ -16,11 +16,13 @@ $routes = [
     '/images/uploadManyItems' => 'images@uploadManyItems',
     '/many/update' => 'many@update',*/
 
+
+
     '/'=>'Index@index',
     '/index/getLanguageComponents' => 'index@getLanguageComponents',
     '/images/uploadAvatar' =>'images@uploadAvatar',
     '/images/deleteAvatar' =>'images@deleteAvatar',
-    '/admin/categories' => 'admincategories@index',
+
     
     
     '/category/{title}' => 'index@category',
@@ -49,6 +51,9 @@ $routes = [
     '/admin/login' =>'admin@login',
     '/admin/exit' =>'admin@logout',
     '/showCategoriesPopUp'=>'popup@categories',
+
+
+    '/admin/categories' => 'admincategories@index',
     '/admin/category/create'=> 'admincategories@create',
     '/admin/category/store' => 'admincategories@store',
     '/admin/category/{category}/edit' => 'admincategories@edit',
@@ -77,9 +82,11 @@ $routes = [
     '/admin/response/{response}/delete' => 'adminresponses@delete',
 
 
-    '/admin/members/{member}/update'  => 'AdminMembers@update',
+
 
     '/admin/members' => 'AdminMembers@index',
+
+
     '/showMembersPopUp' => 'Popup@members',
     '/admin/members/create' => 'AdminMembers@create',
     '/admin/members/store'  => 'AdminMembers@store',
@@ -87,7 +94,8 @@ $routes = [
     '/admin/members/{member}/update'  => 'AdminMembers@update',
     '/admin/members/modalWindow/delete' => 'AdminMembers@modalWindowDelete',
     '/admin/members/{member}/delete' => 'AdminMembers@delete',
-   
 
+    '/admin/users' => 'AdminUsers@index',
+    '/showUsersPopUp' => 'Popup@users',
 
 ];

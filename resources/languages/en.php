@@ -38,7 +38,7 @@ $signUpL = "SignUp";
 $repeatPasswordL = "Repeat password";
 $signOutL = "Exit";
 $signInL = "Login";
-$logInL = "Login";
+$loginL = "Login";
 $loginErrorL = "The credentials is wrong";
 $loginSuccededMessageL = "Greetings! Login as a member succeded!";
 $updateMemberL = "Update member";
@@ -103,7 +103,8 @@ $createMemberL = "Create Member";
 $addMemberL = "Add member";
 $newMemberSavedL = "Нового користувача збережено!";
 $shureToDelMemberL = "Are You shurte to delete the member?";
-
+$adminsL = "Admins";
+$roleL = "Role";
 
 
 //these functionare for translation in controllers and models

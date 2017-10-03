@@ -77,8 +77,9 @@ class ComposerStaticInit14fc953014b49481d3c9d0477a55e3f8
 
     public static $classMap = array (
         'App\\Controllers\\Admin' => __DIR__ . '/../..' . '/app/protected/controllers/admin/admin.php',
+        'App\\Controllers\\AdminMembers' => __DIR__ . '/../..' . '/app/protected/controllers/admin/members.php',
+        'App\\Controllers\\AdminUsers' => __DIR__ . '/../..' . '/app/protected/controllers/admin/users.php',
         'App\\Controllers\\Admincategories' => __DIR__ . '/../..' . '/app/protected/controllers/admin/categories.php',
-        'App\\Controllers\\Adminmembers' => __DIR__ . '/../..' . '/app/protected/controllers/admin/members.php',
         'App\\Controllers\\Adminresponses' => __DIR__ . '/../..' . '/app/protected/controllers/admin/responses.php',
         'App\\Controllers\\Admintopics' => __DIR__ . '/../..' . '/app/protected/controllers/admin/topics.php',
         'App\\Controllers\\Error_404' => __DIR__ . '/../..' . '/app/protected/controllers/common/404.php',
@@ -88,7 +89,6 @@ class ComposerStaticInit14fc953014b49481d3c9d0477a55e3f8
         'App\\Controllers\\Popup' => __DIR__ . '/../..' . '/app/protected/controllers/admin/popUp.php',
         'App\\Controllers\\Search' => __DIR__ . '/../..' . '/app/protected/controllers/common/search.php',
         'App\\Controllers\\Topic' => __DIR__ . '/../..' . '/app/protected/controllers/common/topic.php',
-        'App\\Controllers\\User' => __DIR__ . '/../..' . '/app/protected/controllers/admin/user.php',
         'App\\Core\\AdminController' => __DIR__ . '/../..' . '/app/core/admincontroller.php',
         'App\\Core\\Application' => __DIR__ . '/../..' . '/app/core/application.php',
         'App\\Core\\BaseController' => __DIR__ . '/../..' . '/app/core/basecontroller.php',
@@ -105,6 +105,7 @@ class ComposerStaticInit14fc953014b49481d3c9d0477a55e3f8
         'App\\Models\\Response' => __DIR__ . '/../..' . '/app/protected/models/response.php',
         'App\\Models\\Search' => __DIR__ . '/../..' . '/app/protected/models/search.php',
         'App\\Models\\Topic' => __DIR__ . '/../..' . '/app/protected/models/topic.php',
+        'App\\Models\\User' => __DIR__ . '/../..' . '/app/protected/models/user.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',

@@ -52,8 +52,8 @@
                      <li class="main-header__menu-item"><a href="<?= \Lib\HelperService::currentLang() ?>/"
                                                            class="main-header__menu-item-link"><?= $backToSiteL ?></a></li>
 
-                        <li class="main-header__menu-item"><a href="<?= \Lib\HelperService::currentLang() ?>/admin/user"
-                                                              class="main-header__menu-item-link"><?= $usersL ?></a></li>
+                        <li class="main-header__menu-item"><a href="<?= \Lib\HelperService::currentLang() ?>/admin/users"
+                                                              class="main-header__menu-item-link"><?= $adminsL ?></a></li>
 
                          <li class="main-header__menu-item"><a href="<?= \Lib\HelperService::currentLang() ?>/admin/categories"
                                                            class="main-header__menu-item-link"><?= $categoriesL ?></a></li>

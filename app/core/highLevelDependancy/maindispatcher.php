@@ -43,7 +43,7 @@ abstract class MainDispatcher
 //if route coinceides with given Url
             if(preg_match($pattern, $givenUrl)){
 
-                $controller->controller = strtolower($value);
+                $controller->controller = $value;
 
 //if arguments are present in the route
                 if( preg_match('~\{\w+\}~', $route)){

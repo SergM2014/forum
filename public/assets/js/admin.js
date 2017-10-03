@@ -514,6 +514,17 @@ document.body.addEventListener('click', function (e) {
     }
 
 
+//user section
+
+    if(e.target.closest('.user_item')){
+
+        let memberId = e.target.closest('.user_item').dataset.userId;
+
+        new PopUpMenu(e).fillUpMenuContent(memberId, '/showUsersPopUp');
+
+    }
+
+
     });
 
 //hide popup menu at click of outside the table

@@ -7,8 +7,9 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Controllers\\Admin' => $baseDir . '/app/protected/controllers/admin/admin.php',
+    'App\\Controllers\\AdminMembers' => $baseDir . '/app/protected/controllers/admin/members.php',
+    'App\\Controllers\\AdminUsers' => $baseDir . '/app/protected/controllers/admin/users.php',
     'App\\Controllers\\Admincategories' => $baseDir . '/app/protected/controllers/admin/categories.php',
-    'App\\Controllers\\Adminmembers' => $baseDir . '/app/protected/controllers/admin/members.php',
     'App\\Controllers\\Adminresponses' => $baseDir . '/app/protected/controllers/admin/responses.php',
     'App\\Controllers\\Admintopics' => $baseDir . '/app/protected/controllers/admin/topics.php',
     'App\\Controllers\\Error_404' => $baseDir . '/app/protected/controllers/common/404.php',
@@ -18,7 +19,6 @@ return array(
     'App\\Controllers\\Popup' => $baseDir . '/app/protected/controllers/admin/popUp.php',
     'App\\Controllers\\Search' => $baseDir . '/app/protected/controllers/common/search.php',
     'App\\Controllers\\Topic' => $baseDir . '/app/protected/controllers/common/topic.php',
-    'App\\Controllers\\User' => $baseDir . '/app/protected/controllers/admin/user.php',
     'App\\Core\\AdminController' => $baseDir . '/app/core/admincontroller.php',
     'App\\Core\\Application' => $baseDir . '/app/core/application.php',
     'App\\Core\\BaseController' => $baseDir . '/app/core/basecontroller.php',
@@ -35,6 +35,7 @@ return array(
     'App\\Models\\Response' => $baseDir . '/app/protected/models/response.php',
     'App\\Models\\Search' => $baseDir . '/app/protected/models/search.php',
     'App\\Models\\Topic' => $baseDir . '/app/protected/models/topic.php',
+    'App\\Models\\User' => $baseDir . '/app/protected/models/user.php',
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
     'Carbon\\CarbonInterval' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
     'Carbon\\Exceptions\\InvalidDateException' => $vendorDir . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',

@@ -38,7 +38,7 @@ $signUpL = "Зарееструватися";
 $repeatPasswordL = "Повторити пароль";
 $signOutL = "Вийти";
 $signInL = "Ввійти";
-$logInL = "Ввійти";
+$loginL = "Логін";
 $loginErrorL = "Неправильно введені данні";
 $loginSuccededMessageL = "Поздоровляю! Ваш членський вхід зробленно успішно!";
 $updateMemberL = "Оновити користувача";
@@ -103,7 +103,8 @@ $createMemberL = "Створити користувача";
 $addMemberL= "Додати користувача";
 $newMemberSavedL = "New Member saved!";
 $shureToDelMemberL ="Ви впевнені що хочети видалити користувача?";
-
+$adminsL = "Адміністратори";
+$roleL = "Роль";
 
 //these functionare for translation in controllers and models
 function variableInController(){

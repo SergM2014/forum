@@ -38,6 +38,13 @@ class Popup  extends BaseController
         return ['view' => 'views/admin/popUpMenu/members.php', 'ajax' => true ];
     }
 
+    public function users()
+    {
+
+        return ['view' => 'views/admin/popUpMenu/users.php', 'ajax' => true ];
+    }
+
+
 
 
 
