@@ -105,6 +105,8 @@ $newMemberSavedL = "New Member saved!";
 $shureToDelMemberL ="Ви впевнені що хочети видалити користувача?";
 $adminsL = "Адміністратори";
 $roleL = "Роль";
+$createUserL = "Створити адміна";
+$newUserSavedL = "Нового адміна створенно!";
 
 //these functionare for translation in controllers and models
 function variableInController(){

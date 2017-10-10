@@ -105,6 +105,8 @@ $newMemberSavedL = "Нового користувача збережено!";
 $shureToDelMemberL = "Are You shurte to delete the member?";
 $adminsL = "Admins";
 $roleL = "Role";
+$createUserL = "Create user";
+$newUserSavedL = "New User is Saved!";
 
 
 //these functionare for translation in controllers and models

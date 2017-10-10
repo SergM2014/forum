@@ -242,6 +242,24 @@ class CheckForm extends DataBase
         return (array)$errors;
     }
 
+    public static function checkRegisterUserForm($inputs)
+    {
+        $errors =  new \stdClass();
+
+        self::checkIfNotEmpty($inputs, $errors);
+
+        self::checkIfEmail($errors);
+
+        self::comparePasswordFields($_POST['password'], $_POST['password2'], $errors);
+
+        if(!DEBUG_MODE){
+            self::ifUniqueMemberName($inputs, $errors);
+
+        }
+
+        return (array)$errors;
+    }
+
 
 
 

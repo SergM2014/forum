@@ -35,4 +35,19 @@ class User extends DataBase
 
         return $members;
     }
+
+    public static function store($inputs)
+    {
+//dd($inputs);
+        $token = bin2hex(random_bytes(5));
+        $password = $hash = password_hash( $inputs['password'], PASSWORD_DEFAULT );
+        $sql = "INSERT INTO `users` (`login`, `password`, `email`, `role`,  `token` ) VALUES (?, ?, ?, ?, ?)";
+        $stmt = self::conn()->prepare($sql);
+        $stmt -> bindValue(1, $inputs['login'], \PDO::PARAM_INT);
+        $stmt -> bindValue(2, $password, \PDO::PARAM_STR);
+        $stmt -> bindValue(3, $inputs['email'], \PDO::PARAM_STR);
+        $stmt -> bindValue(4, $inputs['role'], \PDO::PARAM_STR);
+        $stmt -> bindValue(5, $token, \PDO::PARAM_STR);
+        $stmt->execute();
+    }
 }

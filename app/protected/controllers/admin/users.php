@@ -22,6 +22,36 @@ class AdminUsers  extends AdminController {
     }
 
 
+    public function create($errors = null )
+    {
+        $_SESSION['createUser'] = true;
+        return ['view' => 'views/admin/users/create.php', 'errors' => $errors ];
+    }
+
+    public function store()
+    {
+
+        TokenService::check('admin');
+
+        if(@!$_SESSION['createUser']) return $this->create();
+
+        $cleanedUpInputs = self::escapeInputs('login','role', 'email', 'password');
+
+        $errors = CheckForm::checkRegisterUserForm($cleanedUpInputs);
+
+//if errors
+        if(!empty($errors)) {
+            return $this->create($errors);
+        };
+
+        User::store($cleanedUpInputs);
+
+        unset($_SESSION['createUser']);
+
+        return ['view'=>'views/admin/users/stored.php' ];
+    }
+
+
 
 
 
