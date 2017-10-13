@@ -109,6 +109,7 @@ $createUserL = "Створити адміна";
 $newUserSavedL = "Нового адміна створенно!";
 $updateUserL = "Оновити адміна";
 $userUpdatedL = "Адміна оновленно!";
+$shureToDelUserL = "Ви впевнені що хочете видалити адміністратора?";
 
 //these functionare for translation in controllers and models
 function variableInController(){
@@ -203,4 +204,9 @@ function responseDeleted()
 function memberDeleted()
 {
     return 'Користувача видаленно!';
+}
+
+function userDeleted()
+{
+    return 'Адиіністратора видаленно!';
 }

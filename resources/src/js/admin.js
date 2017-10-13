@@ -452,6 +452,46 @@ document.body.addEventListener('click', function (e) {
     }
 
 
+    if(e.target.id === 'adminDeleteUser'){
+
+        PopUpMenu.hideMenu();
+
+
+        let formData = new FormData(document.getElementById('adminDeleteUserForm'));
+
+        Modal.createModalWindow('/admin/users/modalWindow/delete', formData);
+
+    }
+
+    if(e.target.id === 'confirmDelAdmUser'){
+
+        PopUpMenu.hideMenu();
+
+        let formData = new FormData(document.getElementById('delUserForm'));
+        formData.append('ajax', true);
+        let userId = (formData.get('userId'));
+
+        fetch(`/admin/users/${userId}/delete`, {
+            method:'post',
+            credentials:'same-origin',
+            body:formData
+        })
+            .then(response => response.json())
+            .then(json => {
+                if(json.hasChildren){
+                    Modal.removeWindow();
+                    document.getElementById('alertZoneText').innerText = json.message;
+                    document.getElementById('alertZone').classList.remove('hidden');
+                }
+
+                Modal.removeWindow();
+                document.getElementById('alertZoneText').innerText = json.message;
+                document.getElementById('alertZone').classList.remove('hidden');
+                document.querySelector(`[data-user-id="${userId}"] `).remove();
+            })
+    }
+
+
     });
 
 //hide popup menu at click of outside the table

@@ -8,6 +8,7 @@ use App\Core\AdminController;
 use App\Models\User;
 use Lib\TokenService;
 use App\Models\CheckForm;
+use function userDeleted;
 
 class AdminUsers  extends AdminController {
 
@@ -81,6 +82,19 @@ class AdminUsers  extends AdminController {
         return ['view'=>'views/admin/users/updated.php' ];
     }
 
+    public function modalWindowDelete()
+    {
+        return ['view'=>'views/admin/modalWindows/deleteUser.php', 'ajax'=> true ];
+    }
+
+
+    public function delete($id){
+
+        TokenService::check('admin');
+
+        User::delete($id);
+        echo json_encode(['success'=>true, 'message'=> userDeleted()]); exit();
+    }
 
 }
   

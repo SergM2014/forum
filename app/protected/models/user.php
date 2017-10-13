@@ -85,4 +85,13 @@ class User extends DataBase
         $stmt->execute();
     }
 
+
+    public static function delete($id)
+    {
+        $sql = "DELETE FROM `users` WHERE `id` = ?";
+        $stmt = self::conn()->prepare($sql);
+        $stmt ->bindValue(1, $id, \PDO::PARAM_INT);
+        $stmt ->execute();
+    }
+
 }

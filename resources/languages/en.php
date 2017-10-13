@@ -109,6 +109,7 @@ $createUserL = "Create user";
 $newUserSavedL = "New User is Saved!";
 $updateUserL = "Update User";
 $userUpdatedL = "User is updated!";
+$shureToDelUserL = "Are You shure to delete user?";
 
 
 //these functionare for translation in controllers and models
@@ -204,4 +205,9 @@ function responseDeleted()
 function memberDeleted()
 {
     return 'Member is deleted!';
+}
+
+function userDeleted()
+{
+    return 'User is deleted!';
 }

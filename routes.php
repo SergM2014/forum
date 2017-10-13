@@ -101,4 +101,6 @@ $routes = [
     '/admin/users/store' => 'AdminUsers@store',
     '/admin/users/{user}/edit' => 'AdminUsers@edit',
     '/admin/users/{user}/update' => 'AdminUsers@update',
+    '/admin/users/modalWindow/delete' => 'AdminUsers@modalWindowDelete',
+    '/admin/users/{user}/delete' => 'AdminUsers@delete',
 ];
