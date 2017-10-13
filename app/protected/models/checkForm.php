@@ -261,6 +261,25 @@ class CheckForm extends DataBase
     }
 
 
+    public static function checkUpdateUserForm($inputs, $passwordException = ['password', 'password2'])
+    {
+        $errors =  new \stdClass();
+
+        self::checkIfNotEmpty($inputs, $errors, $passwordException);
+        self::checkIfEmail($errors);
+
+        if(!empty($_POST['password'])){
+            self::checkFieldsLength($_POST, 4, $errors);
+            self::comparePasswordFields($_POST['password'], $_POST['password2'], $errors);
+        } else {
+            self::checkFieldsLength($_POST, 4, $errors, $exception = [ 'password', 'password2']);
+        }
+
+
+        return (array)$errors;
+    }
+
+
 
 
 

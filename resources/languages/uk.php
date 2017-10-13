@@ -107,6 +107,8 @@ $adminsL = "Адміністратори";
 $roleL = "Роль";
 $createUserL = "Створити адміна";
 $newUserSavedL = "Нового адміна створенно!";
+$updateUserL = "Оновити адміна";
+$userUpdatedL = "Адміна оновленно!";
 
 //these functionare for translation in controllers and models
 function variableInController(){

@@ -107,6 +107,8 @@ $adminsL = "Admins";
 $roleL = "Role";
 $createUserL = "Create user";
 $newUserSavedL = "New User is Saved!";
+$updateUserL = "Update User";
+$userUpdatedL = "User is updated!";
 
 
 //these functionare for translation in controllers and models

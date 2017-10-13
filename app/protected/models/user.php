@@ -38,7 +38,6 @@ class User extends DataBase
 
     public static function store($inputs)
     {
-//dd($inputs);
         $token = bin2hex(random_bytes(5));
         $password = $hash = password_hash( $inputs['password'], PASSWORD_DEFAULT );
         $sql = "INSERT INTO `users` (`login`, `password`, `email`, `role`,  `token` ) VALUES (?, ?, ?, ?, ?)";
@@ -50,4 +49,40 @@ class User extends DataBase
         $stmt -> bindValue(5, $token, \PDO::PARAM_STR);
         $stmt->execute();
     }
+
+    public static function find($id)
+    {
+        $sql = "SELECT `id`, `avatar`, `login`, `email`, `role`, `token`, `created_at` FROM `users` WHERE `id` = ?";
+        $stmt = self::conn()->prepare($sql);
+        $stmt -> bindValue(1, $id, \PDO::PARAM_INT);
+        $stmt -> execute();
+        $user = $stmt->fetch();
+        return $user;
+    }
+
+
+    public static function update($id, $inputs)
+    {
+        if($inputs['password']!=''){
+
+            $password = password_hash($inputs['password'], PASSWORD_DEFAULT );
+
+            $sql = "UPDATE `users` SET  `password` = ? WHERE `id`= ?";
+            $stmt = self::conn()->prepare($sql);
+            $stmt->bindValue(1, $password, \PDO::PARAM_STR);
+            $stmt->bindValue(2, $id, \PDO::PARAM_INT);
+            $stmt->execute();
+        }
+
+
+        $sql = "UPDATE `users` SET  `login` = ?,  `email` = ?, `role` = ? WHERE `id`= ?";
+        $stmt = self::conn()->prepare($sql);
+
+        $stmt->bindValue(1, $inputs['login'], \PDO::PARAM_STR);
+        $stmt->bindValue(2, $inputs['email'], \PDO::PARAM_STR);
+        $stmt->bindValue(3, $inputs['role'], \PDO::PARAM_STR);
+        $stmt->bindValue(4, $id, \PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
 }

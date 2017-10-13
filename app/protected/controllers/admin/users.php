@@ -52,10 +52,34 @@ class AdminUsers  extends AdminController {
     }
 
 
+    public function edit($id, $errors = null)
+    {
+        $_SESSION['updateUser'] = true;
+        $user = User::find($id);
+        return ['view' => 'views/admin/users/edit.php', 'errors' => $errors, 'id' => $id, 'user' => $user ];
+    }
 
 
+    public function update($id)
+    {
+        TokenService::check('admin');
 
+        if(@!$_SESSION['updateUser']) return $this->edit($id);
 
+        $cleanedUpInputs = self::escapeInputs('login','role', 'email', 'password');
+
+        $errors = CheckForm::checkUpdateUserForm($cleanedUpInputs);
+
+        if(!empty($errors)) {
+            return $this->edit($id, $errors);
+        };
+
+        User::update($id, $cleanedUpInputs);
+
+        unset($_SESSION['updateUser']);
+
+        return ['view'=>'views/admin/users/updated.php' ];
+    }
 
 
 }

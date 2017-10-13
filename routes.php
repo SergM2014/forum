@@ -98,6 +98,7 @@ $routes = [
     '/admin/users' => 'AdminUsers@index',
     '/showUsersPopUp' => 'Popup@users',
     '/admin/users/create' => 'AdminUsers@create',
-    '/admin/users/store' => 'AdminUsers@store'
-
+    '/admin/users/store' => 'AdminUsers@store',
+    '/admin/users/{user}/edit' => 'AdminUsers@edit',
+    '/admin/users/{user}/update' => 'AdminUsers@update',
 ];
