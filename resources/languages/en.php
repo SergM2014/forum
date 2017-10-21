@@ -110,6 +110,9 @@ $newUserSavedL = "New User is Saved!";
 $updateUserL = "Update User";
 $userUpdatedL = "User is updated!";
 $shureToDelUserL = "Are You shure to delete user?";
+$responsesL = "Responses";
+$unpublishL = "Unpublish";
+$publishL = "Publish";
 
 
 //these functionare for translation in controllers and models
@@ -210,4 +213,19 @@ function memberDeleted()
 function userDeleted()
 {
     return 'User is deleted!';
+}
+
+function responsePublished()
+{
+    return 'Response is published!';
+}
+
+function responseUnpublished()
+{
+    return 'Response is unpublished!';
+}
+
+function yes()
+{
+    return "Yes";
 }

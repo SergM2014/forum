@@ -101,7 +101,7 @@ $membersL = "Користувачі";
 $avatarL = "Аватар";
 $createMemberL = "Створити користувача";
 $addMemberL= "Додати користувача";
-$newMemberSavedL = "New Member saved!";
+
 $shureToDelMemberL ="Ви впевнені що хочети видалити користувача?";
 $adminsL = "Адміністратори";
 $roleL = "Роль";
@@ -110,6 +110,9 @@ $newUserSavedL = "Нового адміна створенно!";
 $updateUserL = "Оновити адміна";
 $userUpdatedL = "Адміна оновленно!";
 $shureToDelUserL = "Ви впевнені що хочете видалити адміністратора?";
+$responsesL = "Відгуки";
+$unpublishL = "Не публікувати";
+$publishL = "Публікувати";
 
 //these functionare for translation in controllers and models
 function variableInController(){
@@ -208,5 +211,24 @@ function memberDeleted()
 
 function userDeleted()
 {
-    return 'Адиіністратора видаленно!';
+    return 'Адміністратора видаленно!';
+}
+
+function responsePublished()
+{
+    return 'Відгук опубліковано!';
+}
+
+function responseUnpublished()
+{
+    return 'Відгук знято з публікації!';
+}
+
+function no()
+{
+    return "Ні";
+}
+function yes()
+{
+    return "Так";
 }

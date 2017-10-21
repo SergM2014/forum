@@ -1,5 +1,7 @@
 <p><a href='<?= \Lib\HelperService::currentLang()?>/admin/response/create' class='popUp-menu-item'><?= $addL ?></a></p>
 <p><a href='<?= \Lib\HelperService::currentLang()?>/admin/response/<?= (int)$_POST['id'] ?>/edit' class='popUp-menu-item'><?= $updateL ?></a></p>
+<p><span class="popup-menu__item" id="publishComment" data-publish-comment-id="<?= (int)$_POST['id'] ?>" ><?= $publishL ?></span></p>
+<p><span class="popup-menu__item" id="unpublishComment" data-unpublish-comment-id="<?= (int)$_POST['id'] ?>" ><?= $unpublishL ?></span></p>
 
 
 

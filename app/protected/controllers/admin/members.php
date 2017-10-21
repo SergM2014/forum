@@ -14,19 +14,30 @@ use function memberDeleted;
 
 class AdminMembers  extends AdminController {
 
+
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->checkAdminLevel(2);
+    }
+
     public function index()
     {
         $pages = Member::countMemberPages();
-        $members = Member::getAdminAllMembers($pages);
-        $counter = Member::getTableCounter($pages);
 
+        $members = Member::getAdminAllMembers($pages);
+
+        $counter = Member::getTableCounter($pages);
 
         return ['view' => 'views/admin/members/index.php', 'members' => $members, 'pages' =>$pages, 'counter' =>$counter];
     }
 
     public function create($errors = null)
     {
-        $_SESSION['createMember'] = true;
+        $this->setReferrer('createMember');
+
        return ['view' => 'views/admin/members/create.php', 'errors' => $errors];
 
     }
@@ -34,9 +45,8 @@ class AdminMembers  extends AdminController {
 
     public function store()
     {
+        $this->checkReferrer('createMember');
         TokenService::check('admin');
-
-        if(@!$_SESSION['createMember']) return $this->create();
 
         $cleanedUpInputs = self::escapeInputs('name', 'email', 'password');
 
@@ -49,18 +59,16 @@ class AdminMembers  extends AdminController {
 
         Member::persistMember($cleanedUpInputs);
 
-        unset($_SESSION['createMember']);
-
-        return ['view'=>'views/admin/members/stored.php' ];
+        return ['view'=>'views/admin/completedAction.php', 'action' => 'newMemberSavedL' ];
     }
 
 
     public function edit($id,$errors = null)
     {
-
         $member = Member::getMember($id);
 
-        $_SESSION['editMember'] = true;
+        $this->setReferrer('editMember');
+
         return ['view' => 'views/admin/members/edit.php', 'member' => $member, 'id' =>$id,
             'errors' => $errors ];
 
@@ -68,9 +76,9 @@ class AdminMembers  extends AdminController {
 
     public function update($id)
     {
-        TokenService::check('admin');
+        $this->checkReferrer('editMember');
 
-        if(@!$_SESSION['editMember']) return $this->edit($id);
+        TokenService::check('admin');
 
         $cleanedUpInputs = self::escapeInputs('name', 'email', 'password');
         $errors = CheckForm::checkUpdateMemberForm($cleanedUpInputs);
@@ -82,9 +90,7 @@ class AdminMembers  extends AdminController {
 
         Member::adminUpdate($id,$cleanedUpInputs);
 
-        unset($_SESSION['editMember']);
-
-        return ['view'=>'views/admin/members/updated.php' ];
+        return ['view'=>'views/admin/completedAction.php', 'action' => 'memberUpdatedSuccessfullyL' ];
     }
 
     public function modalWindowDelete()

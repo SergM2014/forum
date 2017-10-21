@@ -62,7 +62,7 @@ class TokenService
                 echo json_encode(["message"=> smthWentWrong(), "error"=> true ]); exit();
             }
 
-            header('Location:'.$_SERVER['HTTP_REFERER']); exit();
+            @header('Location:'.$_SERVER['HTTP_REFERER']); exit();
         }
 
         return true;

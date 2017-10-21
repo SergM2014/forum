@@ -107,13 +107,20 @@ th{
   border-radius:3px;
   min-width:100px;
 }
-.popUp-menu__delete-item{
+.popUp-menu__delete-item {
   border:none;
   cursor:pointer;
   background: #ffdb7f;
   color:blue;
   text-decoration:underline;
   font-size:14px;
+}
+.popup-menu__item {
+  border:none;
+  cursor:pointer;
+  background: #ffdb7f;
+  color:blue;
+  text-decoration:underline;
 }
 .centered{
   width:360px;

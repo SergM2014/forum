@@ -491,6 +491,55 @@ document.body.addEventListener('click', function (e) {
             })
     }
 
+    if(e.target.id === "publishComment"){
+        let commentId = e.target.dataset.publishCommentId;
+
+        let formData = new FormData();
+        formData.append('id', commentId);
+
+        fetch(`/admin/response/${commentId}/publish`, {
+            method:'post',
+            credentials:'same-origin',
+            body:formData
+        })
+            .then(response => response.json())
+            .then(json => {
+                PopUpMenu.hideMenu();
+                document.getElementById('alertZoneText').innerText = json.message;
+                document.getElementById('alertZone').classList.remove('hidden');
+                let td =  document.querySelector(`[data-response-publish-field="${commentId}"]`);
+
+                td.className = 'green';
+                td.innerHTML = json.text;
+            })
+
+    }
+
+
+    if(e.target.id === "unpublishComment"){
+        let commentId = e.target.dataset.unpublishCommentId;
+
+        let formData = new FormData();
+        formData.append('id', commentId);
+
+        fetch(`/admin/response/${commentId}/unpublish`, {
+            method:'post',
+            credentials:'same-origin',
+            body:formData
+        })
+            .then(response => response.json())
+            .then(json => {
+                PopUpMenu.hideMenu();
+                document.getElementById('alertZoneText').innerText = json.message;
+                document.getElementById('alertZone').classList.remove('hidden');
+                let td =  document.querySelector(`[data-response-publish-field="${commentId}"]`);
+
+                td.className = 'red';
+                td.innerHTML = json.text;
+            })
+
+    }
+
 
     });
 

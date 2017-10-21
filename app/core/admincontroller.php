@@ -34,4 +34,11 @@ class AdminController  extends BaseController{
 
     }
 
+    public function checkAdminLevel($level)
+    {
+        if(@$_SESSION['admin']['role'] < $level){ header('Location: /admin');}
+    }
+
+
+
 }

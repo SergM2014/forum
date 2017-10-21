@@ -17,16 +17,18 @@ class Admintopics  extends AdminController {
     public function index()
     {
         $topics = Topic::getAllTopics();
+
         return ['view' => 'views/admin/topics/index.php', 'topics' => $topics];
     }
 
     public function create($errors = null)
     {
        $categoryDropDownList = (new Category)->getCategoryDropDownTree();
-//get members List
+
         $members = Member::getAllMembers();
 
-        $_SESSION['createTopic'] = true;
+        $this->setReferrer('createTopic');
+
        return ['view' => 'views/admin/topics/create.php', 'categoryDropDownList' => $categoryDropDownList,
            'members' => $members, 'errors' => $errors];
 
@@ -34,23 +36,21 @@ class Admintopics  extends AdminController {
 
     public function store()
     {
-        TokenService::check('admin');
+        $this->checkReferrer('createTopic');
 
-        if(@!$_SESSION['createTopic']) return $this->create();
+        TokenService::check('admin');
 
         $cleanedUpInputs = self::escapeInputs('title');
         $errors = CheckForm::checkCreateTopicForm($cleanedUpInputs);
 
-//if errors
+
         if(!empty($errors)) {
             return $this->create($errors);
         };
 
         Topic::store($cleanedUpInputs);
 
-        unset($_SESSION['createTopic']);
-
-        return ['view'=>'views/admin/topics/stored.php' ];
+        return ['view'=>'views/admin/completedAction.php', 'action'=>'topicCreatedL' ];
     }
 
 
@@ -64,7 +64,8 @@ class Admintopics  extends AdminController {
 
         $members = Member::getAllMembers();
 
-        $_SESSION['updateTopic'] = true;
+        $this->setReferrer('updateTopic');
+
         return ['view' => 'views/admin/topics/edit.php', 'categoryDropDownList' => $categoryDropDownList, 'id'=> $id,
             'categoryId' => $id, 'title' => $topic->title, 'members' => $members, 'memberId' => $topic->member_id,
             'errors' => $errors];
@@ -73,11 +74,12 @@ class Admintopics  extends AdminController {
 
     public function update($id)
     {
+        $this->checkReferrer('updateTopic');
+
         TokenService::check('admin');
 
-        if(@!$_SESSION['updateTopic']) return $this->edit($id);
-
         $cleanedUpInputs = self::escapeInputs('title');
+
         $errors = CheckForm::checkUpdateCategoryForm($cleanedUpInputs);
 
 //if errors
@@ -87,9 +89,7 @@ class Admintopics  extends AdminController {
 
         Topic::update($id,$cleanedUpInputs);
 
-        unset($_SESSION['updateTopic']);
-
-        return ['view'=>'views/admin/topics/updated.php' ];
+        return ['view'=>'views/admin/completedAction.php', 'action'=>'topicUpdatedL' ];
     }
 
     public function modalWindowDelete()
@@ -103,6 +103,7 @@ class Admintopics  extends AdminController {
         TokenService::check('admin');
 
         Topic::delete($_POST['topicId']);
+
         echo json_encode(['success'=>true, 'message'=> topicDeleted()]); exit();
     }
 

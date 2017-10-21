@@ -1,1 +1,0 @@
-<h1 class="content-zone__header"><?= $responseCreatedL ?></h1>

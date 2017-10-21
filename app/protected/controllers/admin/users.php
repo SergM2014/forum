@@ -12,6 +12,15 @@ use function userDeleted;
 
 class AdminUsers  extends AdminController {
 
+
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->checkAdminLevel(3);
+    }
+
     public function index()
     {
         $pages = User::countUsersPages();
@@ -25,16 +34,15 @@ class AdminUsers  extends AdminController {
 
     public function create($errors = null )
     {
-        $_SESSION['createUser'] = true;
+        $this->setReferrer('createUser');
         return ['view' => 'views/admin/users/create.php', 'errors' => $errors ];
     }
 
     public function store()
     {
+        $this->checkReferrer('createUser');
 
         TokenService::check('admin');
-
-        if(@!$_SESSION['createUser']) return $this->create();
 
         $cleanedUpInputs = self::escapeInputs('login','role', 'email', 'password');
 
@@ -47,15 +55,13 @@ class AdminUsers  extends AdminController {
 
         User::store($cleanedUpInputs);
 
-        unset($_SESSION['createUser']);
-
-        return ['view'=>'views/admin/users/stored.php' ];
+        return ['view'=>'views/admin/completedAction.php', 'action' => 'newUserSavedL' ];
     }
 
 
     public function edit($id, $errors = null)
     {
-        $_SESSION['updateUser'] = true;
+        $this->setReferrer('updateUser');
         $user = User::find($id);
         return ['view' => 'views/admin/users/edit.php', 'errors' => $errors, 'id' => $id, 'user' => $user ];
     }
@@ -63,9 +69,8 @@ class AdminUsers  extends AdminController {
 
     public function update($id)
     {
+        $this->checkReferrer('updateUser');
         TokenService::check('admin');
-
-        if(@!$_SESSION['updateUser']) return $this->edit($id);
 
         $cleanedUpInputs = self::escapeInputs('login','role', 'email', 'password');
 
@@ -77,9 +82,7 @@ class AdminUsers  extends AdminController {
 
         User::update($id, $cleanedUpInputs);
 
-        unset($_SESSION['updateUser']);
-
-        return ['view'=>'views/admin/users/updated.php' ];
+        return ['view'=>'views/admin/completedAction.php', 'action' => 'userUpdatedL' ];
     }
 
     public function modalWindowDelete()

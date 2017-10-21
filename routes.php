@@ -71,15 +71,17 @@ $routes = [
     '/admin/topic/{topic}/delete' => 'admintopics@delete',
 
 
-    '/admin/responses' => 'adminresponses@index',
+    '/admin/responses' => 'AdminResponses@index',
     '/showResponsesPopUp'=>'popup@responses',
-    '/admin/response/create'=> 'adminresponses@create',
-    '/admin/response/showTreeStructure' => 'adminresponses@showTreeStructure',
-    '/admin/response/store' => 'adminresponses@store',
-    '/admin/response/{response}/edit' => 'adminresponses@edit',
-    '/admin/response/{response}/update' => 'adminresponses@update',
-    '/admin/response/modalWindow/delete' => 'adminresponses@modalWindowDelete',
-    '/admin/response/{response}/delete' => 'adminresponses@delete',
+    '/admin/response/create'=> 'AdminResponses@create',
+    '/admin/response/showTreeStructure' => 'AdminResponses@showTreeStructure',
+    '/admin/response/store' => 'AdminResponses@store',
+    '/admin/response/{response}/edit' => 'AdminResponses@edit',
+    '/admin/response/{response}/update' => 'AdminResponses@update',
+    '/admin/response/modalWindow/delete' => 'AdminResponses@modalWindowDelete',
+    '/admin/response/{response}/delete' => 'AdminResponses@delete',
+    '/admin/response/{response}/publish' => 'AdminResponses@publish',
+    '/admin/response/{response}/unpublish' => 'AdminResponses@unpublish',
 
 
 

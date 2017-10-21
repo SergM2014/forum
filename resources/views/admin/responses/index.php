@@ -1,4 +1,4 @@
-<h1 class="h1">This is topics</h1>
+<h1 class="h1"><?= $responsesL ?></h1>
 
 
 
@@ -39,7 +39,7 @@
                 <td><?= $response->title ?></td>
                 <td><?= $response->name ?></td>
                 <td><?= $response->response ?></td>
-                <td class="<?= $response->published ==1? 'green':'red' ?>"><?= $response->published == 1? $yesL: $noL ?></td>
+                <td class="<?= $response->published ==1? 'green':'red' ?>" data-response-publish-field ="<?= $response->id ?>"><?= $response->published == 1? $yesL: $noL ?></td>
                 <td class="<?= $response->changed ==1? 'red': 'green' ?>"><?= $response->changed == 1? $yesL: $noL ?></td>
                 <td><?= $response->created_at ?></td>
             </tr>

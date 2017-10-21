@@ -52,8 +52,11 @@
                      <li class="main-header__menu-item"><a href="<?= \Lib\HelperService::currentLang() ?>/"
                                                            class="main-header__menu-item-link"><?= $backToSiteL ?></a></li>
 
+                     <?php if ($_SESSION['admin']['role'] >=3): ?>
+
                         <li class="main-header__menu-item"><a href="<?= \Lib\HelperService::currentLang() ?>/admin/users"
                                                               class="main-header__menu-item-link"><?= $adminsL ?></a></li>
+                    <?php endif ?>
 
                          <li class="main-header__menu-item"><a href="<?= \Lib\HelperService::currentLang() ?>/admin/categories"
                                                            class="main-header__menu-item-link"><?= $categoriesL ?></a></li>
@@ -61,12 +64,13 @@
                          <li class="main-header__menu-item"><a href="<?= \Lib\HelperService::currentLang() ?>/admin/topics"
                                                            class="main-header__menu-item-link"><?= $topicsL ?></a></li>
 
+                     <?php if ($_SESSION['admin']['role'] >=2): ?>
                          <li class="main-header__menu-item"><a href="<?= \Lib\HelperService::currentLang() ?>/admin/responses"
                                                            class="main-header__menu-item-link"><?= $responsesL ?></a></li>
 
                           <li class="main-header__menu-item"><a href="<?= \Lib\HelperService::currentLang() ?>/admin/members"
                                                            class="main-header__menu-item-link"><?= $membersL ?></a></li>
-
+                    <?php endif ?>
 
                         <div class="main-header__right-side">
 

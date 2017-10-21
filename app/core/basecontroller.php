@@ -38,7 +38,7 @@ use Lib\CookieService;
 
      protected function checkReferrer($referrer)
      {
-        $url = $_SESSION['form'][$referrer];
+        $url = @$_SESSION['form'][$referrer];
 
        if( preg_match("/$referrer$/", $url)){
 
@@ -46,7 +46,7 @@ use Lib\CookieService;
          return;
        };
 
-         $location = $_SERVER['HTTP_REFERER'];
+         $location = @$_SERVER['HTTP_REFERER'];
          header("Location:$location");
          exit();
      }

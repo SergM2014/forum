@@ -13,15 +13,28 @@ use App\Models\Member;
 
 
 use function responseDeleted;
+use function responsePublished;
+use function responseUnpublished;
+use function yes;
+use function  no;
 
-class Adminresponses  extends AdminController {
+class AdminResponses  extends AdminController {
+
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->checkAdminLevel(2);
+    }
+
 
     public function index()
     {
+
         $pages = Response::countAdminPages();
+
         $responses = Response::getAllResponses($pages);
-
-
 
         $counter = Response::getTableCounter($pages);
 
@@ -31,10 +44,11 @@ class Adminresponses  extends AdminController {
     public function create($errors = null)
     {
        $topics = Topic::getAllTopics();
-//get members List
+
         $members = Member::getAllMembers();
 
-        $_SESSION['createResponse'] = true;
+        $this->setReferrer('createResponse');
+
        return ['view' => 'views/admin/responses/create.php', 'topics' => $topics,
            'members' => $members, 'errors' => $errors];
 
@@ -43,8 +57,6 @@ class Adminresponses  extends AdminController {
 
     public function showTreeStructure()
     {
-
-
         $responsesDropDownList = (new Response($_POST['id']))->getAdminResponsesTreeStructure();
 
        return ['view' => 'views/admin/responses/showTreeStructure.php', 'responsesDropDownList' => $responsesDropDownList, 'ajax' => true ];
@@ -54,24 +66,20 @@ class Adminresponses  extends AdminController {
 
     public function store()
     {
+        $this->checkReferrer('createResponse');
         TokenService::check('admin');
-
-        if(@!$_SESSION['createResponse']) return $this->create();
 
         $cleanedUpInputs['response'] = self::stripTags($_POST['response']);
 
         $errors = CheckForm::checkCreateResponseForm($cleanedUpInputs);
 
-//if errors
         if(!empty($errors)) {
             return $this->create($errors);
         };
 
         Response::store($cleanedUpInputs['response']);
 
-        unset($_SESSION['createResponse']);
-
-        return ['view'=>'views/admin/responses/stored.php' ];
+        return ['view'=>'views/admin/completedAction.php', 'action' => 'responseCreatedL' ];
     }
 
 
@@ -80,8 +88,8 @@ class Adminresponses  extends AdminController {
         $response = Response::getOneComment($id);
         $topics = Topic::getAllTopics();
 
+        $this->setReferrer('editResponse');
 
-        $_SESSION['editResponse'] = true;
         return ['view' => 'views/admin/responses/edit.php', 'topics' => $topics, 'id' =>$id,
             'errors' => $errors, 'response' => $response];
 
@@ -89,9 +97,8 @@ class Adminresponses  extends AdminController {
 
     public function update($id)
     {
+        $this->checkReferrer('editResponse');
         TokenService::check('admin');
-
-        if(@!$_SESSION['editResponse']) return $this->index();
 
         $cleanedUpInputs = self::escapeInputs('response');
         $errors = CheckForm::checkCreateResponseForm($cleanedUpInputs);
@@ -103,9 +110,7 @@ class Adminresponses  extends AdminController {
 
         Response::update($id,$cleanedUpInputs);
 
-        unset($_SESSION['editResponse']);
-
-        return ['view'=>'views/admin/responses/updated.php' ];
+        return ['view'=>'views/admin/completedAction.php', 'action' => 'responseUpdatedL' ];
     }
 
     public function modalWindowDelete()
@@ -119,7 +124,18 @@ class Adminresponses  extends AdminController {
         TokenService::check('admin');
 
         Response::delete($_POST['responseId']);
+
         echo json_encode(['success'=>true, 'message'=> responseDeleted()]); exit();
+    }
+
+    public function publish()
+    {
+        echo json_encode(['success'=>true, 'message'=> responsePublished(), 'text' => yes() ]); exit();
+    }
+
+    public function unpublish()
+    {
+        echo json_encode(['success'=>true, 'message'=> responseUnpublished(), 'text' => no() ]); exit();
     }
 
 }

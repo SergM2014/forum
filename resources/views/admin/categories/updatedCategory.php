@@ -1,1 +1,0 @@
-<h1 class="content-zone__header"><?= $categoryUpdatedL ?></h1>

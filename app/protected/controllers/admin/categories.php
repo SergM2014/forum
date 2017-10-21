@@ -24,27 +24,27 @@ class Admincategories  extends AdminController {
     public function index()
     {
         $categories = (new Index)->getCategoryTree();
+
         return ['view' => 'views/admin/categories/index.php', 'categories'=> $categories ];
     }
 
     public function create($errors = null)
     {
        $categoryDropDownList = (new Category)->getCategoryDropDownTree();
-        $_SESSION['createCategory'] = true;
+
+        $this->setReferrer('createCategory');
+
        return ['view' => 'views/admin/categories/create.php', 'categoryDropDownList' => $categoryDropDownList, 'errors' => $errors];
 
     }
 
     public function store()
     {
-
+        $this->checkReferrer('createCategory');
         TokenService::check('admin');
-
-        if(@!$_SESSION['createCategory']) return $this->create();
 
         $cleanedUpInputs = self::escapeInputs('title');
         $errors = CheckForm::checkCreateCategoryForm($cleanedUpInputs);
-
 //if errors
         if(!empty($errors)) {
             return $this->create($errors);
@@ -52,9 +52,7 @@ class Admincategories  extends AdminController {
 
         Category::saveCategory($cleanedUpInputs);
 
-        unset($_SESSION['createCategory']);
-
-        return ['view'=>'views/admin/categories/storedCategory.php' ];
+        return ['view'=>'views/admin/completedAction.php', 'action' => 'categoryCreatedL' ];
     }
 
 
@@ -63,7 +61,9 @@ class Admincategories  extends AdminController {
         $category = Category::getOneCategory($id);
 
         $categoryDropDownList = (new Category)->getCategoryDropDownTree($category->parent_id);
-        $_SESSION['updateCategory'] = true;
+
+        $this->setReferrer('updateCategory');
+
         return ['view' => 'views/admin/categories/edit.php', 'categoryDropDownList' => $categoryDropDownList,
             'categoryId' => $id, 'title' => $category->title, 'errors' => $errors];
 
@@ -71,9 +71,8 @@ class Admincategories  extends AdminController {
 
     public function update($id)
     {
+        $this->checkReferrer('updateCategory');
         TokenService::check('admin');
-
-        if(@!$_SESSION['updateCategory']) return $this->edit($id);
 
         $cleanedUpInputs = self::escapeInputs('title');
         $errors = CheckForm::checkUpdateCategoryForm($cleanedUpInputs);
@@ -85,9 +84,7 @@ class Admincategories  extends AdminController {
 
         Category::updateCategory($id,$cleanedUpInputs);
 
-        unset($_SESSION['updateCategory']);
-
-        return ['view'=>'views/admin/categories/updatedCategory.php' ];
+        return ['view'=>'views/admin/completedAction.php', 'action' => 'categoryUpdatedL' ];
     }
 
     public function modalWindowDelete()

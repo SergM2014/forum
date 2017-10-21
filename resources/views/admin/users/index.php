@@ -1,6 +1,6 @@
 <h1 class="h1"><?= $adminsL ?></h1>
 
-
+<?php var_dump($_SESSION) ?>
 
 
 
