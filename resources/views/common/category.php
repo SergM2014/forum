@@ -45,7 +45,7 @@
 <?php if(isset($_SESSION['member'])): ?>
 
     <div class="clearfix create-category__btn-container">
-        <a href="/category/<?= $categoryId ?>/create/topic" class="create-category__btn"> <?= $addTopicL ?></a>
+        <a href="<?= \Lib\HelperService::currentLang() ?>/category/<?= $categoryId ?>/create/topic" class="create-category__btn"> <?= $addTopicL ?></a>
     </div>
 
 <?php endif; ?>

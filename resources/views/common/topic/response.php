@@ -1,7 +1,7 @@
 <section class="breadcrumbs">
 
     <a href="/" class="breadcrumb__item"><?= $mainPageL ?></a> =>
-    <a href="/topic/<?= $topic ?>" class="breadcrumb__item"><?= $responsesL ?></a> =>
+    <a href="<?= \Lib\HelperService::currentLang() ?>/topic/<?= $topic ?>" class="breadcrumb__item"><?= $responsesL ?></a> =>
     <span class="breadcrumb__item--current"><?= $commentL ?></span>
 
 </section>

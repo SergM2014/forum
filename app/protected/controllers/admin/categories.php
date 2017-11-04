@@ -12,7 +12,7 @@ use App\Models\Index;
 use function categoryHasChildren;
 use function categoryDeleted;
 
-class Admincategories  extends AdminController {
+class AdminCategories  extends AdminController {
 
     public function __construct()
     {

@@ -3,7 +3,7 @@
                 <footer class="site-footer">
                     <span class="site-footer__mark">Footer</span>
 
-                        <a href="/admin" class="site-footer__admin-link"><small>admin</small></a>
+                        <a href="<?= \Lib\HelperService::currentLang() ?>/admin" class="site-footer__admin-link"><small>admin</small></a>
 
 
                 </footer>

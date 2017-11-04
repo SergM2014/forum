@@ -12,7 +12,7 @@ use App\Models\Member;
 
 use function topicDeleted;
 
-class Admintopics  extends AdminController {
+class AdminTopics  extends AdminController {
 
     public function index()
     {
